@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/amarillo_upn"
+    android:gravity="center"
+    android:padding="16dp">
+
+  <TextView
+      android:id="@+id/tituloTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Mantente Motivado"
+      android:textSize="28sp"
+      android:textStyle="bold"
+      android:textColor="@android:color/black"
+      android:layout_marginBottom="18dp" />
+
+  <ImageView
+      android:id="@+id/imagenMotivacionImageView"
+      android:layout_width="200dp"
+      android:layout_height="215dp"
+      android:layout_marginBottom="16dp"
+      android:scaleType="centerCrop"
+      android:src="@drawable/mujer_comidasana" />
+
+  <TextView
+      android:id="@+id/infoTextView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Regístrate para recibir nuestro boletín por correo electrónico y obtén regularmente consejos de ayuno gratuitos y actualizaciones de nuestra comunidad."
+      android:textSize="17sp"
+      android:textColor="@android:color/black"
+      android:gravity="center"
+      android:layout_marginBottom="24dp" />
+
+  <EditText
+      android:id="@+id/inputCorreoBienvenida"
+      android:layout_width="300dp"
+      android:layout_height="45dp"
+      android:hint="Correo Electrónico"
+      android:inputType="textEmailAddress"
+      android:background="@android:color/white"
+      android:padding="12dp"
+      android:textColor="@android:color/black"
+      android:textColorHint="@android:color/darker_gray"
+      android:layout_marginBottom="20dp" />
+
+  <Button
+      android:id="@+id/btnContinuarCorreo"
+      android:layout_width="180dp"
+      android:layout_height="wrap_content"
+      android:backgroundTint="#BDBDBD"
+      android:paddingHorizontal="32dp"
+      android:text="Continuar"
+      android:layout_marginTop="3dp"
+      android:textColor="@android:color/darker_gray" />
+
+</LinearLayout>

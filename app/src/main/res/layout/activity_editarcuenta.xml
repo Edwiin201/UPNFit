@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/amarillo_upn"
+    android:padding="16dp">
+
+    <!-- Agregar un contenedor con el ID "main" -->
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- CardView para la cabecera -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#787878"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="25dp">
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <ImageButton
+                    android:id="@+id/regresoconfi"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:contentDescription="Volverconfi"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:tint="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/tvCuenta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Cuenta"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Card Datos cuenta -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardCuenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/topBar"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#E4E4E4">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <!-- ID de Usuario -->
+                <TextView
+                    android:id="@+id/labelId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ID del Usuario"
+                    android:textColor="#808080"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelId"
+                    android:layout_marginBottom="12dp"
+                    android:text="1245682545"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/separador1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tvId"
+                    android:layout_marginBottom="12dp"
+                    android:background="#DADADA" />
+
+                <!-- Correo Electrónico -->
+                <TextView
+                    android:id="@+id/labelCorreo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/separador1"
+                    android:text="Correo Electrónico"
+                    android:textColor="#808080"
+                    android:textSize="16sp" />
+
+                <!-- EditText para modificar el correo -->
+                <EditText
+                    android:id="@+id/editCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelCorreo"
+                    android:layout_marginBottom="12dp"
+                    android:text="CarlosPz@gmail.com"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:hint="Introduce tu correo"
+                    android:inputType="textEmailAddress"/>
+
+                <View
+                    android:id="@+id/separador2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/editCorreo"
+                    android:layout_marginBottom="12dp"
+                    android:background="#DADADA" />
+
+                <!-- Contraseña -->
+                <TextView
+                    android:id="@+id/labelContrasena"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/separador2"
+                    android:text="Contraseña"
+                    android:textColor="#808080"
+                    android:textSize="16sp" />
+
+                <!-- EditText para la contraseña -->
+                <EditText
+                    android:id="@+id/editPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelContrasena"
+                    android:layout_alignParentStart="true"
+                    android:text="************"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:hint="Introduce tu contraseña"
+                    android:inputType="textPassword" />
+
+                <ImageButton
+                    android:id="@+id/ivVerPassword"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignBottom="@id/editPassword"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="Ver contraseña"
+                    android:src="@android:drawable/ic_menu_view"
+                    app:tint="#000000" />
+
+                <View
+                    android:id="@+id/separador3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/editPassword"
+                    android:layout_marginTop="12dp"
+                    android:background="#DADADA" />
+
+                <!-- Botón Restaurar -->
+                <Button
+                    android:id="@+id/tvRestaurar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/separador3"
+                    android:layout_marginTop="16dp"
+                    android:text="Restaurar"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:textAllCaps="false" />
+
+                <ImageView
+                    android:id="@+id/ivRestaurar"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignBottom="@id/tvRestaurar"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="Restaurar"
+                    android:src="@android:drawable/ic_popup_sync"
+                    app:tint="#000000" />
+
+                <View
+                    android:id="@+id/separador4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tvRestaurar"
+                    android:layout_marginTop="16dp"
+                    android:background="#DADADA" />
+
+                <!-- Botón Cerrar Sesión -->
+                <Button
+                    android:id="@+id/tvCerrarSesion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/separador4"
+                    android:layout_marginTop="16dp"
+                    android:text="Cerrar Sesión"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:textAllCaps="false" />
+
+                <ImageView
+                    android:id="@+id/ivCerrarSesion"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignBottom="@id/tvCerrarSesion"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="Cerrar sesión"
+                    android:src="@android:drawable/ic_lock_power_off"
+                    app:tint="#000000" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</RelativeLayout>

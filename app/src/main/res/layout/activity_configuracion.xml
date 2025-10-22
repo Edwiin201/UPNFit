@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/amarillo_upn"
+    android:padding="16dp">
+
+    <!-- Barra superior -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#858585"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="45dp">
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+
+            <!-- Texto "Configuración" centrado -->
+
+            <ImageButton
+                android:id="@+id/regresomenu"
+                android:layout_width="33dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:contentDescription="Cerrar"
+                android:focusable="true"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                app:tint="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Configuración"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Contenedor de opciones -->
+    <LinearLayout
+        android:id="@+id/menuContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topBar"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        android:background="@drawable/redondeado"
+        android:padding="8dp">
+
+        <!-- Opción: Perfil -->
+        <LinearLayout
+            android:id="@+id/opPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/perfil" />
+
+            <Button
+                android:id="@+id/btnmenuPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Perfil"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:background="?android:attr/selectableItemBackground"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Opción: Cuenta -->
+        <LinearLayout
+            android:id="@+id/opCuenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/cuenta" />
+
+            <Button
+                android:id="@+id/btnmenuCuenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Cuenta"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:background="?android:attr/selectableItemBackground"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Opción: Notificaciones -->
+        <LinearLayout
+            android:id="@+id/opNotificaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/notificaciones" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/ConfigPreferecias"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:background="?android:attr/selectableItemBackground"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+        <!-- Opción: Mis Objetivos -->
+        <LinearLayout
+            android:id="@+id/opObjetivos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/objetivos" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Mis Objetivos"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:background="?android:attr/selectableItemBackground"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

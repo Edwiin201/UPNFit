@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/amarillo_upn"
+    tools:context=".actividades.CargaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:layout_margin="15dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="437dp"
+            android:src="@drawable/logo" />
+
+        <ProgressBar
+            android:id="@+id/carBarCarga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="70dp"
+            android:padding="5dp"
+            android:scaleY="2"
+            android:max="100"
+            android:progress="60"
+            android:progressTint="@color/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_marginVertical="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            android:gravity="center_horizontal"
+            android:text="@string/carLblMensaje"/>
+
+        <TextView
+            android:id="@+id/txtFrase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cargando motivación..."
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:padding="12dp"
+            android:layout_marginBottom="20dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

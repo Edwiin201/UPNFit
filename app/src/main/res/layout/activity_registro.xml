@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/amarillo_upn">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="30dp">
+
+    <TextView
+        android:id="@+id/regLblTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:layout_marginBottom="24dp"
+        android:gravity="center_horizontal"
+        android:text="Registro de Usuario"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:paddingTop="20dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombres y Apellidos">
+      <EditText
+          android:id="@+id/regTxtNombre"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Correo Electrónico">
+      <EditText
+          android:id="@+id/regTxtCorreo"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Contraseña"
+        app:passwordToggleEnabled="true">
+      <EditText
+          android:id="@+id/regTxtClave"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Confirmar Contraseña"
+        app:passwordToggleEnabled="true">
+      <EditText
+          android:id="@+id/regTxtConfirmarClave"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/regBtnContinuar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continuar"
+        android:layout_marginTop="30dp"
+        android:textAllCaps="false"
+        app:cornerRadius="8dp"
+        app:backgroundTint="@color/verde_botón"
+        android:textColor="@color/blanco" />
+  </LinearLayout>
+</ScrollView>

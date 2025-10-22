@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/redondeado"
+    android:clipToOutline="true"
+    android:padding="24dp"
+    android:elevation="8dp"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comida"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/txtTituloComida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comida"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preparacion"
+        android:textSize="22sp"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtPreparacionComida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preparacion"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/black" />
+</LinearLayout>

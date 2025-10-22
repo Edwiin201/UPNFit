@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="fondo">#FDFDF1</color>
+    <color name="progressBar">#000000</color>
+    <color name="verde_botón">#4CAF50</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name="Gris">#D3D3D3</color>
+    <color name="blue">#FF2781C6</color>
+    <color name="verde_oscuro">#2E7D32</color> <!-- Verde oscuro -->
+    <color name="amarillo_pastel">#FFF9C4</color> <!-- Amarillo pastel claro -->
+    <color name="amarillo_upn">#ffb43b</color>  <!-- amarillo upn -->
+
+
+</resources>

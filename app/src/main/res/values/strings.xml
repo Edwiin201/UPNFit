@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">UPNFit</string>
+    <string name="carLblMensaje">Cargando aplicación...</string>
+    <string name="sesHintCorreoElectronico">Correo Electrónico</string>
+    <string name="sesHintContraseña">Contraseña</string>
+    <string name="sesBtnIniciar">Iniciar Sesión</string>
+    <string name="sesLblHasolvidado">¿Has olvidado la contraseña?</string>
+    <string name="sesLblNotienescuenta">¿No tienes cuenta de Renova aún?</string>
+    <string name="sesLblRegistro">Registrate Ahora</string>
+    <string name="ConfigPreferecias">Preferencias</string>
+
+
+</resources>

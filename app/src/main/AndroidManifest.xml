@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.upnfit">
+
+    <!-- 🔹 Permisos necesarios -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.UPNFit"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <!-- 🔹 Activities de tu app -->
+        <activity
+            android:name=".actividades.EdadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.ComunidadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.SaludmentalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.ActividadfisicaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.NuevapublicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.HorameditacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.EditarcuentaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.EditarperfilActivity"
+            android:exported="true" />
+        <activity
+            android:name=".actividades.ConfiguracionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.NutricionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.ContratoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.PesoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.AlturaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.ObjetivoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.GeneroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.MenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.BienvenidaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.RegistroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.SesionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.MapaActivity"
+            android:exported="false" />
+
+        <!-- 🔹 Pantalla inicial (launcher) -->
+        <activity
+            android:name=".actividades.CargaActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 🔹 Clave de Google Maps -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD7yRGJhw3inbGCU_jPtsheAE-NHViG5ls" />
+    </application>
+
+</manifest>

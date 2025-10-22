@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="notification_frequencies">
+        <item>Diarias</item>
+        <item>Semanales</item>
+    </string-array>
+
+    <string-array name="workout_types">
+        <item>Fuerza</item>
+        <item>Cardio</item>
+        <item>Flexibilidad</item>
+    </string-array>
+
+    <string-array name="sleep_goals">
+        <item>7 horas</item>
+        <item>8 horas</item>
+        <item>9 horas</item>
+    </string-array>
+</resources>

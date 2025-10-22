@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/amarillo_upn"
+    android:padding="24dp"
+    tools:context=".actividades.ObjetivoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="0dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¿Qué quieres lograr?"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp" />
+
+        <GridLayout
+            android:id="@+id/gridOpciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:alignmentMode="alignMargins"
+            android:rowOrderPreserved="false"
+            android:columnOrderPreserved="false"
+            android:layout_marginBottom="24dp"
+            android:useDefaultMargins="true">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBajarPeso"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="28dp"
+                android:text="Bajar de peso"
+                android:textAllCaps="false"
+                android:background="@drawable/boton_circular"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnMantenerPeso"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:text="Mantener el peso"
+                android:textAllCaps="false"
+                android:background="@drawable/boton_circular"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSalud"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="28dp"
+                android:text="Reforzar la salud"
+                android:textAllCaps="false"
+                android:background="@drawable/boton_circular"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnClaridadMental"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:text="Claridad mental"
+                android:textAllCaps="false"
+                android:background="@drawable/boton_circular"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnEnergia"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="28dp"
+                android:text="Más energía"
+                android:textAllCaps="false"
+                android:background="@drawable/boton_circular"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnVivirMas"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:text="Vivir más tiempo"
+                android:textAllCaps="false"
+                android:background="@drawable/boton_circular"
+                android:textColor="@color/black" />
+        </GridLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinuarObjetivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar"
+            android:textAllCaps="false"
+            app:cornerRadius="8dp"
+            app:backgroundTint="@color/verde_botón"
+            android:textColor="@color/blanco" />
+    </LinearLayout>
+</ScrollView>

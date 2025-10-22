@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 1. Notificaciones motivacionales -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notificaciones motivacionales"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp" />
+
+        <Switch
+            android:id="@+id/switch_notifications_enabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Activar notificaciones" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Frecuencia"
+            android:layout_marginTop="8dp" />
+
+        <Spinner
+            android:id="@+id/spinner_notification_frequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/notification_frequencies" />
+
+        <!-- 2. Preferencias de entrenamiento -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preferencias de entrenamiento"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nivel de entrenamiento" />
+
+        <RadioGroup
+            android:id="@+id/radio_group_workout_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <RadioButton
+                android:id="@+id/radio_beginner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Básico" />
+
+            <RadioButton
+                android:id="@+id/radio_intermediate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Intermedio" />
+
+            <RadioButton
+                android:id="@+id/radio_advanced"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Avanzado" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de entrenamiento"
+            android:layout_marginTop="12dp" />
+
+        <Spinner
+            android:id="@+id/spinner_workout_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/workout_types" />
+
+        <!-- 3. Modo nocturno -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modo nocturno"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp" />
+
+        <Switch
+            android:id="@+id/switch_dark_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Activar modo oscuro" />
+
+        <!-- 4. Preferencias de monitoreo de sueño -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monitoreo de sueño"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp" />
+
+        <Switch
+            android:id="@+id/switch_sleep_schedule_enabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Activar monitoreo de sueño" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Objetivo de descanso"
+            android:layout_marginTop="8dp" />
+
+        <Spinner
+            android:id="@+id/spinner_sleep_goal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/sleep_goals" />
+
+        <!-- 5. Última rutina completada -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Última rutina completada"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/edittext_last_workout_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID de la última rutina"
+            android:inputType="text" />
+
+        <!-- Botón para guardar preferencias -->
+        <Button
+            android:id="@+id/button_save_preferences"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar preferencias"
+            android:layout_marginTop="32dp" />
+
+    </LinearLayout>
+</ScrollView>

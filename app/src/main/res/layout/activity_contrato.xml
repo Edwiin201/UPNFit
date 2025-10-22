@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".actividades.ContratoActivity"
+    >
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/amarillo_upn"
+        android:padding="24dp"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="26dp">
+
+        <LinearLayout
+            android:background="#ffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:elevation="6dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:outlineProvider="bounds"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="El Contrato"
+                android:textColor="#000000"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/contract_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:lineSpacingExtra="6dp"
+                android:text="Yo, [ Carlos ], me comprometo a seguir mi programa de UPNFIT, para alcanzar mis objetivos. \n\nAl firmar este compromiso, declaro que:
+\n-Asumo la responsabilidad de mi bienestar y progreso.\n
+\n-Me comprometo a cumplir con las recomendaciones y rutinas propuestas en la aplicación.\n
+\n-Entiendo que los resultados dependen de mi constancia y dedicación.\n
+\n-Buscaré ayuda profesional si presento dudas o dificultades durante el proceso.\n
+\n-Seré honesto conmigo mismo sobre mis avances y desafíos.\n
+\n-Celebraré mis logros y aprenderé de los obstáculos.\n
+\n-Reconozco que este compromiso es conmigo mismo y mi salud futura."
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxContrato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Acepto los términos y condiciones"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btncontrato"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#00C853"
+                android:contentDescription="Aceptar contrato"
+                android:scaleType="centerInside"
+                android:src="@drawable/botonfirma" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mantén pulsado para firmar"
+                android:textColor="#00C853"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".actividades.SesionActivity"
+    android:background="@color/amarillo_upn">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="297dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/logo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/sexTxtCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/sesHintCorreoElectronico"
+                android:inputType="textEmailAddress"
+                android:maxLength="100" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/sextxtClave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:hint="@string/sesHintContraseña"
+                android:inputType="textPassword"
+                android:maxLength="100" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sesBtnIniciarSesion"
+                android:layout_width="317dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="90dp"
+                android:layout_weight="1"
+                android:text="@string/sesBtnIniciar"
+                android:textAllCaps="false"
+                android:textColor="@color/blanco"
+                app:backgroundTint="@color/verde_botón"
+                app:cornerRadius="8dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/seslblHasolvidado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/sesLblHasolvidado"
+            android:textColor="@color/purple_700" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:orientation="horizontal" />
+
+        <TextView
+            android:id="@+id/seslblNotienescuenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/sesLblNotienescuenta"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_700" />
+
+        <TextView
+            android:id="@+id/seslblRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/sesLblRegistro"
+            android:textAllCaps="false"
+            android:textColor="@color/purple_700" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
