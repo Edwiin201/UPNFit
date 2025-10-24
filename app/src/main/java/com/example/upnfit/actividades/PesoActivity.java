@@ -36,12 +36,15 @@ public class PesoActivity extends AppCompatActivity {
         tvPeso = findViewById(R.id.tvPeso);
         btnRegistrarPeso = findViewById(R.id.btnRegistrarPeso);
 
-        tvPeso.setText(String.valueOf(seekBarPeso.getProgress()));
+        // Establecemos un rango razonable: 30.0 kg a 200.0 kg (usamos decimales)
+        seekBarPeso.setMax(1700); // Representa 30.0 kg + (0.1 * 1700) = 200.0 kg
+
+        actualizarTextoPeso(seekBarPeso.getProgress());
 
         seekBarPeso.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                tvPeso.setText(String.valueOf(progress));
+                actualizarTextoPeso(progress);
             }
 
             @Override
@@ -52,12 +55,13 @@ public class PesoActivity extends AppCompatActivity {
         });
 
         btnRegistrarPeso.setOnClickListener(v -> {
-            int pesoSeleccionado = seekBarPeso.getProgress();
+            // Convertimos el progreso en decimal
+            float pesoSeleccionado = 30f + (seekBarPeso.getProgress() * 0.1f);
 
             // 🔐 GUARDAR peso en SharedPreferences (para que aparezca en editar perfil)
             SharedPreferences preferences = getSharedPreferences("UserData", MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("peso", String.valueOf(pesoSeleccionado));
+            editor.putString("peso", String.format("%.1f", pesoSeleccionado));
             editor.apply();
 
             // Pasar todos los datos al siguiente intent
@@ -71,5 +75,10 @@ public class PesoActivity extends AppCompatActivity {
 
             startActivity(siguiente);
         });
+    }
+
+    private void actualizarTextoPeso(int progress) {
+        float peso = 30f + (progress * 0.1f);
+        tvPeso.setText(String.format("%.1f kg", peso));
     }
 }

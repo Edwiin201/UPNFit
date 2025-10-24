@@ -29,9 +29,8 @@ public class EdadActivity extends AppCompatActivity {
 
     private String nombre, correo, contrasena, genero;
     private float altura;
-    private int peso;
+    private float peso; // 🔹 Cambiado a float
 
-    // ⚠️ Cambia esta IP según tu entorno local (emulador usa 10.0.2.2)
     private static final String URL_REGISTRAR_MEDIDAS = "http://10.0.2.2/upnfit/registrar_medidas.php";
 
     @Override
@@ -39,7 +38,6 @@ public class EdadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edad);
 
-        // 🔹 Referencias UI
         seekEdad = findViewById(R.id.seekEdad);
         txtEdadSeleccionada = findViewById(R.id.txtEdadSeleccionada);
         btnContinuarEdad = findViewById(R.id.btnContinuarEdad);
@@ -52,13 +50,12 @@ public class EdadActivity extends AppCompatActivity {
         contrasena = intent.getStringExtra("contrasena");
         genero = intent.getStringExtra("genero");
         altura = intent.getFloatExtra("altura", 0f);
-        peso = intent.getIntExtra("peso", 0);
+        peso = intent.getFloatExtra("peso", 0f); // 🔹 antes era intExtra
 
         // 🔹 Mostrar valor inicial
         int edadInicial = seekEdad.getProgress();
         txtEdadSeleccionada.setText(edadInicial + " años");
 
-        // 🔹 Cambios en el SeekBar
         seekEdad.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 txtEdadSeleccionada.setText(progress + " años");
@@ -67,7 +64,6 @@ public class EdadActivity extends AppCompatActivity {
             @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        // 🔹 Acción del botón Continuar
         btnContinuarEdad.setOnClickListener(v -> {
             int edadSeleccionada = seekEdad.getProgress();
 
@@ -76,31 +72,29 @@ public class EdadActivity extends AppCompatActivity {
                 return;
             }
 
-            // Guardar localmente la edad
             SharedPreferences preferences = getSharedPreferences("UserData", MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("edad", edadSeleccionada);
             editor.apply();
 
-            // Obtener ID de usuario guardado en login/registro
             int usuarioID = preferences.getInt("usuarioID", 0);
             if (usuarioID == 0) {
                 Toast.makeText(this, "⚠️ No se encontró el ID del usuario", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // 🌐 Enviar los datos al servidor
             registrarMedida(usuarioID, peso, altura, genero, edadSeleccionada);
         });
     }
 
-    private void registrarMedida(int usuarioID, int peso, float altura, String genero, int edad) {
+    // 🔹 Cambiado tipo de parámetro peso a float
+    private void registrarMedida(int usuarioID, float peso, float altura, String genero, int edad) {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
 
         params.put("usuarioID", usuarioID);
-        params.put("peso", peso);
-        params.put("altura", altura * 100); // convertir metros a cm
+        params.put("peso", String.format("%.2f", peso)); // 🔹 Enviamos decimal formateado
+        params.put("altura", String.format("%.2f", altura * 100)); // metros → cm
         params.put("genero", genero);
         params.put("edad", edad);
 
@@ -110,7 +104,6 @@ public class EdadActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 Toast.makeText(EdadActivity.this, "✅ Medidas registradas correctamente", Toast.LENGTH_SHORT).show();
 
-                // 🔹 Ir a ObjetivoActivity con todos los datos y limpiar la pila
                 Intent siguiente = new Intent(EdadActivity.this, ObjetivoActivity.class);
                 siguiente.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 siguiente.putExtra("nombre", nombre);

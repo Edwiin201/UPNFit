@@ -122,7 +122,7 @@
 
         <!-- ╔═══════ NOTIFICACIONES ═══════╗ -->
         <LinearLayout
-            android:id="@+id/opNotificaciones"
+            android:id="@+id/opPreferencias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -137,11 +137,11 @@
                 android:src="@drawable/notificaciones" />
 
             <Button
-                android:id="@+id/btnmenuNotificaciones"
+                android:id="@+id/btnmenuPreferencias"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="@string/ConfigPreferecias"
+                android:text="Preferencias"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="22sp"
