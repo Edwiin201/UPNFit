@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/redondeado"
+    android:background="@color/gris_upn"
     android:clipToOutline="true"
     android:padding="24dp"
     android:elevation="8dp"

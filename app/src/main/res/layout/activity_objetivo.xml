@@ -57,7 +57,7 @@
                 android:text="Bajar de peso"
                 android:textAllCaps="false"
                 android:background="@drawable/boton_circular"
-                android:textColor="@color/black" />
+                android:textColor="#000" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnMantenerPeso"
@@ -66,7 +66,7 @@
                 android:text="Mantener el peso"
                 android:textAllCaps="false"
                 android:background="@drawable/boton_circular"
-                android:textColor="@color/black" />
+                android:textColor="#000"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSalud"
@@ -76,7 +76,7 @@
                 android:text="Reforzar la salud"
                 android:textAllCaps="false"
                 android:background="@drawable/boton_circular"
-                android:textColor="@color/black" />
+                android:textColor="#000"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnClaridadMental"
@@ -85,7 +85,7 @@
                 android:text="Claridad mental"
                 android:textAllCaps="false"
                 android:background="@drawable/boton_circular"
-                android:textColor="@color/black" />
+                android:textColor="#000"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnEnergia"
@@ -95,7 +95,7 @@
                 android:text="Más energía"
                 android:textAllCaps="false"
                 android:background="@drawable/boton_circular"
-                android:textColor="@color/black" />
+                android:textColor="#000"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnVivirMas"
@@ -104,7 +104,7 @@
                 android:text="Vivir más tiempo"
                 android:textAllCaps="false"
                 android:background="@drawable/boton_circular"
-                android:textColor="@color/black" />
+                android:textColor="#000" />
         </GridLayout>
 
         <com.google.android.material.button.MaterialButton

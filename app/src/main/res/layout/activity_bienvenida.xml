@@ -15,7 +15,7 @@
       android:text="Mantente Motivado"
       android:textSize="28sp"
       android:textStyle="bold"
-      android:textColor="@android:color/black"
+      android:textColor="@color/black"
       android:layout_marginBottom="18dp" />
 
   <ImageView
@@ -32,7 +32,7 @@
       android:layout_height="wrap_content"
       android:text="Regístrate para recibir nuestro boletín por correo electrónico y obtén regularmente consejos de ayuno gratuitos y actualizaciones de nuestra comunidad."
       android:textSize="17sp"
-      android:textColor="@android:color/black"
+      android:textColor="@color/black"
       android:gravity="center"
       android:layout_marginBottom="24dp" />
 

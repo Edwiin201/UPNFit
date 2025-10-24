@@ -209,7 +209,7 @@
                     android:text="Tendencias"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="8dp" />
 

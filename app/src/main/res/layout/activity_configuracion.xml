@@ -59,8 +59,10 @@
         android:layout_below="@id/topBar"
         android:layout_marginTop="32dp"
         android:orientation="vertical"
-        android:background="@drawable/redondeado"
-        android:padding="8dp">
+        android:background="@color/black"
+
+        android:padding="8dp"
+        >
 
         <!-- Opción: Perfil -->
         <LinearLayout
@@ -69,7 +71,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:background="@color/amarillo_upn">
 
             <ImageView
                 android:layout_width="60dp"
@@ -96,7 +99,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:background="@color/amarillo_upn">
 
             <ImageView
                 android:layout_width="60dp"
@@ -123,7 +127,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:background="@color/amarillo_upn">
 
             <ImageView
                 android:layout_width="60dp"
@@ -149,7 +154,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:background="@color/amarillo_upn">
 
             <ImageView
                 android:layout_width="60dp"

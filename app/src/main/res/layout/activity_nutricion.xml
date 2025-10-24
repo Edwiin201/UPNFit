@@ -431,10 +431,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recomendado para ti"
+            android:text="Indicadores de salud"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="10dp" />
 
@@ -446,6 +446,7 @@
             android:gravity="center"
             android:weightSum="2">
 
+            <!-- Tarjeta IMC -->
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -460,17 +461,37 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <ImageView
+                    <!-- Imagen con número superpuesto -->
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ensaladadeliciosa"
-                        android:background="@drawable/recomendado" />
+                        android:layout_height="120dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:background="@drawable/recomendado" />
+
+                        <!-- Valor IMC dinámico -->
+                        <TextView
+                            android:id="@+id/txtIMCValor"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="--"
+                            android:textSize="40sp"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/black"
+                            android:gravity="center"
+                            android:shadowColor="#80000000"
+                            android:shadowDx="2"
+                            android:shadowDy="2"
+                            android:shadowRadius="4" />
+                    </FrameLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ensalada Nutritiva"
+                        android:text="IMC"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:textColor="#E74C3C"
@@ -478,6 +499,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Tarjeta Grasa Porcentual -->
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -492,24 +514,45 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <ImageView
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/salmonhorneado"
-                        android:background="@drawable/recomendado" />
+                        android:layout_height="120dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:background="@drawable/recomendado" />
+
+                        <!-- Valor Grasa dinámico -->
+                        <TextView
+                            android:id="@+id/txtGrasaValor"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="--"
+                            android:textSize="40sp"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/black"
+                            android:gravity="center"
+                            android:shadowColor="#80000000"
+                            android:shadowDx="2"
+                            android:shadowDy="2"
+                            android:shadowRadius="4" />
+                    </FrameLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Salmón al horno"
+                        android:text="Grasa Porcentual"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:textColor="#2ECC71"
                         android:layout_marginTop="8dp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -529,7 +572,7 @@
                 android:paddingVertical="16dp"
                 android:text="Inicio"
                 android:textColor="@android:color/black"
-                android:textSize="15dp"
+                android:textSize="10dp"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -571,7 +614,7 @@
                 android:paddingVertical="16dp"
                 android:text="Mental"
                 android:textColor="@android:color/black"
-                android:textSize="12dp"
+                android:textSize="10dp"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton

@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -33,12 +32,12 @@ public class SesionActivity extends AppCompatActivity {
 
     private EditText txtCorreo, txtClave;
     private Button btnIniciarSesion;
-    private TextView lblRegistro, lblHasOlvidado, lblNoTienesCuenta;
+    private TextView lblRegistro;
 
-    // ✅ URL del backend (ajústala según tu entorno)
+    // URL del backend PHP (ajústala si usas otro servidor)
     private static final String LOGIN_URL = "http://10.0.2.2/upnfit/login.php";
 
-    // ✅ Regex para correos institucionales UPN
+    // Solo correos UPN
     private static final Pattern UPN_EMAIL =
             Pattern.compile("^[A-Za-z0-9._%+-]+@upn\\.pe$", Pattern.CASE_INSENSITIVE);
 
@@ -48,33 +47,30 @@ public class SesionActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sesion);
 
-        // Ajuste de bordes para pantallas modernas
+        // Ajuste de bordes
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // --- Referencias al layout ---
+        // Referencias UI
         txtCorreo = findViewById(R.id.sexTxtCorreo);
         txtClave = findViewById(R.id.sextxtClave);
-        btnIniciarSesion = findViewById(R.id.sesBtnIniciarSesion); // ⚠ Asegúrate que en XML NO tenga tilde
+        btnIniciarSesion = findViewById(R.id.sesBtnIniciarSesion);
         lblRegistro = findViewById(R.id.seslblRegistro);
-        lblHasOlvidado = findViewById(R.id.seslblHasolvidado);
-        lblNoTienesCuenta = findViewById(R.id.seslblNotienescuenta);
 
-        // --- Evento para ir al registro ---
+        // Ir al registro
         lblRegistro.setOnClickListener(v -> {
             Intent intent = new Intent(SesionActivity.this, RegistroActivity.class);
             startActivity(intent);
         });
 
-        // --- Evento para iniciar sesión ---
+        // Iniciar sesión
         btnIniciarSesion.setOnClickListener(v -> {
             String correo = normalizeEmail(txtCorreo.getText().toString());
             String clave = txtClave.getText().toString();
 
-            // Validaciones
             if (correo.isEmpty() || clave.isEmpty()) {
                 Toast.makeText(this, "Ingrese correo y contraseña", Toast.LENGTH_SHORT).show();
                 return;
@@ -91,22 +87,18 @@ public class SesionActivity extends AppCompatActivity {
                 return;
             }
 
-            // Login remoto (PHP)
             loginUsuarioRemoto(correo, clave);
         });
     }
 
-    // --- Normaliza el correo ---
     private static String normalizeEmail(String raw) {
         return raw == null ? "" : raw.trim().toLowerCase(Locale.ROOT);
     }
 
-    // --- Valida el dominio ---
     private static boolean isUpnEmail(String email) {
         return UPN_EMAIL.matcher(email).matches();
     }
 
-    // --- Enviar datos al servidor PHP ---
     private void loginUsuarioRemoto(String correo, String contrasena) {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
@@ -117,36 +109,43 @@ public class SesionActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    // ✅ Igual que en RegistroActivity: p_Codigo / p_Mensaje
                     int codigo = response.getInt("p_Codigo");
                     String mensaje = response.getString("p_Mensaje");
 
                     if (codigo == 1) {
-                        // Login exitoso
+                        int usuarioID = response.optInt("UsuarioID", 0);
+
+                        // Guardar datos de sesión
                         SharedPreferences sp = getSharedPreferences("UserData", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sp.edit();
+                        editor.putInt("usuarioID", usuarioID);
                         editor.putString("correo", correo);
                         editor.putString("contrasena", contrasena);
                         editor.apply();
 
-                        Toast.makeText(SesionActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SesionActivity.this,
+                                "Inicio de sesión exitoso (ID: " + usuarioID + ")",
+                                Toast.LENGTH_SHORT).show();
 
                         startActivity(new Intent(SesionActivity.this, MenuActivity.class));
                         finish();
                     } else {
-                        // Error devuelto por el backend
                         Toast.makeText(SesionActivity.this, mensaje, Toast.LENGTH_LONG).show();
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(SesionActivity.this, "Error al procesar la respuesta del servidor", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SesionActivity.this,
+                            "Error al procesar la respuesta del servidor",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                Toast.makeText(SesionActivity.this, "Error de conexión: " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(SesionActivity.this,
+                        "Error de conexión: " + throwable.getMessage(),
+                        Toast.LENGTH_LONG).show();
                 throwable.printStackTrace();
             }
         });

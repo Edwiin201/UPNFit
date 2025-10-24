@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UPNFit"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="35">
 
         <!-- 🔹 Activities de tu app -->
         <activity
@@ -29,6 +29,9 @@
             android:exported="false" />
         <activity
             android:name=".actividades.SaludmentalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".actividades.preferences_layout"
             android:exported="false" />
         <activity
             android:name=".actividades.ActividadfisicaActivity"

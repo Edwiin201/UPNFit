@@ -108,7 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Carlos Pérez"
-                        android:textColor="#212121"
+                        android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp" />
@@ -118,7 +118,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Compartiendo con la comunidad"
-                        android:textColor="#757575"
+                        android:textColor="@color/black"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -128,12 +128,15 @@
                 android:id="@+id/editTextPublicacion"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:background="@color/white"
+                android:background="@drawable/redondeado"
                 android:gravity="top|start"
+
                 android:hint="¿Qué quieres compartir con la comunidad?"
+                android:textColorHint="@color/gris_upn"
                 android:padding="12dp"
                 android:textSize="14sp"
                 android:layout_margin="10dp"
+
                 />
 
             <!-- Texto etiquetas -->
