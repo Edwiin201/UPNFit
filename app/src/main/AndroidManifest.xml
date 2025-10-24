@@ -30,9 +30,12 @@
         <activity
             android:name=".actividades.SaludmentalActivity"
             android:exported="false" />
+
+        <!-- ✅ CORREGIDO: esta es la activity correcta -->
         <activity
-            android:name=".actividades.preferences_layout"
+            android:name=".actividades.PreferencesActivity"
             android:exported="false" />
+
         <activity
             android:name=".actividades.ActividadfisicaActivity"
             android:exported="false" />
@@ -100,5 +103,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD7yRGJhw3inbGCU_jPtsheAE-NHViG5ls" />
     </application>
+
 
 </manifest>
