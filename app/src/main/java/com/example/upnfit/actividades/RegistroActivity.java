@@ -32,7 +32,7 @@ public class RegistroActivity extends AppCompatActivity {
     private static final Pattern UPN_EMAIL = Pattern.compile("^[A-Za-z0-9._%+-]+@upn\\.pe$", Pattern.CASE_INSENSITIVE);
 
     // URL del PHP en tu servidor local
-    private static final String URL_REGISTRO = "http://10.0.2.2/upnfit/usuarios.php";
+    private static final String URL_REGISTRO = "http://upnfit.atwebpages.com/upnfit/usuarios.php";
 
     private RequestQueue requestQueue;
 

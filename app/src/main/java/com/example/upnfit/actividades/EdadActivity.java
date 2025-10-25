@@ -31,7 +31,7 @@ public class EdadActivity extends AppCompatActivity {
     private float altura;
     private float peso; // 🔹 Cambiado a float
 
-    private static final String URL_REGISTRAR_MEDIDAS = "http://10.0.2.2/upnfit/registrar_medidas.php";
+    private static final String URL_REGISTRAR_MEDIDAS = "http://upnfit.atwebpages.com/upnfit/registrar_medidas.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

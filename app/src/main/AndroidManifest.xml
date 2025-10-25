@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UPNFit"
         android:usesCleartextTraffic="true"
-        tools:targetApi="35">
+        tools:targetApi="35"
+        >
 
         <!-- 🔹 Activities de tu app -->
         <activity

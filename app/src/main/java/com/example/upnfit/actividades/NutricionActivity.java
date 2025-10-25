@@ -1,4 +1,5 @@
 package com.example.upnfit.actividades;
+import android.util.Log;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -113,12 +114,14 @@ public class NutricionActivity extends AppCompatActivity {
 
     // 🔹 Obtener IMC y Grasa corporal desde el servidor
     private void obtenerIndicadores(int usuarioID) {
-        String url = "http://10.0.2.2/upnfit/obtener_todas_medidas.php"; // ✅ Archivo PHP local
+        String url = "http://upnfit.atwebpages.com/upnfit/obtener_todas_medidas.php"; // ✅ Archivo PHP local
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
                     try {
+                        Log.d("NutricionActivity", "Respuesta servidor: " + response);
                         JSONObject json = new JSONObject(response);
+
 
                         int codigo = json.optInt("Codigo", 0);
                         String mensaje = json.optString("Mensaje", "");

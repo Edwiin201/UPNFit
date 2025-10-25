@@ -96,7 +96,7 @@ public class MenuActivity extends AppCompatActivity {
 
     // ✅ Obtener nombre desde la BD
     private void obtenerPrimerNombreDesdeBD(int usuarioID) {
-        String url = "http://10.0.2.2/upnfit/obtener_datos_usuario.php"; // tu PHP local
+        String url = "http://upnfit.atwebpages.com/upnfit/obtener_datos_usuario.php"; // tu PHP local
 
         StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
             try {

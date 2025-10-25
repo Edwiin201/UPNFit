@@ -21,9 +21,9 @@ public class EditarperfilActivity extends AppCompatActivity {
 
     private EditText editNombre, editSede, editGenero, editEdad, editAltura, editPeso;
 
-    private static final String URL_DATOS_USUARIO = "http://10.0.2.2/upnfit/obtener_datos_usuario.php";
-    private static final String URL_MEDIDAS_USUARIO = "http://10.0.2.2/upnfit/obtener_todas_medidas.php";
-    private static final String URL_ACTUALIZAR_PERFIL = "http://10.0.2.2/upnfit/actualizar_perfil_completo.php";
+    private static final String URL_DATOS_USUARIO = "http://upnfit.atwebpages.com/upnfit/obtener_datos_usuario.php";
+    private static final String URL_MEDIDAS_USUARIO = "http://upnfit.atwebpages.com/upnfit/obtener_todas_medidas.php";
+    private static final String URL_ACTUALIZAR_PERFIL = "http://upnfit.atwebpages.com/upnfit/actualizar_perfil_completo.php";
     private static final String TAG = "EditarPerfil";
 
     @Override

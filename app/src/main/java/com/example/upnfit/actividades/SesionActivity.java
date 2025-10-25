@@ -35,7 +35,7 @@ public class SesionActivity extends AppCompatActivity {
     private TextView lblRegistro;
 
     // URL del backend PHP (ajústala si usas otro servidor)
-    private static final String LOGIN_URL = "http://10.0.2.2/upnfit/login.php";
+    private static final String LOGIN_URL = "http://upnfit.atwebpages.com/upnfit/login.php";
 
     // Solo correos UPN
     private static final Pattern UPN_EMAIL =
