@@ -476,8 +476,9 @@
                     android:background="@drawable/botoninactivo"
                     android:text="Inicio"
                     android:textColor="@android:color/black"
-                    android:textSize="15dp"
-                    android:textStyle="bold" />
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/nutricionButton"
@@ -488,8 +489,9 @@
                     android:background="@drawable/botoninactivo"
                     android:text="Nutrición"
                     android:textColor="@android:color/black"
-                    android:textSize="9dp"
-                    android:textStyle="bold" />
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/ejercicioButton"
@@ -500,8 +502,9 @@
                     android:background="@drawable/circulo_azul"
                     android:text="Actividad"
                     android:textColor="@android:color/black"
-                    android:textSize="9dp"
-                    android:textStyle="bold" />
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/mentalButton"
@@ -513,7 +516,8 @@
                     android:text="Mental"
                     android:textColor="@android:color/black"
                     android:textSize="12dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textAllCaps="false"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/comunidadButton"
@@ -524,8 +528,9 @@
                     android:background="@drawable/botoninactivo"
                     android:text="Comunidad"
                     android:textColor="@android:color/black"
-                    android:textSize="8dp"
-                    android:textStyle="bold" />
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"/>
             </LinearLayout>
 
 

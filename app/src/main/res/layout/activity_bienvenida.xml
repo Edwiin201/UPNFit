@@ -56,6 +56,7 @@
       android:paddingHorizontal="32dp"
       android:text="Continuar"
       android:layout_marginTop="3dp"
-      android:textColor="@android:color/darker_gray" />
+      android:textColor="@color/black"
+      android:textAllCaps="false"/>
 
 </LinearLayout>

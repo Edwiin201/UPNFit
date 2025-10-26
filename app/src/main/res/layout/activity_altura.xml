@@ -45,8 +45,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:max="200"
-        android:progress="150" />
+        android:max="110"
+        android:progress="40"
+    />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnContinuarAltura"

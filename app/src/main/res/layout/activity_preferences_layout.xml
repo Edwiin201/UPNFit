@@ -168,7 +168,9 @@
             android:clickable="true"
             android:focusable="true"
             android:text="Guardar preferencias"
-            android:textColor="@color/hueso_upn" />
+            android:textColor="@color/hueso_upn"
+            android:textAllCaps="false"
+            android:textSize="15dp"/>
 
 
     </LinearLayout>

@@ -91,11 +91,11 @@
                 <!-- Ejemplo de tarjeta de publicación -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="173dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/redondeado"
                     android:orientation="vertical"
-                    android:padding="12dp">
+                    android:padding="10dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -142,12 +142,15 @@
                             android:src="@drawable/dieta" />
                     </LinearLayout>
 
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="18dp"
                         android:text="¡Compartiendo mi receta favorita de bowl proteico! Perfecto para después del entrenamiento."
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+
+                        android:textColor="@color/gris_upn"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -192,6 +195,114 @@
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
+                <!-- Ejemplo de tarjeta de publicación -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/redondeado"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/circulo_azul"
+                            android:gravity="center"
+                            android:text="MR"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mauricio Ramos - Ingenieria Civil"
+                                android:textColor="#000000"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hace 5 horas"
+                                android:textColor="#777777"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:contentDescription="emoji"
+                            android:src="@drawable/dieta" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="¡Ejercicio alucinante!Ayer corri 2 horas bajo el sol,vomite tanto que perdi 1 kilo,me llevaron al hospital ,lamentablemente me retitare de la  universidad :c"
+                        android:textSize="18sp"
+
+                        android:textColor="@color/gris_upn"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/corazon"
+                            app:tint="#E74C3C" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="2"
+                            android:textColor="#000000" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/comentario"
+                            app:tint="#888888" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="16dp"
+                            android:text="12"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Guardar receta"
+                            android:textColor="#2196F3"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/publicacionesContainer"
                     android:layout_width="match_parent"
@@ -274,8 +385,9 @@
                 android:paddingVertical="16dp"
                 android:text="Inicio"
                 android:textColor="@android:color/black"
-                android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/nutricionButton"
@@ -284,12 +396,13 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_marginTop="7dp"
                 android:background="@drawable/botoninactivo"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="1dp"
+                android:paddingVertical="1dp"
                 android:text="Nutrición"
                 android:textColor="@android:color/black"
-                android:textSize="9dp"
-                android:textStyle="bold" />
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/ejercicioButton"
@@ -298,12 +411,13 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_marginTop="7dp"
                 android:background="@drawable/botoninactivo"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="1dp"
+                android:paddingVertical="1dp"
                 android:text="Actividad"
                 android:textColor="@android:color/black"
-                android:textSize="9dp"
-                android:textStyle="bold" />
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/mentalButton"
@@ -312,26 +426,28 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_marginTop="7dp"
                 android:background="@drawable/botoninactivo"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="1dp"
+                android:paddingVertical="1dp"
                 android:text="Mental"
                 android:textColor="@android:color/black"
-                android:textSize="12dp"
-                android:textStyle="bold" />
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/comunidadButton"
                 android:layout_width="69dp"
                 android:layout_height="69dp"
                 android:layout_marginHorizontal="3dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/circulo_azul"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="1dp"
+                android:paddingVertical="1dp"
                 android:text="Comunidad"
                 android:textColor="@android:color/black"
-                android:textSize="8dp"
-                android:textStyle="bold" />
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

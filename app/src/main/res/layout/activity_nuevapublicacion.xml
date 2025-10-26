@@ -231,7 +231,8 @@
                 android:paddingRight="24dp"
                 android:text="Publicar"
                 android:textColor="#FFFFFF"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:textAllCaps="false"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

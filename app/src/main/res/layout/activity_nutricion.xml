@@ -568,12 +568,13 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_marginTop="7dp"
                 android:background="@drawable/botoninactivo"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="1dp"
+                android:paddingVertical="1dp"
                 android:text="Inicio"
                 android:textColor="@android:color/black"
-                android:textSize="10dp"
-                android:textStyle="bold" />
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/nutricionButton"
@@ -582,12 +583,13 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_marginTop="7dp"
                 android:background="@drawable/circulo_verde"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="1dp"
+                android:paddingVertical="1dp"
                 android:text="Nutrición"
                 android:textColor="@android:color/black"
-                android:textSize="9dp"
-                android:textStyle="bold" />
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/ejercicioButton"
@@ -596,12 +598,13 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_marginTop="7dp"
                 android:background="@drawable/botoninactivo"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="1dp"
+                android:paddingVertical="1dp"
                 android:text="Actividad"
                 android:textColor="@android:color/black"
-                android:textSize="9dp"
-                android:textStyle="bold" />
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/mentalButton"
@@ -610,26 +613,28 @@
                 android:layout_marginHorizontal="3dp"
                 android:layout_marginTop="7dp"
                 android:background="@drawable/botoninactivo"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="1dp"
+                android:paddingVertical="1dp"
                 android:text="Mental"
                 android:textColor="@android:color/black"
-                android:textSize="10dp"
-                android:textStyle="bold" />
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/comunidadButton"
                 android:layout_width="69dp"
                 android:layout_height="69dp"
                 android:layout_marginHorizontal="3dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/botoninactivo"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="1dp"
+                android:paddingVertical="1dp"
                 android:text="Comunidad"
                 android:textColor="@android:color/black"
-                android:textSize="8dp"
-                android:textStyle="bold" />
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
 
         </LinearLayout>
     </LinearLayout>

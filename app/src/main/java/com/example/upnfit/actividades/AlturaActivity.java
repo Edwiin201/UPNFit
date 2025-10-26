@@ -19,6 +19,10 @@ public class AlturaActivity extends AppCompatActivity {
 
     private String nombre, correo, contrasena, genero;
 
+    // Altura mínima en cm
+    private final int ALTURA_MINIMA_CM = 110; // 1.10 m
+    private final int ALTURA_MAXIMA_CM = 220; // 2.20 m
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,7 @@ public class AlturaActivity extends AppCompatActivity {
         // Mostrar la altura inicial
         actualizarTextoAltura(seekAltura.getProgress());
 
-        // Cambios en el SeekBar
+        // Listener del SeekBar
         seekAltura.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -55,10 +59,11 @@ public class AlturaActivity extends AppCompatActivity {
 
         // Botón Continuar
         btnContinuarAltura.setOnClickListener(v -> {
-            float alturaMetros = seekAltura.getProgress() / 100f;
-            String alturaTexto = String.format("%.2f", alturaMetros); // Ejemplo: "1.80"
+            int alturaCm = ALTURA_MINIMA_CM + seekAltura.getProgress();
+            float alturaMetros = alturaCm / 100f;
+            String alturaTexto = String.format("%.2f", alturaMetros);
 
-            // GUARDAR altura en SharedPreferences
+            // Guardar altura en SharedPreferences
             SharedPreferences preferences = getSharedPreferences("UserData", MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("altura", alturaTexto);
@@ -76,7 +81,8 @@ public class AlturaActivity extends AppCompatActivity {
         });
     }
 
-    private void actualizarTextoAltura(int alturaCm) {
+    private void actualizarTextoAltura(int progreso) {
+        int alturaCm = ALTURA_MINIMA_CM + progreso;
         float alturaMetros = alturaCm / 100f;
         txtAlturaSeleccionada.setText(String.format("%.2f m", alturaMetros));
     }
