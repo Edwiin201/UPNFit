@@ -59,4 +59,5 @@ dependencies {
 
     // ✅ Mapas alternativos (OpenStreetMap)
     implementation("org.osmdroid:osmdroid-android:6.1.10")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

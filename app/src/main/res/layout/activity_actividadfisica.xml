@@ -41,6 +41,56 @@
                     android:textStyle="bold" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mainContentWrapper2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="#ADDBFF">
+
+            <!-- 🔹 CONTENEDOR CORRECTO (LinearLayout) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- 📌 Contador de pasos -->
+                <TextView
+                    android:id="@+id/txtPasos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pasos de hoy: 0"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <!-- 📌 Calorías quemadas -->
+                <TextView
+                    android:id="@+id/txtCalorias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calorías quemadas: 0 kcal"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="8dp" />
+
+                <!-- 📌 Botón del gráfico -->
+                <Button
+                    android:id="@+id/btnGrafico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ver progreso semanal"
+                    android:backgroundTint="@color/blue"
+                    android:textColor="@android:color/white"
+                    android:layout_marginTop="16dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_resumenHoy"
@@ -197,6 +247,7 @@
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp" />
+
             </LinearLayout>
         </LinearLayout>
 
