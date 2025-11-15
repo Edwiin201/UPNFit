@@ -15,6 +15,16 @@
         android:background="@drawable/fondo_redondeado_gris"
         android:orientation="vertical"
         android:padding="10dp">
+        <Button
+            android:id="@+id/btnBackPreferences"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← Volver"
+            android:backgroundTint="@color/blue"
+            android:textColor="@android:color/white"
+            android:padding="8dp"
+            android:layout_marginBottom="16dp"/>
+
 
         <!-- 1. Notificaciones motivacionales -->
 

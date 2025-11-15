@@ -19,64 +19,66 @@ import com.example.upnfit.R;
 public class PreferencesActivity extends AppCompatActivity {
 
     private Switch switchDarkMode;
+    private Switch switchMotivacionales;
     private Button buttonSavePreferences;
+    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // ⚡ Aplica el modo guardado antes de crear la UI
         aplicarModoGuardado();
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_preferences_layout);
 
-        // Ajuste visual para las barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // --- Referencias UI ---
+        // UI
         switchDarkMode = findViewById(R.id.switch_dark_mode);
+        switchMotivacionales = findViewById(R.id.switch_notifications_enabled);
         buttonSavePreferences = findViewById(R.id.button_save_preferences);
+        btnBack = findViewById(R.id.btnBackPreferences);
 
-        // --- Cargar preferencia actual ---
+        // SharedPreferences
         SharedPreferences prefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
         boolean darkModeEnabled = prefs.getBoolean("dark_mode", false);
+        boolean notiMotivacionales = prefs.getBoolean("noti_motivacionales", false);
+
         switchDarkMode.setChecked(darkModeEnabled);
+        switchMotivacionales.setChecked(notiMotivacionales);
 
-        // --- Listener: aplicar el modo en tiempo real ---
+        // Modo oscuro
         switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("dark_mode", isChecked);
-            editor.apply();
-
-            // Aplicar el tema inmediatamente sin reiniciar la app
+            prefs.edit().putBoolean("dark_mode", isChecked).apply();
             AppCompatDelegate.setDefaultNightMode(
                     isChecked ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
             );
+        });
 
-            Toast.makeText(this,
-                    isChecked ? "🌙 Modo oscuro activado" : "☀️ Modo claro activado",
+        // 🔥 Guardar notificaciones motivacionales
+        switchMotivacionales.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            prefs.edit().putBoolean("noti_motivacionales", isChecked).apply();
+            Toast.makeText(this, isChecked ?
+                            "🔥 Notificaciones motivacionales activadas" :
+                            "❌ Notificaciones desactivadas",
                     Toast.LENGTH_SHORT).show();
         });
 
-        // --- Botón Guardar: redirigir al menú principal ---
+        // Botón volver
+        btnBack.setOnClickListener(v -> finish());
+
+        // Guardar
         buttonSavePreferences.setOnClickListener(v -> {
             Toast.makeText(this, "Preferencias guardadas", Toast.LENGTH_SHORT).show();
-
-            // ⚡ Redirige al MenuActivity con el modo ya aplicado
-            Intent intent = new Intent(PreferencesActivity.this, MenuActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish(); // Cierra esta pantalla
+            startActivity(new Intent(this, MenuActivity.class));
+            finish();
         });
     }
 
-    /**
-     * Aplica el modo oscuro guardado antes de cargar la interfaz
-     */
     private void aplicarModoGuardado() {
         SharedPreferences prefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
         boolean darkModeEnabled = prefs.getBoolean("dark_mode", false);

@@ -1,6 +1,6 @@
 package com.example.upnfit.actividades;
 
-import android.Manifest;   // ← ← IMPORT CORRECTO
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -52,16 +52,15 @@ public class ActividadfisicaActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_actividadfisica);
 
-        // 🔔 Canal de notificaciones
+        // 🔔 Crear canal de notificaciones
         NotificationHelper.createNotificationChannel(this);
 
-        // 🔔 Permisos para Android 13+
+        // 🔔 Permiso de notificaciones en Android 13+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.POST_NOTIFICATIONS
             ) != PackageManager.PERMISSION_GRANTED) {
-
                 requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 200);
             }
         }
@@ -70,7 +69,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
         txtPasos = findViewById(R.id.txtPasos);
         txtCalorias = findViewById(R.id.txtCalorias);
 
-        // SENSOR CONFIG
+        // SENSOR
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
 
@@ -115,9 +114,8 @@ public class ActividadfisicaActivity extends AppCompatActivity {
         Button btnGrafico = findViewById(R.id.btnGrafico);
         btnGrafico.setOnClickListener(
                 v -> startActivity(new Intent(this, GraficoPasosActivity.class)));
-        mostrarNotificacion("UPN FIT", "Notificación enviada correctamente.");
-
     }
+
 
 
     // ======================= NOTIFICACIONES ===========================
@@ -125,7 +123,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
 
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, NotificationHelper.CHANNEL_ID)
-                        .setSmallIcon(R.mipmap.ic_launcher) // usa ic_walk si lo tienes
+                        .setSmallIcon(R.mipmap.ic_launcher) // O usa ic_walk si lo tienes
                         .setContentTitle(titulo)
                         .setContentText(mensaje)
                         .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -133,13 +131,11 @@ public class ActividadfisicaActivity extends AppCompatActivity {
 
         NotificationManagerCompat manager = NotificationManagerCompat.from(this);
 
-        // Android 13+ comprobar permiso
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.POST_NOTIFICATIONS
             ) != PackageManager.PERMISSION_GRANTED) {
-
                 requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 200);
                 return;
             }
@@ -151,6 +147,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 
 
     // ======================= SENSOR LISTENER ===========================
@@ -174,11 +171,34 @@ public class ActividadfisicaActivity extends AppCompatActivity {
 
             SharedPreferences prefs = getSharedPreferences("pasos", MODE_PRIVATE);
             prefs.edit().putInt("hoy", stepsToday).apply();
+
+
+            // 🔥 MOTIVACIÓN (Opción C) — Cada 1500 pasos
+            SharedPreferences prefsApp = getSharedPreferences("AppSettings", MODE_PRIVATE);
+            boolean notiActiva = prefsApp.getBoolean("noti_motivacionales", false);
+
+            if (notiActiva) {
+
+                String[] mensajes = {
+                        "💪 ¡Sigue así!",
+                        "🔥 Estás avanzando increíble",
+                        "🏃‍♂️ Cada paso cuenta",
+                        "⭐ La constancia te hace fuerte",
+                        "✨ ¡Vamos, tú puedes!"
+                };
+
+                int randomMsg = new java.util.Random().nextInt(mensajes.length);
+
+                if (stepsToday > 0 && stepsToday % 1500 == 0) {
+                    mostrarNotificacion("Motivación UPN FIT", mensajes[randomMsg]);
+                }
+            }
         }
 
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {}
     };
+
 
 
     // ======================= ACTIVAR SENSOR ===========================
@@ -209,6 +229,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("pasos", MODE_PRIVATE);
         prefs.edit().putInt("initial", initialSteps).apply();
     }
+
 
 
     // ======================= API ACTIVIDAD ===========================
