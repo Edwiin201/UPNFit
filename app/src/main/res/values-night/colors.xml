@@ -13,7 +13,7 @@
 
     <!-- Texto y contraste -->
     <color name="black">#FFFFFF</color>     <!-- En modo oscuro el texto "negro" se vuelve blanco -->
-    <color name="white">#e8901c</color>     <!-- El "blanco" pasa a negro para fondos claros -->
+    <color name="white">#000000</color>     <!-- El "blanco" pasa a negro para fondos claros -->
     <color name="blanco">#E0E0E0</color>    <!-- Blanco suave para textos secundarios -->
     <color name="Gris">#9E9E9E</color>      <!-- Gris tenue para bordes o texto apagado -->
 

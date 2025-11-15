@@ -3,46 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@color/amarillo_upn"
     android:padding="16dp">
 
-    <!-- Agregar un contenedor con el ID "main" -->
+    <!-- CONTENEDOR PRINCIPAL -->
     <LinearLayout
-        android:layout_marginTop="30dp"
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
-        <!-- CardView Encabezado -->
+        <!-- ENCABEZADO + BOTÓN RETROCESO -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_marginBottom="24dp"
             app:cardBackgroundColor="#767676"
             app:cardCornerRadius="12dp"
             app:cardElevation="4dp">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:gravity="center_vertical|center_horizontal"
-                android:paddingHorizontal="16dp"
-                android:text="Editar Perfil"
-                android:textColor="#FFFFFF"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_height="48dp">
+
+                <!-- 🔙 BOTÓN RETROCEDER -->
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
+                    android:contentDescription="Regresar"
+                    android:src="@drawable/ic_back_arrow" />
+
+                <!-- TEXTO TITULO -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Editar Perfil"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Botón circular con "+" -->
+        <!-- FOTO -->
         <androidx.cardview.widget.CardView
             android:id="@+id/btnFoto"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_below="@id/cardHeader"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="24dp"
             app:cardBackgroundColor="#AED581"
@@ -65,12 +77,11 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Card Datos personales -->
+        <!-- DATOS PERSONALES -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardDatos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btnFoto"
             android:layout_marginBottom="16dp"
             app:cardBackgroundColor="#F5F5F5"
             app:cardCornerRadius="12dp"
@@ -94,12 +105,11 @@
                     android:id="@+id/editNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:hint="Introduce tu nombre"
-
                     android:textColor="#000000"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
                 <!-- Sede -->
                 <TextView
                     android:layout_width="wrap_content"
@@ -112,7 +122,6 @@
                     android:id="@+id/editSede"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:hint="Introduce tu sede"
                     android:textColor="#000000"
                     android:textSize="16sp"
@@ -130,7 +139,6 @@
                     android:id="@+id/editGenero"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:hint="Introduce tu género"
                     android:textColor="#000000"
                     android:textSize="16sp"
@@ -148,7 +156,6 @@
                     android:id="@+id/editEdad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:hint="Introduce tu edad"
                     android:textColor="#000000"
                     android:textSize="16sp"
@@ -156,12 +163,11 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Card Altura/Peso -->
+        <!-- MEDIDAS -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardMedidas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cardDatos"
             android:layout_marginBottom="24dp"
             app:cardBackgroundColor="#F5F5F5"
             app:cardCornerRadius="12dp"
@@ -173,7 +179,6 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Altura -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -185,13 +190,11 @@
                     android:id="@+id/editAltura"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:hint="Introduce tu altura"
                     android:textColor="#000000"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <!-- Peso -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -203,7 +206,6 @@
                     android:id="@+id/editPeso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:hint="Introduce tu peso"
                     android:textColor="#000000"
                     android:textSize="16sp"
@@ -211,22 +213,18 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Botón Guardar -->
+        <!-- BOTÓN GUARDAR -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnGuardar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cardMedidas"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="3dp"
-            android:layout_marginBottom="32dp"
+            android:layout_gravity="end"
             android:backgroundTint="#767676"
             android:paddingHorizontal="32dp"
             android:text="Guardar"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             app:cornerRadius="16dp" />
-
     </LinearLayout>
 
 </RelativeLayout>
