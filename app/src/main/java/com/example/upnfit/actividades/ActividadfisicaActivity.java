@@ -115,7 +115,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
         Button btnGrafico = findViewById(R.id.btnGrafico);
         btnGrafico.setOnClickListener(
                 v -> startActivity(new Intent(this, GraficoPasosActivity.class)));
-        //mostrarNotificacion("UPN FIT", "Notificación enviada correctamente.");
+        mostrarNotificacion("UPN FIT", "Notificación enviada correctamente.");
 
     }
 

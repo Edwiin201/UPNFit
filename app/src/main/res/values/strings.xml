@@ -9,5 +9,13 @@
     <string name="sesLblRegistro">Registrate Ahora</string>
     <string name="ConfigPreferecias">Preferencias</string>
 
+    <string-array name="categorias_publicacion">
+        <item>#RECETASALUDABLE</item>
+        <item>#MEDITACIÓN</item>
+        <item>#UPNFIT</item>
+        <item>#BIENESTAR</item>
+    </string-array>
+
 
 </resources>
+

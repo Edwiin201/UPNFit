@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="@color/amarillo_upn"
     android:padding="16dp"
     android:id="@+id/main">
@@ -26,7 +25,6 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
-            <!-- Botón "X" alineado a la izquierda -->
             <ImageView
                 android:id="@+id/regresomenu"
                 android:layout_width="40dp"
@@ -39,12 +37,11 @@
                 android:focusable="true"
                 app:tint="#FFFFFF" />
 
-            <!-- Texto "Configuración" centrado -->
             <TextView
                 android:id="@+id/tvTitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Configuración"
+                android:text="Nueva Publicación"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
@@ -55,9 +52,6 @@
     </androidx.cardview.widget.CardView>
 
     <!-- Contenedor principal -->
-
-    <!-- Contenido principal -->
-
     <androidx.cardview.widget.CardView
         android:id="@+id/publicacionContainer"
         android:layout_width="match_parent"
@@ -84,6 +78,7 @@
 
                 <!-- Avatar circular -->
                 <TextView
+                    android:id="@+id/avatarIniciales"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginEnd="12dp"
@@ -91,7 +86,7 @@
                     android:backgroundTint="#BBDEFB"
                     android:elevation="2dp"
                     android:gravity="center"
-                    android:text="CP"
+                    android:text="UP"
                     android:textColor="#000000"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -107,12 +102,11 @@
                         android:id="@+id/textViewNombrePublicacion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Carlos Pérez"
+                        android:text="Nombre Usuario"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:layout_marginBottom="8dp" />
-
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -123,101 +117,44 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- EditText -->
+            <!-- TÍTULO -->
+            <EditText
+                android:id="@+id/editTextTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/redondeado"
+                android:hint="Título de la publicación"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:textColorHint="@color/gris_upn"
+                android:layout_margin="10dp" />
+
+            <!-- SELECTOR DE CATEGORÍA -->
+            <Spinner
+                android:id="@+id/spinnerCategorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/redondeado"
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:entries="@array/categorias_publicacion"
+                android:layout_marginBottom="10dp" />
+
+            <!-- Caja de texto contenido -->
             <EditText
                 android:id="@+id/editTextPublicacion"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:background="@drawable/redondeado"
                 android:gravity="top|start"
-
                 android:hint="¿Qué quieres compartir con la comunidad?"
                 android:textColorHint="@color/gris_upn"
                 android:padding="12dp"
                 android:textSize="14sp"
-                android:layout_margin="10dp"
+                android:layout_margin="10dp" />
 
-                />
-
-            <!-- Texto etiquetas -->
-
-            <!-- Etiquetas simuladas -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/etiqueta" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Etiquetas Recomendadas"
-                    android:textColor="#212121"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="horizontal"
-                android:weightSum="4">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="43dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#B2EBF2"
-                    android:text="#RecetasSaludables"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="43dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#FFE082"
-                    android:text="#MeditaciónDiaria"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="horizontal"
-                android:weightSum="4">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#EF9A9A"
-                    android:text="#upnfit"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#CE93D8"
-                    android:text="#Bienestar"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <!-- Botón publicar moderno -->
+            <!-- Botón Publicar -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnPublicar"
                 android:layout_width="wrap_content"
@@ -232,7 +169,8 @@
                 android:text="Publicar"
                 android:textColor="#FFFFFF"
                 android:layout_margin="10dp"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
