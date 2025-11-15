@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "RenovaApp"
+rootProject.name = "UPNFIT"
 include(":app")
