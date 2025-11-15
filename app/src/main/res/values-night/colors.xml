@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Colores base (mantienen su identidad) -->
+    <!-- Colores base -->
     <color name="purple_200">#BB86FC</color>
-    <color name="purple_500">#6200EE</color>
-    <color name="purple_700">#3700B3</color>
+    <color name="purple_500">#3700B3</color>
+    <color name="purple_700">#23036A</color>
 
     <color name="teal_200">#03DAC5</color>
     <color name="teal_700">#018786</color>
 
     <!-- Fondo oscuro general -->
-    <color name="fondo">#121212</color>        <!-- fondo principal en oscuro -->
+    <color name="fondo">#121212</color>
 
     <!-- Texto y contraste -->
-    <color name="black">#FF000000</color>      <!-- sigue siendo negro -->
-    <color name="white">#FFFFFFFF</color>      <!-- sigue siendo blanco -->
-    <color name="blanco">#FFFFFFFF</color>     <!-- blanco para textos/botones -->
-    <color name="Gris">#B0B0B0</color>         <!-- gris clarito para texto secundario -->
+    <color name="black">#FFFFFF</color>     <!-- En modo oscuro el texto "negro" se vuelve blanco -->
+    <color name="white">#e8901c</color>     <!-- El "blanco" pasa a negro para fondos claros -->
+    <color name="blanco">#E0E0E0</color>    <!-- Blanco suave para textos secundarios -->
+    <color name="Gris">#9E9E9E</color>      <!-- Gris tenue para bordes o texto apagado -->
 
     <!-- Elementos de UI -->
-    <color name="progressBar">#FFFFFFFF</color>
-    <color name="verde_botón">#4CAF50</color>  <!-- se mantiene el mismo verde -->
-    <color name="verde_oscuro">#1B5E20</color> <!-- versión más oscura del verde -->
-    <color name="blue">#64B5F6</color>         <!-- azul un poco más suave en oscuro -->
-
-    <!-- Colores de marca UPN -->
-    <color name="amarillo_pastel">#FFF9C4</color>  <!-- pastel clarito -->
-    <color name="amarillo_upn">#FFB43B</color>     <!-- mismo amarillo de la marca -->
-    <color name="gris_upn">#A0A4A0</color>         <!-- gris más claro para fondos o texto -->
-    <color name="hueso_upn">#2A2C2A</color>        <!-- “hueso” pero tirando a gris oscuro -->
+    <color name="progressBar">#FFFFFF</color>
+    <color name="verde_botón">#4CAF50</color>
+    <color name="verde_oscuro">#1B5E20</color>
+    <color name="blue">#64B5F6</color>
+    <color name="amarillo_pastel">#FFB300</color>
+    <color name="amarillo_upn">#26231d</color>
+    <color name="gris_upn">#717571</color> <!-- gris upn -->
+    <color name="hueso_upn">#000000</color> <!-- hueso upn -->
 </resources>
