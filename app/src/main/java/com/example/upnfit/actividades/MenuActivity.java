@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +19,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.upnfit.R;
+import com.example.upnfit.MenuLateralFragment; // 🟢 Asegúrate de que este import sea correcto
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,6 +44,7 @@ public class MenuActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        // Asegúrate de que tu layout activity_menu.xml ya NO tenga el DrawerLayout, sino el ScrollView directo
         setContentView(R.layout.activity_menu);
 
         // --- Referencias UI ---
@@ -77,26 +78,22 @@ public class MenuActivity extends AppCompatActivity {
         TextView tvConsejoDia = findViewById(R.id.tvConsejoDia);
         cargarConsejoDelDia(tvConsejoDia);
 
-        // 🔹 Botones de navegación
-        Button btnNutricion = findViewById(R.id.nutricionButton);
-        btnNutricion.setOnClickListener(v -> startActivity(new Intent(this, NutricionActivity.class)));
-
-        Button btnActividad = findViewById(R.id.ejercicioButton);
-        btnActividad.setOnClickListener(v -> startActivity(new Intent(this, ActividadfisicaActivity.class)));
-
-        Button btnMental = findViewById(R.id.mentalButton);
-        btnMental.setOnClickListener(v -> startActivity(new Intent(this, SaludmentalActivity.class)));
-
-        Button btnComunidad = findViewById(R.id.comunidadButton);
-        btnComunidad.setOnClickListener(v -> startActivity(new Intent(this, ComunidadActivity.class)));
-
+        // 🔹 Configuración (Engranaje)
         ImageButton btnConfiguracion = findViewById(R.id.configuracion);
         btnConfiguracion.setOnClickListener(v -> startActivity(new Intent(this, ConfiguracionActivity.class)));
+
+        // 🟢 BOTÓN DE MENÚ (HAMBURGUESA) CON FRAGMENTO
+        ImageButton menuBtn = findViewById(R.id.btnAbrirMenu);
+        menuBtn.setOnClickListener(v -> {
+            // Aquí llamamos a tu nuevo Fragmento
+            MenuLateralFragment menuFragment = new MenuLateralFragment();
+            menuFragment.show(getSupportFragmentManager(), "MenuLateralTag");
+        });
     }
 
     // ✅ Obtener nombre desde la BD
     private void obtenerPrimerNombreDesdeBD(int usuarioID) {
-        String url = "http://upnfit.atwebpages.com/upnfit/obtener_datos_usuario.php"; // tu PHP local
+        String url = "http://upnfit.atwebpages.com/upnfit/obtener_datos_usuario.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
             try {

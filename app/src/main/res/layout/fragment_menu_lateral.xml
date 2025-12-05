@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/leftMenu"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:text="Menú UPNFIT"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <!-- Opción 1: Nutrición (ID: opNutricion) -->
+    <LinearLayout
+        android:id="@+id/opNutricion"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="Icono nutricion"
+            android:src="@drawable/temporizador" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Nutrición"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Opción 2: Perfil (ID: opPerfil) -->
+    <LinearLayout
+        android:id="@+id/opPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="Icono perfil"
+            android:src="@drawable/circulo_verde" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Mi Perfil"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="10dp"
+        android:background="#CCCCCC" />
+
+    <!-- Opción 3: Salir (ID: opSalir) -->
+    <LinearLayout
+        android:id="@+id/opSalir"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="Icono salir"
+            android:src="@android:drawable/ic_lock_power_off"
+            app:tint="#FF0000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Cerrar Sesión"
+            android:textColor="#FF0000"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>
