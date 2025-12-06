@@ -19,6 +19,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.upnfit.R;
+// 🛑 IMPORTACIONES ELIMINADAS: ComunidadFragment ya no se usa directamente aquí
+// 🛑 IMPORTACIONES ELIMINADAS: MainActivity ya está importada en el paquete
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,9 +44,6 @@ public class NuevapublicacionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevapublicacion);
 
-        // ============================
-        // 1. ENLAZAR VISTAS
-        // ============================
         editTextTitulo = findViewById(R.id.editTextTitulo);
         editTextPublicacion = findViewById(R.id.editTextPublicacion);
         spinnerCategorias = findViewById(R.id.spinnerCategorias);
@@ -53,9 +52,6 @@ public class NuevapublicacionActivity extends AppCompatActivity {
         textViewNombre = findViewById(R.id.textViewNombrePublicacion);
         avatarIniciales = findViewById(R.id.avatarIniciales);
 
-        // ============================
-        // 2. SPINNER CATEGORÍAS
-        // ============================
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.categorias_publicacion,
@@ -64,33 +60,30 @@ public class NuevapublicacionActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategorias.setAdapter(adapter);
 
-        // ============================
-        // 3. CARGAR usuarioID
-        // ============================
         SharedPreferences sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
         int usuarioID = sharedPreferences.getInt("usuarioID", 0);
 
-        // ============================
-        // 4. CARGAR DATOS DEL USUARIO
-        // ============================
         obtenerNombreDesdeBD(usuarioID);
 
-        // ============================
-        // 5. BOTÓN PUBLICAR
-        // ============================
         btnPublicar.setOnClickListener(v -> publicar(usuarioID));
 
-        // ============================
-        // 6. VOLVER
-        // ============================
-        btnRegresar.setOnClickListener(v -> {
-            startActivity(new Intent(this, ComunidadActivity.class));
-            finish();
-        });
+        btnRegresar.setOnClickListener(v -> irAComunidad());
     }
 
     // ==================================================
-    // OBTENER NOMBRE DEL USUARIO DESDE LA BD
+    // ENVIAR A COMUNIDAD FRAGMENT DESDE MAINACTIVITY
+    // ==================================================
+    private void irAComunidad() {
+        // Usa un Intent para abrir MainActivity y le pasa un "extra"
+        // para que sepa que debe cargar el ComunidadFragment.
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("openFragment", "comunidad");
+        startActivity(intent);
+        finish(); // Cierra esta Activity para que el usuario no pueda volver con el botón atrás
+    }
+
+    // ==================================================
+    // OBTENER NOMBRE
     // ==================================================
     private void obtenerNombreDesdeBD(int usuarioID) {
 
@@ -127,7 +120,7 @@ public class NuevapublicacionActivity extends AppCompatActivity {
     }
 
     // ==================================================
-    // PUBLICAR PUBLICACIÓN
+    // PUBLICAR
     // ==================================================
     private void publicar(int usuarioID) {
 
@@ -156,8 +149,7 @@ public class NuevapublicacionActivity extends AppCompatActivity {
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
                         if (success) {
-                            startActivity(new Intent(this, ComunidadActivity.class));
-                            finish();
+                            irAComunidad(); // Navega al fragmento después de la publicación exitosa
                         }
 
                     } catch (JSONException e) {
@@ -182,7 +174,7 @@ public class NuevapublicacionActivity extends AppCompatActivity {
     }
 
     // ==================================================
-    // MAPEAR NOMBRE → ID
+    // MAPEO
     // ==================================================
     private int obtenerCategoriaID(String categoria) {
         switch (categoria) {
@@ -195,7 +187,7 @@ public class NuevapublicacionActivity extends AppCompatActivity {
     }
 
     // ==================================================
-    // INICIALES DEL USUARIO
+    // INICIALES
     // ==================================================
     private String obtenerIniciales(String nombreCompleto) {
         if (nombreCompleto == null || nombreCompleto.isEmpty()) return "US";

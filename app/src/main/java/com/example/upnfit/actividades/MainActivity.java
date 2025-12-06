@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageButton btnMenuToggle;
 
-    // Declaración del DrawerLayout
     private DrawerLayout drawerLayout;
 
     @Override
@@ -49,14 +48,41 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        // 2. Cargar el fragmento de menú inicial si no se ha restaurado el estado
+        //  INICIO DE LA LÓGICA DE CARGA DEL FRAGMENTO INICIAL
         if (savedInstanceState == null) {
-            loadFragment(new MenuFragment());
+
+            // 1. Verificar si hay una solicitud específica (por ejemplo, desde NuevapublicacionActivity)
+            String fragmentToOpen = getIntent().getStringExtra("openFragment");
+
+            if ("comunidad".equals(fragmentToOpen)) {
+                // Si la señal es "comunidad", cargamos ComunidadFragment
+                loadFragment(new ComunidadFragment());
+            } else {
+                // Si no hay señal (inicio normal), cargamos el fragmento de menú
+                loadFragment(new MenuFragment());
+            }
         }
+        //  FIN DE LA LÓGICA DE CARGA DEL FRAGMENTO INICIAL
+
 
         // 3. Configurar navegación (Solo menú lateral)
         setupNavigationButtons();
     }
+
+    //  AGREGAMOS onNewIntent para manejar la navegación si la Activity ya estaba abierta
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        String fragmentToOpen = intent.getStringExtra("openFragment");
+
+        if ("comunidad".equals(fragmentToOpen)) {
+            // Si la Activity ya estaba en memoria y recibe un nuevo Intent con la instrucción, la cargamos.
+            loadFragment(new ComunidadFragment());
+        }
+        // Nota: Si se envía otro Intent sin "comunidad", no hacemos nada para evitar recargar el fragmento actual.
+    }
+
 
     private void setupNavigationButtons() {
         // 1. Opciones del menú lateral (LinearLayouts)
@@ -115,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
 
-        // 🛑 Cierra el DrawerLayout después de cargar el fragmento
+        //  Cierra el DrawerLayout después de cargar el fragmento
         if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
         }

@@ -50,7 +50,7 @@ public class ContratoActivity extends AppCompatActivity {
         correo = getIntent().getStringExtra("correo");
         contrasena = getIntent().getStringExtra("contrasena");
         genero = getIntent().getStringExtra("genero");
-        altura = getIntent().getFloatExtra("altura", 0f);  // ¡esto ya es seguro!
+        altura = getIntent().getFloatExtra("altura", 0f); // ¡esto ya es seguro!
         peso = getIntent().getIntExtra("peso", 0);
         objetivo1 = getIntent().getStringExtra("objetivo1");
         objetivo2 = getIntent().getStringExtra("objetivo2");
@@ -87,13 +87,13 @@ public class ContratoActivity extends AppCompatActivity {
             registrarUsuarioEnNube(nombre, correo, contrasena, genero, altura, peso, objetivo1, objetivo2);
 
             if (agregado) {
-                // Guardar el correo en SharedPreferences para validación en bienvenida
+                // Guardar el correo en SharedPreferences para validación
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("correo", correo);
                 editor.apply();
 
-                // Ir directamente a BienvenidaActivity y limpiar la pila
-                Intent intent = new Intent(ContratoActivity.this, BienvenidaActivity.class);
+                // Ir directamente a MainActivity y limpiar la pila
+                Intent intent = new Intent(ContratoActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();

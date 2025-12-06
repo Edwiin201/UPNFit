@@ -1,21 +1,17 @@
 package com.example.upnfit.actividades;
-
 import android.content.Intent;
+import com.example.upnfit.fragmentos.MenuFragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.upnfit.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
 import org.json.JSONObject;
-
 import cz.msebera.android.httpclient.Header;
 
 public class EditarperfilActivity extends AppCompatActivity {
@@ -38,11 +34,9 @@ public class EditarperfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editarperfil);
 
-        // 🔙 BOTÓN RETROCEDER
         ImageView btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
 
-        // Referencias UI
         editNombre = findViewById(R.id.editNombre);
         editSede   = findViewById(R.id.editSede);
         editGenero = findViewById(R.id.editGenero);
@@ -50,30 +44,22 @@ public class EditarperfilActivity extends AppCompatActivity {
         editAltura = findViewById(R.id.editAltura);
         editPeso   = findViewById(R.id.editPeso);
 
-        // Obtener el ID del usuario desde SharedPreferences
         int usuarioID = getSharedPreferences("UserData", MODE_PRIVATE)
                 .getInt("usuarioID", 0);
 
         if (usuarioID == 0) {
-            Toast.makeText(this,
-                    "No se encontró el ID del usuario", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No se encontró el ID del usuario", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // 🔹 Cargar datos iniciales
         obtenerNombreDesdeServidor(usuarioID);
         obtenerMedidasDesdeServidor(usuarioID);
 
-        // 🔹 Botón Guardar → Actualizar perfil
         findViewById(R.id.btnGuardar)
                 .setOnClickListener(v -> actualizarPerfil(usuarioID));
     }
 
-    // =======================================================
-    // 1️⃣ OBTENER DATOS DEL USUARIO (Nombre y Sede)
-    // =======================================================
     private void obtenerNombreDesdeServidor(int usuarioID) {
-
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put("usuarioID", usuarioID);
@@ -82,7 +68,6 @@ public class EditarperfilActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-
                 int codigo = response.optInt("Codigo", 0);
                 String mensaje = response.optString("Mensaje", "");
 
@@ -90,15 +75,12 @@ public class EditarperfilActivity extends AppCompatActivity {
                     editNombre.setText(response.optString("NombreCompleto", ""));
                     editSede.setText(response.optString("SedeID", ""));
                 } else {
-                    Toast.makeText(EditarperfilActivity.this,
-                            mensaje, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditarperfilActivity.this, mensaje, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(
-                    int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 Log.e(TAG, "Error obtener datos usuario: " + throwable.getMessage());
                 Toast.makeText(EditarperfilActivity.this,
                         "Error al conectar con el servidor (usuario)", Toast.LENGTH_SHORT).show();
@@ -106,11 +88,7 @@ public class EditarperfilActivity extends AppCompatActivity {
         });
     }
 
-    // =======================================================
-    // 2️⃣ OBTENER MEDIDAS (Altura, Peso, Edad, Género)
-    // =======================================================
     private void obtenerMedidasDesdeServidor(int usuarioID) {
-
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         params.put("usuarioID", usuarioID);
@@ -119,7 +97,6 @@ public class EditarperfilActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-
                 int codigo = response.optInt("Codigo", 0);
                 String mensaje = response.optString("Mensaje", "");
 
@@ -129,15 +106,12 @@ public class EditarperfilActivity extends AppCompatActivity {
                     editAltura.setText(response.optString("AlturaCm", ""));
                     editPeso.setText(response.optString("PesoKg", ""));
                 } else {
-                    Toast.makeText(EditarperfilActivity.this,
-                            mensaje, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditarperfilActivity.this, mensaje, Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(
-                    int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 Log.e(TAG, "Error obtener medidas: " + throwable.getMessage());
                 Toast.makeText(EditarperfilActivity.this,
                         "Error al conectar con el servidor (medidas)", Toast.LENGTH_SHORT).show();
@@ -145,9 +119,6 @@ public class EditarperfilActivity extends AppCompatActivity {
         });
     }
 
-    // =======================================================
-    // 3️⃣ ACTUALIZAR TODO EL PERFIL EN LA BASE DE DATOS
-    // =======================================================
     private void actualizarPerfil(int usuarioID) {
 
         String nombre = editNombre.getText().toString().trim();
@@ -187,17 +158,18 @@ public class EditarperfilActivity extends AppCompatActivity {
                 Toast.makeText(EditarperfilActivity.this, mensaje, Toast.LENGTH_SHORT).show();
 
                 if (codigo == 1) {
-                    // Perfil actualizado → volver al menú
-                    Intent intent = new Intent(EditarperfilActivity.this, MenuActivity.class);
+                    //  Volver a MainActivity
+                    Intent intent = new Intent(EditarperfilActivity.this, MainActivity.class);
+                    // Opcional: FLAG_ACTIVITY_CLEAR_TOP asegura que si MainActivity ya estaba abierta,
+                    // se traiga al frente y se borren las actividades encima (como esta)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    finish();
+                    finish(); // Cierra EditarperfilActivity
                 }
             }
 
             @Override
-            public void onFailure(
-                    int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 Log.e(TAG, "Error actualizar perfil: " + throwable.getMessage());
                 Toast.makeText(EditarperfilActivity.this,
                         "Error al conectar con el servidor (actualizar)", Toast.LENGTH_SHORT).show();

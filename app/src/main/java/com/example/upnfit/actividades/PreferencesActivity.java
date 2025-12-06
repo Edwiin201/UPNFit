@@ -53,29 +53,39 @@ public class PreferencesActivity extends AppCompatActivity {
 
         // Modo oscuro
         switchDarkMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            // Guardar inmediatamente el cambio de tema para que se aplique al reiniciar la Activity
             prefs.edit().putBoolean("dark_mode", isChecked).apply();
             AppCompatDelegate.setDefaultNightMode(
                     isChecked ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
             );
         });
 
-        // 🔥 Guardar notificaciones motivacionales
+        // Guardar notificaciones motivacionales
         switchMotivacionales.setOnCheckedChangeListener((buttonView, isChecked) -> {
             prefs.edit().putBoolean("noti_motivacionales", isChecked).apply();
             Toast.makeText(this, isChecked ?
-                            "🔥 Notificaciones motivacionales activadas" :
-                            "❌ Notificaciones desactivadas",
+                            " Notificaciones motivacionales activadas" :
+                            " Notificaciones desactivadas",
                     Toast.LENGTH_SHORT).show();
         });
 
         // Botón volver
+        // El botón de volver siempre debe hacer finish() si queremos ir a la actividad anterior.
         btnBack.setOnClickListener(v -> finish());
 
-        // Guardar
+        // Guardar y redirigir a MainActivity
         buttonSavePreferences.setOnClickListener(v -> {
             Toast.makeText(this, "Preferencias guardadas", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MenuActivity.class));
-            finish();
+
+            //  Redirigir a MainActivity
+            Intent intent = new Intent(this, MainActivity.class);
+
+            // Usamos FLAG_ACTIVITY_CLEAR_TOP para asegurar que se regrese a MainActivity
+            // y se elimine cualquier otra Activity entre medio.
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+            startActivity(intent);
+            finish(); // Cierra PreferencesActivity
         });
     }
 
