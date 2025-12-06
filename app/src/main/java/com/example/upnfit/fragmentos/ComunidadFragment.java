@@ -1,4 +1,5 @@
 package com.example.upnfit.fragmentos;
+import android.graphics.Color;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -122,7 +123,7 @@ public class ComunidadFragment extends Fragment {
         avatar.setBackgroundResource(R.drawable.circulo_azul);
         avatar.setGravity(android.view.Gravity.CENTER);
         avatar.setPadding(16, 16, 16, 16);
-        avatar.setTextColor(getResources().getColor(android.R.color.white));
+        avatar.setTextColor(getResources().getColor(android.R.color.white)); // Blanco OK
 
         LinearLayout datos = new LinearLayout(requireContext());
         datos.setOrientation(LinearLayout.VERTICAL);
@@ -131,10 +132,12 @@ public class ComunidadFragment extends Fragment {
         TextView autorTxt = new TextView(requireContext());
         autorTxt.setText(autor);
         autorTxt.setTextSize(16);
+        autorTxt.setTextColor(Color.parseColor("#000000")); // 🔥 FORZADO A NEGRO
 
         TextView fechaTxt = new TextView(requireContext());
         fechaTxt.setText(fecha);
         fechaTxt.setTextSize(12);
+        fechaTxt.setTextColor(Color.parseColor("#000000")); // 🔥 FORZADO A NEGRO
 
         datos.addView(autorTxt);
         datos.addView(fechaTxt);
@@ -150,6 +153,7 @@ public class ComunidadFragment extends Fragment {
             tvTitulo.setText(titulo);
             tvTitulo.setTextSize(17);
             tvTitulo.setPadding(0, 10, 0, 10);
+            tvTitulo.setTextColor(Color.parseColor("#000000")); // 🔥 SIEMPRE NEGRO
             publicacionView.addView(tvTitulo);
         }
 
@@ -157,6 +161,7 @@ public class ComunidadFragment extends Fragment {
         TextView tvContenido = new TextView(requireContext());
         tvContenido.setText(contenido);
         tvContenido.setTextSize(14);
+        tvContenido.setTextColor(Color.parseColor("#000000")); // 🔥 SIEMPRE NEGRO
         publicacionView.addView(tvContenido);
 
         // Categoría
@@ -164,10 +169,12 @@ public class ComunidadFragment extends Fragment {
             TextView tvCat = new TextView(requireContext());
             tvCat.setText("Categoría: " + categoria);
             tvCat.setTextSize(12);
+            tvCat.setTextColor(Color.parseColor("#000000")); // 🔥 SIEMPRE NEGRO
             publicacionView.addView(tvCat);
         }
 
         publicacionesContainer.addView(publicacionView);
         publicacionesList.add(publicacionView);
     }
+
 }

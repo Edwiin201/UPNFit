@@ -107,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ejercicio diario (5 min)"
-            android:textColor="#000"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -151,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Herramientas de Bienestar"
-            android:textColor="#000"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
@@ -266,7 +266,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tu progreso semanal"
-            android:textColor="#000"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"

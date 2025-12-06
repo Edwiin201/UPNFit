@@ -13,14 +13,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.upnfit.R;
-// 🛑 IMPORTACIONES ELIMINADAS: ComunidadFragment ya no se usa directamente aquí
-// 🛑 IMPORTACIONES ELIMINADAS: MainActivity ya está importada en el paquete
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,39 +48,42 @@ public class NuevapublicacionActivity extends AppCompatActivity {
         textViewNombre = findViewById(R.id.textViewNombrePublicacion);
         avatarIniciales = findViewById(R.id.avatarIniciales);
 
+        // -------------------------------
+        // SPINNER CON TEXTO NEGRO
+        // -------------------------------
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.categorias_publicacion,
-                android.R.layout.simple_spinner_item
+                R.layout.spinner_item_black
         );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner_item_black);
         spinnerCategorias.setAdapter(adapter);
 
+        // -------------------------------
+        // OBTENER ID USUARIO
+        // -------------------------------
         SharedPreferences sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
         int usuarioID = sharedPreferences.getInt("usuarioID", 0);
 
         obtenerNombreDesdeBD(usuarioID);
 
         btnPublicar.setOnClickListener(v -> publicar(usuarioID));
-
         btnRegresar.setOnClickListener(v -> irAComunidad());
     }
 
-    // ==================================================
-    // ENVIAR A COMUNIDAD FRAGMENT DESDE MAINACTIVITY
-    // ==================================================
+    // -------------------------------
+    // VOLVER AL FRAGMENTO COMUNIDAD
+    // -------------------------------
     private void irAComunidad() {
-        // Usa un Intent para abrir MainActivity y le pasa un "extra"
-        // para que sepa que debe cargar el ComunidadFragment.
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("openFragment", "comunidad");
         startActivity(intent);
-        finish(); // Cierra esta Activity para que el usuario no pueda volver con el botón atrás
+        finish();
     }
 
-    // ==================================================
-    // OBTENER NOMBRE
-    // ==================================================
+    // -------------------------------
+    // OBTENER NOMBRE USUARIO
+    // -------------------------------
     private void obtenerNombreDesdeBD(int usuarioID) {
 
         StringRequest request = new StringRequest(Request.Method.POST, URL_DATOS_USUARIO, response -> {
@@ -108,20 +107,19 @@ public class NuevapublicacionActivity extends AppCompatActivity {
         }, error -> Toast.makeText(this, "Error de conexión con el servidor", Toast.LENGTH_SHORT).show()) {
 
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("usuarioID", String.valueOf(usuarioID));
                 return params;
             }
         };
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
+        Volley.newRequestQueue(this).add(request);
     }
 
-    // ==================================================
+    // -------------------------------
     // PUBLICAR
-    // ==================================================
+    // -------------------------------
     private void publicar(int usuarioID) {
 
         String titulo = editTextTitulo.getText().toString().trim();
@@ -148,9 +146,7 @@ public class NuevapublicacionActivity extends AppCompatActivity {
 
                         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
-                        if (success) {
-                            irAComunidad(); // Navega al fragmento después de la publicación exitosa
-                        }
+                        if (success) irAComunidad();
 
                     } catch (JSONException e) {
                         Toast.makeText(this, "Error al interpretar respuesta", Toast.LENGTH_SHORT).show();
@@ -173,9 +169,9 @@ public class NuevapublicacionActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(request);
     }
 
-    // ==================================================
-    // MAPEO
-    // ==================================================
+    // -------------------------------
+    // MAPEO CATEGORÍAS
+    // -------------------------------
     private int obtenerCategoriaID(String categoria) {
         switch (categoria) {
             case "#RECETASALUDABLE": return 1;
@@ -186,9 +182,9 @@ public class NuevapublicacionActivity extends AppCompatActivity {
         }
     }
 
-    // ==================================================
+    // -------------------------------
     // INICIALES
-    // ==================================================
+    // -------------------------------
     private String obtenerIniciales(String nombreCompleto) {
         if (nombreCompleto == null || nombreCompleto.isEmpty()) return "US";
 
