@@ -92,8 +92,8 @@ public class ContratoActivity extends AppCompatActivity {
                 editor.putString("correo", correo);
                 editor.apply();
 
-                // Ir directamente a MainActivity y limpiar la pila
-                Intent intent = new Intent(ContratoActivity.this, MainActivity.class);
+
+                Intent intent = new Intent(ContratoActivity.this, BienvenidaActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();

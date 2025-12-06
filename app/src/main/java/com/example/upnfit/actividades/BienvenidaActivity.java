@@ -44,7 +44,7 @@ public class BienvenidaActivity extends AppCompatActivity {
 
             if (correoIngresado.equalsIgnoreCase(correoRegistrado)) {
                 // Correo válido, ir al menú
-                Intent intent = new Intent(BienvenidaActivity.this, MenuActivity.class);
+                Intent intent = new Intent(BienvenidaActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             } else {

@@ -25,8 +25,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import com.example.upnfit.fragmentos.MapaFragment;
 import com.example.upnfit.R;
-import com.example.upnfit.actividades.GraficoPasosActivity;
-import com.example.upnfit.actividades.MapaActivity;
+
+import com.example.upnfit.fragmentos.GraficaPasosFragment;
+// import com.example.upnfit.actividades.MapaActivity; // Esta línea probablemente sea innecesaria si usas MapaFragment
 import com.example.upnfit.notificaciones.NotificationHelper;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -106,7 +107,7 @@ public class ActividadFragment extends Fragment {
             initialSteps = prefs.getInt("initial", -1);
         }
 
-        // Botón: ubicación
+        // Botón: ubicación (Correcto, carga MapaFragment)
         view.findViewById(R.id.btnVerUbicacion).setOnClickListener(v ->
                 //  Cargar el MapaFragment en el contenedor de MainActivity
                 getParentFragmentManager().beginTransaction()
@@ -122,7 +123,11 @@ public class ActividadFragment extends Fragment {
         // Botón: gráfico semanal
         Button btnGrafico = view.findViewById(R.id.btnGrafico);
         btnGrafico.setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), GraficoPasosActivity.class))
+                // CAMBIO CLAVE: Cargar GraficoPasosFragment en lugar de iniciar Activity
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new GraficaPasosFragment())
+                        .addToBackStack(null) // Esto permite usar el botón de retroceso
+                        .commit()
         );
     }
 

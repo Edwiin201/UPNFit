@@ -1,5 +1,5 @@
 package com.example.upnfit.fragmentos;
-
+import com.example.upnfit.sqlite.IndicadoresDB;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -77,6 +77,11 @@ public class NutricionFragment extends Fragment {
         if (usuarioID == 0) {
             Toast.makeText(getContext(), "No se encontró usuario", Toast.LENGTH_SHORT).show();
         } else {
+
+            // 🛑 LÓGICA DE CACHE: 1. Carga Rápida (Local)
+            cargarIndicadoresLocales(usuarioID);
+
+            // 🛑 LÓGICA DE CACHE: 2. Sincronización (Red)
             obtenerIndicadores(usuarioID);
         }
 
@@ -86,7 +91,35 @@ public class NutricionFragment extends Fragment {
         btnCena.setOnClickListener(v -> mostrarAlimentos("Cena"));
         btnSnacks.setOnClickListener(v -> mostrarAlimentos("Snacks"));
     }
+    // 🛑 NUEVO MÉTODO: Leer desde SQLite para carga rápida
+    private void cargarIndicadoresLocales(int usuarioID) {
+        IndicadoresDB db = new IndicadoresDB(getContext());
+        Cursor cursor = db.obtenerIndicadores(usuarioID);
 
+        if (cursor != null && cursor.moveToFirst()) {
+            try {
+                // Obtener datos del Cursor (usando nombres de columna de IndicadoresDB)
+                double imcLocal = cursor.getDouble(cursor.getColumnIndexOrThrow(IndicadoresDB.COL_IMC));
+                double grasaPctLocal = cursor.getDouble(cursor.getColumnIndexOrThrow(IndicadoresDB.COL_GRASA_PCT));
+
+                txtIMCValor.setText(String.format("%.1f", imcLocal));
+                txtGrasaValor.setText(String.format("%.1f%%", grasaPctLocal));
+                Log.d("NutricionFragment", "Indicadores cargados desde SQLite.");
+            } catch (IllegalArgumentException e) {
+                Log.e("NutricionFragment", "Error al leer columnas del cursor", e);
+                txtIMCValor.setText("Error");
+                txtGrasaValor.setText("Error");
+            } finally {
+                cursor.close();
+            }
+        } else {
+            // Si no hay datos locales, mostrar "Cargando" mientras llega la red
+            txtIMCValor.setText("--");
+            txtGrasaValor.setText("--");
+            Log.d("NutricionFragment", "No se encontraron indicadores locales.");
+        }
+        db.close(); // Siempre cerrar la conexión a la BD
+    }
     private void mostrarAlimentos(String tipo) {
         Map<String,Object> alimento;
 
@@ -148,33 +181,43 @@ public class NutricionFragment extends Fragment {
         tvCarbsTotal.setText(String.format("%.0f g", totalCarbs));
     }
 
+    // 🛑 MÉTODO MODIFICADO: Llamada de red + Sincronización a SQLite
     private void obtenerIndicadores(int usuarioID) {
         String url = "http://upnfit.atwebpages.com/upnfit/obtener_todas_medidas.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
                     try {
-                        Log.d("NutricionFragment","Respuesta servidor: "+response);
                         JSONObject json = new JSONObject(response);
-
                         int codigo = json.optInt("Codigo",0);
 
                         if(codigo==1){
-                            imc = json.optDouble("IMC",0);
-                            grasaPct = json.optDouble("GrasaPct",0);
+                            double imcServidor = json.optDouble("IMC",0);
+                            double grasaPctServidor = json.optDouble("GrasaPct",0);
 
-                            txtIMCValor.setText(String.format("%.1f",imc));
-                            txtGrasaValor.setText(String.format("%.1f%%",grasaPct));
+                            // 3. Actualizar la interfaz (en caso de que haya cambios)
+                            txtIMCValor.setText(String.format("%.1f", imcServidor));
+                            txtGrasaValor.setText(String.format("%.1f%%", grasaPctServidor));
+
+                            // 4. Sincronizar (Guardar) los nuevos datos en la BD local
+                            IndicadoresDB db = new IndicadoresDB(getContext());
+                            db.guardarIndicadores(usuarioID, imcServidor, grasaPctServidor);
+                            db.close();
+                            Log.d("NutricionFragment", "Indicadores sincronizados con el servidor.");
+
                         } else {
-                            txtIMCValor.setText("--");
-                            txtGrasaValor.setText("--");
+                            Log.w("NutricionFragment", "Servidor no devolvió datos, usando cache local.");
                         }
 
                     } catch (JSONException e){
                         e.printStackTrace();
                     }
                 },
-                error -> Toast.makeText(getContext(),"Error al conectar",Toast.LENGTH_SHORT).show()
+                error -> {
+                    // Si falla la red, el usuario ya vio la información del cache
+                    Toast.makeText(getContext(),"Error de conexión, usando datos guardados.",Toast.LENGTH_LONG).show();
+                    Log.e("NutricionFragment", "Error de conexión en red.", error);
+                }
         ){
             @Override
             protected Map<String,String> getParams(){
