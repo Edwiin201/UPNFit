@@ -15,8 +15,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest; // 🛑 Usaremos JsonObjectRequest para manejar el array
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.upnfit.R;
@@ -27,7 +29,9 @@ import com.example.upnfit.fragmentos.NutricionFragment;
 import com.example.upnfit.fragmentos.SaludMentalFragment;
 import com.example.upnfit.sqlite.IndicadoresDB;
 import com.example.upnfit.sqlite.PerfilDB;
+import com.example.upnfit.sqlite.PublicacionesDB; // 🛑 NUEVA IMPORTACIÓN
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,9 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
 
+    private static final String TAG = "MainActivity";
+
 
     private static final String URL_DATOS_USUARIO =
             "http://upnfit.atwebpages.com/upnfit/obtener_datos_usuario.php";
+
+    private static final String URL_PUBLICACIONES = // 🛑 NUEVA CONSTANTE
+            "http://upnfit.atwebpages.com/upnfit/obtener_publicaciones.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +81,11 @@ public class MainActivity extends AppCompatActivity {
             // Sincroniza indicadores (IMC, Grasa)
             sincronizarIndicadoresInicial(usuarioID);
 
-            //  Sincroniza datos de Perfil (Nombre, Sede)
+            // Sincroniza datos de Perfil (Nombre, Sede)
             sincronizarPerfilInicial(usuarioID);
+
+            // 🛑 Sincroniza Publicaciones (Caché para ComunidadFragment)
+            sincronizarPublicacionesInicial();
         }
 
         //  INICIO DE LA LÓGICA DE CARGA DEL FRAGMENTO INICIAL
@@ -169,6 +181,65 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // =========================================================================
+    // 🛑 NUEVOS MÉTODOS DE SINCRONIZACIÓN DE CACHÉ
+    // =========================================================================
+
+
+    /**
+     * 🛑 NUEVO: Obtiene todas las publicaciones del servidor y actualiza PublicacionesDB.
+     */
+    private void sincronizarPublicacionesInicial() {
+        PublicacionesDB db = new PublicacionesDB(this);
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET,
+                URL_PUBLICACIONES,
+                null,
+                response -> {
+                    try {
+                        if (response.optInt("p_Codigo", 0) != 1) return;
+
+                        JSONArray data = response.getJSONArray("data");
+
+                        // 1. Limpiar cache antes de guardar los nuevos datos
+                        db.limpiarCache();
+
+                        for (int i = 0; i < data.length(); i++) {
+                            JSONObject pub = data.getJSONObject(i);
+
+                            // Usamos "PublicacionID" basado en la confirmación previa
+                            int publicacionID = pub.optInt("PublicacionID", 0);
+                            String titulo = pub.optString("Titulo", "");
+                            String contenido = pub.optString("Contenido", "");
+                            String autor = pub.optString("Autor", "Usuario");
+                            String fecha = pub.optString("FechaPublicacion", "");
+                            String categoria = pub.optString("Categoria", "");
+
+                            // 2. Guardar en la caché SQLite
+                            if (publicacionID != 0) {
+                                db.guardarPublicacion(publicacionID, titulo, contenido, autor, fecha, categoria);
+                            }
+                        }
+                        Log.d(TAG, "Cache de publicaciones actualizada con éxito.");
+
+                    } catch (Exception e) {
+                        Log.e(TAG, "Error al procesar publicaciones en MainActivity: " + e.getMessage());
+                    } finally {
+                        // Siempre cerrar la DB
+                        db.close();
+                    }
+                },
+                error -> {
+                    Log.e(TAG, "Error de red al sincronizar publicaciones: " + error.toString());
+                    db.close();
+                }
+        );
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
+    }
+
     /**
      * Obtiene los indicadores del servidor y los guarda en la caché SQLite (IndicadoresDB).
      */
@@ -193,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 },
                 error -> {
-                    Log.e("MainActivity", "Error sincronizando indicadores.", error);
+                    Log.e(TAG, "Error sincronizando indicadores.", error);
                 }
         ) {
             @Override
@@ -209,11 +280,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 🛑 NUEVO MÉTODO: Obtiene los datos personales del servidor y los guarda en PerfilDB.
+     * Obtiene los datos personales del servidor y los guarda en PerfilDB, preservando medidas locales.
      */
     private void sincronizarPerfilInicial(int usuarioID) {
         StringRequest request = new StringRequest(Request.Method.POST, URL_DATOS_USUARIO,
                 response -> {
+                    PerfilDB db = new PerfilDB(MainActivity.this);
+                    Cursor cursor = db.obtenerPerfil(usuarioID);
+
                     try {
                         JSONObject json = new JSONObject(response);
                         if (json.optInt("Codigo", 0) == 1) {
@@ -221,36 +295,7 @@ public class MainActivity extends AppCompatActivity {
                             String nombre = json.optString("NombreCompleto", "");
                             String sede = json.optString("SedeID", "");
 
-                            // Para guardar el perfil completo, también necesitamos las medidas que se obtienen en otro endpoint.
-                            // Para simplificar, asumiremos que si este endpoint tiene éxito, los datos del perfil (Nombre/Sede) se actualizan en SQLite
-
-                            // 💾 Guardar solo Nombre y Sede en PerfilDB, ya que es la única data que tenemos de este endpoint.
-                            // NOTA: EL PERFIL COMPLETO SE CONSTRUYE Y GUARDA EN EDITARPERFILACTIVITY
-
-                            // Para evitar errores en PerfilDB (que requiere todos los campos, incluyendo peso/altura),
-                            // solo actualizaremos los campos que obtenemos aquí, sin sobrescribir los otros campos
-                            // que deben ser cargados desde la base de datos *antes* de esta operación.
-
-                            // === RECOMENDACIÓN ===
-                            // La forma más limpia es hacer una sola petición que devuelva TODO (perfil + medidas) en un endpoint unificado.
-                            // Dado que ya tenemos dos endpoints separados, solo guardaremos lo que obtenemos aquí: Nombre y Sede.
-
-                            // === SOLUCIÓN PRAGMÁTICA ===
-                            // Si la DB ya tiene los valores de peso/altura, esta llamada los sobrescribiría con '0'.
-                            // Para evitar esto, esta función SOLO DEBE ACTUALIZAR EL PERFIL si el PerfilDB está vacío.
-
-                            // Mejor aún, usemos el método de PerfilDB que espera los datos completos.
-                            // Como esta llamada solo da nombre/sede, DEBEMOS OBTENER LOS OTROS DATOS DE LA DB ANTES de guardar.
-
-                            // === DEBIDO A LA COMPLEJIDAD DE UNIR DATA SEPARADA EN EL INICIO, USAREMOS LA ESTRATEGIA MÁS SIMPLE:
-                            // SOLO GUARDAR LOS DATOS DE NOMBRE Y SEDE SI YA EXISTEN LOS OTROS DATOS EN LA CACHE.
-                            // O, MÁS FÁCIL: SIMPLEMENTE HAREMOS LA LLAMADA Y ACTUALIZAREMOS SOLO NOMBRE/SEDE
-
-                            PerfilDB db = new PerfilDB(MainActivity.this);
-
-                            // Intentamos obtener el perfil existente para no perder Peso/Altura/Edad
-                            Cursor cursor = db.obtenerPerfil(usuarioID);
-
+                            // Recopilar medidas existentes de la caché para no perderlas
                             String genero = "";
                             int edad = 0;
                             double altura = 0.0;
@@ -261,20 +306,21 @@ public class MainActivity extends AppCompatActivity {
                                 edad = cursor.getInt(cursor.getColumnIndexOrThrow(PerfilDB.COL_EDAD));
                                 altura = cursor.getDouble(cursor.getColumnIndexOrThrow(PerfilDB.COL_ALTURA));
                                 peso = cursor.getDouble(cursor.getColumnIndexOrThrow(PerfilDB.COL_PESO));
-                                cursor.close();
                             }
 
-                            // Actualizar el perfil completo usando los datos del servidor (Nombre/Sede) y los datos locales (medidas)
+                            // Guardar el perfil completo (Nombre/Sede del servidor + Medidas locales)
                             db.guardarPerfil(usuarioID, nombre, sede, genero, edad, altura, peso);
-                            db.close();
 
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        Log.e(TAG, "Error sincronizando perfil: " + e.getMessage());
+                    } finally {
+                        if (cursor != null) cursor.close();
+                        db.close();
                     }
                 },
                 error -> {
-                    Log.e("MainActivity", "Error sincronizando perfil.", error);
+                    Log.e(TAG, "Error de red sincronizando perfil.", error);
                 }
         ) {
             @Override
