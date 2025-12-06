@@ -1,51 +1,64 @@
-package com.example.upnfit.actividades;
+package com.example.upnfit.fragmentos;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.upnfit.R;
+import com.example.upnfit.actividades.HorameditacionActivity;
 
 import java.util.Random;
 
-public class SaludmentalActivity extends AppCompatActivity {
+public class SaludMentalFragment extends Fragment {
 
     private LinearLayout layoutEmojis;
     private FrameLayout floatingContainer;
-    private int[] emojiIds = {R.drawable.feliz, R.drawable.tranquilo, R.drawable.neutral, R.drawable.estresado};
 
+    private int[] emojiIds = {
+            R.drawable.feliz,
+            R.drawable.tranquilo,
+            R.drawable.neutral,
+            R.drawable.estresado
+    };
+
+    public SaludMentalFragment() {}
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_saludmental);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
-        // Botones de navegación
-        Button btnMenu = findViewById(R.id.inicioButton);
-        Button btnNutricion = findViewById(R.id.nutricionButton);
-        Button btnActividad = findViewById(R.id.ejercicioButton);
-        Button btnComunidad = findViewById(R.id.comunidadButton);
-        Button btnIniciar = findViewById(R.id.iniciarButton);
+        View view = inflater.inflate(R.layout.fragment_salud_mental, container, false);
 
-        btnMenu.setOnClickListener(v -> startActivity(new Intent(this, MenuActivity.class)));
-        btnNutricion.setOnClickListener(v -> startActivity(new Intent(this, NutricionActivity.class)));
-        btnActividad.setOnClickListener(v -> startActivity(new Intent(this, ActividadfisicaActivity.class)));
-        btnComunidad.setOnClickListener(v -> startActivity(new Intent(this, ComunidadActivity.class)));
-        btnIniciar.setOnClickListener(v -> startActivity(new Intent(this, HorameditacionActivity.class)));
-
-        // Emoji animación lógica
-        layoutEmojis = findViewById(R.id.layoutEmojis);
+        // Referencias
+        layoutEmojis = view.findViewById(R.id.layoutEmojis);
 
 
+        Button btnIniciar = view.findViewById(R.id.iniciarButton);
+
+        // → Lógica: abrir pantalla HorameditacionActivity
+        btnIniciar.setOnClickListener(v -> {
+            if (getActivity() != null) {
+                startActivity(new android.content.Intent(
+                        getActivity(),
+                        HorameditacionActivity.class
+                ));
+            }
+        });
+
+        // → Lógica: animación emojis
         for (int i = 0; i < layoutEmojis.getChildCount(); i++) {
             ImageView emoji = (ImageView) layoutEmojis.getChildAt(i);
             int finalI = i;
@@ -54,6 +67,8 @@ public class SaludmentalActivity extends AppCompatActivity {
                 mostrarEmojisFlotantes(emojiIds[finalI]);
             });
         }
+
+        return view;
     }
 
     private void ocultarOtrosEmojisExcepto(int index) {
@@ -67,20 +82,26 @@ public class SaludmentalActivity extends AppCompatActivity {
         floatingContainer.setVisibility(View.VISIBLE);
 
         int cantidad = 25;
+
         int ancho = floatingContainer.getWidth();
         int alto = floatingContainer.getHeight();
-        if (ancho == 0) ancho = 1080; // fallback
+
+        if (ancho == 0) ancho = 1080;
         if (alto == 0) alto = 1920;
 
         Random random = new Random();
+
         for (int i = 0; i < cantidad; i++) {
-            ImageView emojiView = new ImageView(this);
+
+            ImageView emojiView = new ImageView(getContext());
             emojiView.setImageResource(emojiDrawable);
 
             int size = random.nextInt(80) + 60;
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(size, size);
+
             params.leftMargin = random.nextInt(ancho - size);
             params.topMargin = random.nextInt(alto - size);
+
             emojiView.setLayoutParams(params);
 
             AlphaAnimation animation = new AlphaAnimation(0f, 1f);
@@ -91,14 +112,15 @@ public class SaludmentalActivity extends AppCompatActivity {
         }
 
         new Handler().postDelayed(() -> {
+
             floatingContainer.removeAllViews();
             floatingContainer.setVisibility(View.GONE);
-            layoutEmojis.setVisibility(View.VISIBLE);
 
             // Restaurar todos los emojis visibles
             for (int i = 0; i < layoutEmojis.getChildCount(); i++) {
                 layoutEmojis.getChildAt(i).setVisibility(View.VISIBLE);
             }
+
         }, 5000);
     }
 }

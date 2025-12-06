@@ -1,18 +1,20 @@
-package com.example.upnfit.actividades;
-// IMPORTANTE: agrega esto arriba
-import com.example.upnfit.sqlite.AlimentosDB;
-import android.database.Cursor;
+package com.example.upnfit.fragmentos;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,76 +22,71 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.upnfit.R;
 import com.example.upnfit.fragmentos.ComidasFragmet;
+import com.example.upnfit.sqlite.AlimentosDB;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class NutricionActivity extends AppCompatActivity {
+import static android.content.Context.MODE_PRIVATE;
+
+public class NutricionFragment extends Fragment {
 
     private TextView txtIMCValor, txtGrasaValor;
     private TextView tvCaloriasTotal, tvProteinasTotal, tvGrasasTotal, tvCarbsTotal;
 
+    private Map<String, Map<String,Object>> comidasSeleccionadas = new HashMap<>();
     private double imc, grasaPct;
 
-    // 🔹 Guardar alimento seleccionado por tipo
-    private Map<String, Map<String,Object>> comidasSeleccionadas = new HashMap<>();
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
+        return inflater.inflate(R.layout.fragment_nutricion, container, false);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_nutricion);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        // Botones de comida
-        Button btnDesayuno = findViewById(R.id.btnDesayuno);
-        Button btnAlmuerzo = findViewById(R.id.btnAlmuerzo);
-        Button btnCena = findViewById(R.id.btnCena);
-        Button btnSnacks = findViewById(R.id.btnSnacks);
+        // Botones
+        Button btnDesayuno = view.findViewById(R.id.btnDesayuno);
+        Button btnAlmuerzo = view.findViewById(R.id.btnAlmuerzo);
+        Button btnCena = view.findViewById(R.id.btnCena);
+        Button btnSnacks = view.findViewById(R.id.btnSnacks);
 
         // Indicadores
-        txtIMCValor = findViewById(R.id.txtIMCValor);
-        txtGrasaValor = findViewById(R.id.txtGrasaValor);
+        txtIMCValor = view.findViewById(R.id.txtIMCValor);
+        txtGrasaValor = view.findViewById(R.id.txtGrasaValor);
 
         // Resumen calórico
-        tvCaloriasTotal = findViewById(R.id.tvCaloriasTotal);
-        tvProteinasTotal = findViewById(R.id.tvProteinasTotal);
-        tvGrasasTotal = findViewById(R.id.tvGrasasTotal);
-        tvCarbsTotal = findViewById(R.id.tvCarbsTotal);
+        tvCaloriasTotal = view.findViewById(R.id.tvCaloriasTotal);
+        tvProteinasTotal = view.findViewById(R.id.tvProteinasTotal);
+        tvGrasasTotal = view.findViewById(R.id.tvGrasasTotal);
+        tvCarbsTotal = view.findViewById(R.id.tvCarbsTotal);
 
-        // Obtener usuarioID
-        SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
+        // Obtener usuario ID
+        SharedPreferences prefs = requireContext().getSharedPreferences("UserData", MODE_PRIVATE);
         int usuarioID = prefs.getInt("usuarioID", 0);
 
         if (usuarioID == 0) {
-            Toast.makeText(this, "⚠️ No se encontró el ID del usuario logueado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "No se encontró usuario", Toast.LENGTH_SHORT).show();
         } else {
             obtenerIndicadores(usuarioID);
         }
 
-        // Listeners botones comida
+        // Listeners
         btnDesayuno.setOnClickListener(v -> mostrarAlimentos("Desayuno"));
         btnAlmuerzo.setOnClickListener(v -> mostrarAlimentos("Almuerzo"));
         btnCena.setOnClickListener(v -> mostrarAlimentos("Cena"));
         btnSnacks.setOnClickListener(v -> mostrarAlimentos("Snacks"));
-
-        // Navegación inferior
-        findViewById(R.id.inicioButton).setOnClickListener(v ->
-                startActivity(new Intent(this, MenuActivity.class)));
-        findViewById(R.id.ejercicioButton).setOnClickListener(v ->
-                startActivity(new Intent(this, ActividadfisicaActivity.class)));
-        findViewById(R.id.mentalButton).setOnClickListener(v ->
-                startActivity(new Intent(this, SaludmentalActivity.class)));
-        findViewById(R.id.comunidadButton).setOnClickListener(v ->
-                startActivity(new Intent(this, ComunidadActivity.class)));
     }
 
-    // Mostrar alimentos por tipo
     private void mostrarAlimentos(String tipo) {
         Map<String,Object> alimento;
 
@@ -103,22 +100,22 @@ public class NutricionActivity extends AppCompatActivity {
         if(alimento != null) {
             String nombre = (String) alimento.get("nombre");
             String preparacion = (String) alimento.get("preparacion");
+
             ComidasFragmet dialog = new ComidasFragmet(nombre, preparacion);
-            dialog.show(getSupportFragmentManager(), "ComidaDialog");
+            dialog.show(getParentFragmentManager(), "ComidaDialog");
         }
 
         actualizarResumen();
     }
-    // Selección aleatoria de alimento según tipo y perfil
+
     private Map<String, Object> seleccionarAlimento(String tipo) {
 
-        AlimentosDB db = new AlimentosDB(this);
+        AlimentosDB db = new AlimentosDB(getContext());
         Cursor cursor = db.obtenerAlimentosPorTipo(tipo);
 
         if (cursor == null || cursor.getCount() == 0)
             return null;
 
-        // elegir al azar
         Random rnd = new Random();
         int pos = rnd.nextInt(cursor.getCount());
         cursor.moveToPosition(pos);
@@ -135,20 +132,6 @@ public class NutricionActivity extends AppCompatActivity {
         return alimento;
     }
 
-
-
-    private Map<String,Object> crearAlimento(String nombre, String preparacion, double calorias, double proteinas, double grasas, double carbohidratos){
-        Map<String,Object> alimento = new HashMap<>();
-        alimento.put("nombre", nombre);
-        alimento.put("preparacion", preparacion);
-        alimento.put("calorias", calorias);
-        alimento.put("proteinas", proteinas);
-        alimento.put("grasas", grasas);
-        alimento.put("carbohidratos", carbohidratos);
-        return alimento;
-    }
-
-    // Actualizar resumen calórico con suma total
     private void actualizarResumen() {
         double totalCal = 0, totalPro = 0, totalGrasas = 0, totalCarbs = 0;
 
@@ -165,18 +148,16 @@ public class NutricionActivity extends AppCompatActivity {
         tvCarbsTotal.setText(String.format("%.0f g", totalCarbs));
     }
 
-    // Obtener IMC y grasa corporal desde servidor
     private void obtenerIndicadores(int usuarioID) {
         String url = "http://upnfit.atwebpages.com/upnfit/obtener_todas_medidas.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
                     try {
-                        Log.d("NutricionActivity","Respuesta servidor: "+response);
+                        Log.d("NutricionFragment","Respuesta servidor: "+response);
                         JSONObject json = new JSONObject(response);
 
                         int codigo = json.optInt("Codigo",0);
-                        String mensaje = json.optString("Mensaje","");
 
                         if(codigo==1){
                             imc = json.optDouble("IMC",0);
@@ -184,19 +165,16 @@ public class NutricionActivity extends AppCompatActivity {
 
                             txtIMCValor.setText(String.format("%.1f",imc));
                             txtGrasaValor.setText(String.format("%.1f%%",grasaPct));
-
                         } else {
                             txtIMCValor.setText("--");
                             txtGrasaValor.setText("--");
-                            Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e){
                         e.printStackTrace();
-                        Toast.makeText(this,"Error al leer los datos del servidor",Toast.LENGTH_SHORT).show();
                     }
                 },
-                error -> Toast.makeText(this,"Error de conexión con el servidor de indicadores",Toast.LENGTH_SHORT).show()
+                error -> Toast.makeText(getContext(),"Error al conectar",Toast.LENGTH_SHORT).show()
         ){
             @Override
             protected Map<String,String> getParams(){
@@ -205,7 +183,8 @@ public class NutricionActivity extends AppCompatActivity {
                 return params;
             }
         };
-        RequestQueue queue = Volley.newRequestQueue(this);
+
+        RequestQueue queue = Volley.newRequestQueue(requireContext());
         queue.add(request);
     }
 }

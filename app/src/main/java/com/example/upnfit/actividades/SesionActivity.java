@@ -127,7 +127,8 @@ public class SesionActivity extends AppCompatActivity {
                                 "Inicio de sesión exitoso (ID: " + usuarioID + ")",
                                 Toast.LENGTH_SHORT).show();
 
-                        startActivity(new Intent(SesionActivity.this, MenuActivity.class));
+                        startActivity(new Intent(SesionActivity.this, MainActivity.class));
+
                         finish();
                     } else {
                         Toast.makeText(SesionActivity.this, mensaje, Toast.LENGTH_LONG).show();

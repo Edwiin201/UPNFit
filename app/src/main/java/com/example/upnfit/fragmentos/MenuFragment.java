@@ -1,18 +1,19 @@
-package com.example.upnfit.actividades;
+package com.example.upnfit.fragmentos;
 
-import android.content.Intent;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.ImageButton;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,41 +28,48 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuFragment extends Fragment {
 
     private TextView textoBienvenida;
     private AppCompatButton btnPerfil;
+    private TextView txtObjetivos;
+    private TextView tvConsejoDia;
+    private RequestQueue requestQueue;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Infla el layout del fragmento
+        return inflater.inflate(R.layout.fragment_menu, container, false);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        //  APLICAR modo oscuro o claro guardado antes de mostrar la UI
-        SharedPreferences prefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
-        boolean darkModeEnabled = prefs.getBoolean("dark_mode", false);
-        AppCompatDelegate.setDefaultNightMode(
-                darkModeEnabled ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
-        );
+        // Inicializa la cola de Volley
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(requireContext());
+        }
 
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_menu);
+        // --- 1. Referencias UI (Desde la vista inflada 'view') ---
+        textoBienvenida = view.findViewById(R.id.textoBienvenida);
+        btnPerfil = view.findViewById(R.id.btnmenuPerfil);
+        txtObjetivos = view.findViewById(R.id.txtObjetivosMenu);
+        tvConsejoDia = view.findViewById(R.id.tvConsejoDia);
 
-        // --- Referencias UI ---
-        textoBienvenida = findViewById(R.id.textoBienvenida);
-        btnPerfil = findViewById(R.id.btnmenuPerfil);
-
-        // Recuperar el ID del usuario logueado
-        SharedPreferences sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
+        // --- 2. Lógica de Bienvenida y Perfil ---
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE);
         int usuarioID = sharedPreferences.getInt("usuarioID", 0);
 
         if (usuarioID == 0) {
             textoBienvenida.setText("¡Buen día, Usuario!");
+            btnPerfil.setText("US");
         } else {
             obtenerPrimerNombreDesdeBD(usuarioID);
         }
 
-        //  Mostrar objetivos guardados
-        TextView txtObjetivos = findViewById(R.id.txtObjetivosMenu);
+        // --- 3. Mostrar objetivos guardados ---
         String objetivo1 = sharedPreferences.getString("objetivo1", "");
         String objetivo2 = sharedPreferences.getString("objetivo2", "");
 
@@ -73,30 +81,17 @@ public class MenuActivity extends AppCompatActivity {
             txtObjetivos.setText("Tus objetivos: (no seleccionados)");
         }
 
-        //  Consejo del día
-        TextView tvConsejoDia = findViewById(R.id.tvConsejoDia);
-        cargarConsejoDelDia(tvConsejoDia);
+        // --- 4. Cargar consejo del día ---
+        cargarConsejoDelDia();
 
-        // Botones de navegación
-        Button btnNutricion = findViewById(R.id.nutricionButton);
-        btnNutricion.setOnClickListener(v -> startActivity(new Intent(this, NutricionActivity.class)));
 
-        Button btnActividad = findViewById(R.id.ejercicioButton);
-        btnActividad.setOnClickListener(v -> startActivity(new Intent(this, ActividadfisicaActivity.class)));
-
-        Button btnMental = findViewById(R.id.mentalButton);
-        btnMental.setOnClickListener(v -> startActivity(new Intent(this, SaludmentalActivity.class)));
-
-        Button btnComunidad = findViewById(R.id.comunidadButton);
-        btnComunidad.setOnClickListener(v -> startActivity(new Intent(this, ComunidadActivity.class)));
-
-        ImageButton btnConfiguracion = findViewById(R.id.configuracion);
-        btnConfiguracion.setOnClickListener(v -> startActivity(new Intent(this, ConfiguracionActivity.class)));
     }
 
-    //  Obtener nombre desde la BD
+    // El resto de los métodos se trasladan directamente:
+
+    // ✅ Obtener nombre desde la BD
     private void obtenerPrimerNombreDesdeBD(int usuarioID) {
-        String url = "http://upnfit.atwebpages.com/upnfit/obtener_datos_usuario.php"; // tu PHP local
+        String url = "http://upnfit.atwebpages.com/upnfit/obtener_datos_usuario.php";
 
         StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
             try {
@@ -116,13 +111,13 @@ public class MenuActivity extends AppCompatActivity {
 
             } catch (JSONException e) {
                 textoBienvenida.setText("¡Buen día, Usuario!");
-                e.printStackTrace();
+                Log.e("MenuFragment", "JSON Parsing Error: " + e.getMessage());
             }
 
         }, error -> {
-            Log.e("MenuActivity", "Error de conexión: " + error.toString());
+            Log.e("MenuFragment", "Error de conexión: " + error.toString());
             textoBienvenida.setText("¡Buen día, Usuario!");
-            Toast.makeText(this, "Error al conectar con el servidor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(requireContext(), "Error al conectar con el servidor", Toast.LENGTH_SHORT).show();
         }) {
             @Override
             protected Map<String, String> getParams() {
@@ -132,11 +127,10 @@ public class MenuActivity extends AppCompatActivity {
             }
         };
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
+        requestQueue.add(request);
     }
 
-    //  Obtener iniciales
+    // ✅ Obtener iniciales
     private String obtenerIniciales(String nombreCompleto) {
         if (nombreCompleto == null || nombreCompleto.isEmpty()) return "US";
 
@@ -147,11 +141,10 @@ public class MenuActivity extends AppCompatActivity {
         return inicialNombre + inicialApellido;
     }
 
-    //  Consejo del día
-    private void cargarConsejoDelDia(TextView tvConsejoDia) {
+    // ✅ Consejo del día
+    private void cargarConsejoDelDia() {
         String url = "http://renovaapp.atwebpages.com/Services/Consejo_diario.php";
 
-        RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
@@ -172,6 +165,6 @@ public class MenuActivity extends AppCompatActivity {
                     tvConsejoDia.setText("💡 Error al obtener el consejo.");
                 });
 
-        queue.add(request);
+        requestQueue.add(request);
     }
 }

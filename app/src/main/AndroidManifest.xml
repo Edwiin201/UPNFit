@@ -29,6 +29,7 @@
         <!-- Activities -->
         <activity android:name=".actividades.GraficoPasosActivity" />
         <activity android:name=".actividades.EdadActivity" android:exported="false" />
+        <activity android:name=".actividades.MainActivity" android:exported="false" />
         <activity android:name=".actividades.ComunidadActivity" android:exported="false" />
         <activity android:name=".actividades.SaludmentalActivity" android:exported="false" />
         <activity android:name=".actividades.PreferencesActivity" android:exported="false" />
