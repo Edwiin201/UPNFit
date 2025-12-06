@@ -25,9 +25,9 @@ public class ConfiguracionActivity extends AppCompatActivity {
         // === Vincular elementos XML con Java ===
         regresomenu = findViewById(R.id.regresomenu);
         btnmenuPerfil = findViewById(R.id.btnmenuPerfil);
-        btnmenuCuenta = findViewById(R.id.btnmenuCuenta);
+
         btnmenuPreferencias = findViewById(R.id.btnmenuPreferencias);
-        btnmenuObjetivos = findViewById(R.id.btnmenuObjetivos);
+
 
         // === Acción: regresar al menú anterior ===
         regresomenu.setOnClickListener(v -> finish());

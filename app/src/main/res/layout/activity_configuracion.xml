@@ -91,34 +91,7 @@
                 android:textAllCaps="false" />
         </LinearLayout>
 
-        <!-- ╔═════════ CUENTA ═════════╗ -->
-        <LinearLayout
-            android:id="@+id/opCuenta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            android:gravity="center_vertical"
-            android:background="@color/amarillo_upn"
-            android:layout_marginBottom="8dp">
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/cuenta" />
-
-            <Button
-                android:id="@+id/btnmenuCuenta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Cuenta"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:background="?android:attr/selectableItemBackground"
-                android:textAllCaps="false" />
-        </LinearLayout>
 
         <!-- ╔═══════ NOTIFICACIONES ═══════╗ -->
         <LinearLayout
@@ -149,33 +122,7 @@
                 android:textAllCaps="false" />
         </LinearLayout>
 
-        <!-- ╔════════ MIS OBJETIVOS ════════╗ -->
-        <LinearLayout
-            android:id="@+id/opObjetivos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            android:gravity="center_vertical"
-            android:background="@color/amarillo_upn">
 
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/objetivos" />
-
-            <Button
-                android:id="@+id/btnmenuObjetivos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Mis Objetivos"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:background="?android:attr/selectableItemBackground"
-                android:textAllCaps="false" />
-        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

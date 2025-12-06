@@ -46,7 +46,7 @@ public class HorameditacionActivity extends AppCompatActivity {
 
         btnRegresoMenu.setOnClickListener(v -> {
             // Crear una nueva intención para abrir SaludmentalActivity
-            Intent intent = new Intent(HorameditacionActivity.this, SaludmentalActivity.class);
+            Intent intent = new Intent(HorameditacionActivity.this, MainActivity.class);
             startActivity(intent);  // Inicia la actividad SaludmentalActivity
             finish();  // Finaliza la actividad actual (HorameditacionActivity)
         });

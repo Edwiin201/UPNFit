@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="← Volver"
+            android:textAllCaps="false"
             android:backgroundTint="@color/blue"
             android:textColor="@android:color/white"
             android:padding="8dp"
@@ -177,7 +178,7 @@
             android:background="@drawable/fondo_redondeado_gris"
             android:clickable="true"
             android:focusable="true"
-            android:text="Guardar preferencias"
+            android:text="Guardar Preferencias"
             android:textColor="@color/hueso_upn"
             android:textAllCaps="false"
             android:textSize="15dp"/>
