@@ -20,7 +20,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
         <ImageButton
             android:id="@+id/menuToggle"
@@ -28,12 +29,15 @@
             android:layout_height="30dp"
             android:layout_marginStart="25dp"
             android:layout_marginTop="55dp"
-            android:background="@android:color/transparent"
+            android:background="@null"
             android:contentDescription="@string/openMenuLate"
-            android:src="@drawable/circulosresumen"
+            android:src="@drawable/menu"
+
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -41,7 +45,7 @@
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@android:color/white"
+        android:background="@color/cremapint"
         android:gravity="top"
         android:orientation="vertical"
         android:padding="1dp">
@@ -51,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="15dp"
+            android:paddingVertical="15dp"
             android:text="@string/titutlolabel"
             android:textSize="22sp"
             android:textStyle="bold" />
