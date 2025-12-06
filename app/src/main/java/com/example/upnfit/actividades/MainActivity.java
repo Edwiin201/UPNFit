@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.LinearLayout;
-import android.widget.ImageButton; // 🛑 Importación necesaria para el botón de menú
+import android.widget.ImageButton;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout btnConfiguracion;
     private LinearLayout btnSalir;
 
-    // 🛑 Nuevo: Variable para el botón de menú
     private ImageButton btnMenuToggle;
 
     // Declaración del DrawerLayout
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // 1. 🌓 APLICAR modo oscuro o claro guardado antes de crear la UI
+        // modo oscuro o claro guardado antes de crear la UI
         SharedPreferences prefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
         boolean darkModeEnabled = prefs.getBoolean("dark_mode", false);
         AppCompatDelegate.setDefaultNightMode(
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // 🛑 NUEVO: Inicializar el DrawerLayout
+
         drawerLayout = findViewById(R.id.drawer_layout);
 
         // 2. Cargar el fragmento de menú inicial si no se ha restaurado el estado
@@ -71,12 +70,12 @@ public class MainActivity extends AppCompatActivity {
         btnConfiguracion = findViewById(R.id.configuracion);
         btnSalir = findViewById(R.id.opSalir);
 
-        // 🛑 NUEVO CÓDIGO AÑADIDO AQUÍ: Inicializa y configura el botón de apertura
+        // Inicializa y configura el botón de apertura
         btnMenuToggle = findViewById(R.id.menuToggle);
         if (btnMenuToggle != null) {
             btnMenuToggle.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
         }
-        // 🛑 FIN NUEVO CÓDIGO
+
 
         // 3. Listeners para Fragments
         btnInicio.setOnClickListener(v -> loadFragment(new MenuFragment()));

@@ -52,13 +52,13 @@ public class MenuFragment extends Fragment {
             requestQueue = Volley.newRequestQueue(requireContext());
         }
 
-        // --- 1. Referencias UI (Desde la vista inflada 'view') ---
+        // 1. Referencias UI (Desde la vista inflada 'view')
         textoBienvenida = view.findViewById(R.id.textoBienvenida);
         btnPerfil = view.findViewById(R.id.btnmenuPerfil);
         txtObjetivos = view.findViewById(R.id.txtObjetivosMenu);
         tvConsejoDia = view.findViewById(R.id.tvConsejoDia);
 
-        // --- 2. Lógica de Bienvenida y Perfil ---
+        //  2. Lógica de Bienvenida y Perfil
         SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE);
         int usuarioID = sharedPreferences.getInt("usuarioID", 0);
 
@@ -69,7 +69,7 @@ public class MenuFragment extends Fragment {
             obtenerPrimerNombreDesdeBD(usuarioID);
         }
 
-        // --- 3. Mostrar objetivos guardados ---
+        //  3. Mostrar objetivos guardados
         String objetivo1 = sharedPreferences.getString("objetivo1", "");
         String objetivo2 = sharedPreferences.getString("objetivo2", "");
 
@@ -89,7 +89,7 @@ public class MenuFragment extends Fragment {
 
     // El resto de los métodos se trasladan directamente:
 
-    // ✅ Obtener nombre desde la BD
+    // Obtener nombre desde la BD
     private void obtenerPrimerNombreDesdeBD(int usuarioID) {
         String url = "http://upnfit.atwebpages.com/upnfit/obtener_datos_usuario.php";
 
@@ -130,7 +130,7 @@ public class MenuFragment extends Fragment {
         requestQueue.add(request);
     }
 
-    // ✅ Obtener iniciales
+    // Obtener iniciales
     private String obtenerIniciales(String nombreCompleto) {
         if (nombreCompleto == null || nombreCompleto.isEmpty()) return "US";
 
@@ -141,7 +141,7 @@ public class MenuFragment extends Fragment {
         return inicialNombre + inicialApellido;
     }
 
-    // ✅ Consejo del día
+    // Consejo del día
     private void cargarConsejoDelDia() {
         String url = "http://renovaapp.atwebpages.com/Services/Consejo_diario.php";
 

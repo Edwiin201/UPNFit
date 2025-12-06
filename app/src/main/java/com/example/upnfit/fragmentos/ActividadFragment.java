@@ -23,7 +23,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
+import com.example.upnfit.fragmentos.MapaFragment;
 import com.example.upnfit.R;
 import com.example.upnfit.actividades.GraficoPasosActivity;
 import com.example.upnfit.actividades.MapaActivity;
@@ -108,7 +108,12 @@ public class ActividadFragment extends Fragment {
 
         // Botón: ubicación
         view.findViewById(R.id.btnVerUbicacion).setOnClickListener(v ->
-                startActivity(new Intent(requireContext(), MapaActivity.class)));
+                //  Cargar el MapaFragment en el contenedor de MainActivity
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new MapaFragment())
+                        .addToBackStack(null)
+                        .commit()
+        );
 
         // Botón: actividad del día
         view.findViewById(R.id.btnVerActividad).setOnClickListener(v ->
@@ -122,7 +127,7 @@ public class ActividadFragment extends Fragment {
     }
 
 
-    // ==================== NOTIFICACIÓN =====================
+    // NOTIFICACIÓN
     private void mostrarNotificacion(String titulo, String mensaje) {
 
         NotificationCompat.Builder builder =
@@ -148,7 +153,7 @@ public class ActividadFragment extends Fragment {
     }
 
 
-    // ==================== SENSOR LISTENER =====================
+    //  SENSOR LISTENER
     private final SensorEventListener stepListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
@@ -197,7 +202,7 @@ public class ActividadFragment extends Fragment {
     };
 
 
-    // ==================== RESUME =====================
+    // RESUME
     @Override
     public void onResume() {
         super.onResume();
@@ -220,7 +225,7 @@ public class ActividadFragment extends Fragment {
     }
 
 
-    // ==================== PAUSE =====================
+    // PAUSE
     @Override
     public void onPause() {
         super.onPause();
@@ -231,7 +236,7 @@ public class ActividadFragment extends Fragment {
     }
 
 
-    // ==================== API ACTIVIDAD =====================
+    //  API ACTIVIDAD
     private void obtenerActividadDelDia() {
 
         AsyncHttpClient client = new AsyncHttpClient();

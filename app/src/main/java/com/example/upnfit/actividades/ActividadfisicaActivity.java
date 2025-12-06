@@ -52,10 +52,10 @@ public class ActividadfisicaActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_actividadfisica);
 
-        // 🔔 Crear canal de notificaciones
+        // Crear canal de notificaciones
         NotificationHelper.createNotificationChannel(this);
 
-        // 🔔 Permiso de notificaciones en Android 13+
+        // Permiso de notificaciones en Android 13+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
                     this,
@@ -75,7 +75,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
 
         SharedPreferences prefs = getSharedPreferences("pasos", MODE_PRIVATE);
 
-        // ============ RESETEO DE PASOS POR DÍA ===============
+        //  RESETEO DE PASOS POR DÍA
         Calendar calendar = Calendar.getInstance();
         String today = String.format("%04d-%02d-%02d",
                 calendar.get(Calendar.YEAR),
@@ -118,7 +118,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
 
 
 
-    // ======================= NOTIFICACIONES ===========================
+    //  NOTIFICACIONES
     private void mostrarNotificacion(String titulo, String mensaje) {
 
         NotificationCompat.Builder builder =
@@ -150,7 +150,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
 
 
 
-    // ======================= SENSOR LISTENER ===========================
+    //  SENSOR LISTENER
     private final SensorEventListener stepListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
@@ -173,7 +173,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
             prefs.edit().putInt("hoy", stepsToday).apply();
 
 
-            // 🔥 MOTIVACIÓN (Opción C) — Cada 1500 pasos
+            //  MOTIVACIÓN (Opción C) — Cada 1500 pasos
             SharedPreferences prefsApp = getSharedPreferences("AppSettings", MODE_PRIVATE);
             boolean notiActiva = prefsApp.getBoolean("noti_motivacionales", false);
 
@@ -201,7 +201,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
 
 
 
-    // ======================= ACTIVAR SENSOR ===========================
+    // CTIVAR SENSOR
     @Override
     protected void onResume() {
         super.onResume();
@@ -220,7 +220,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
     }
 
 
-    // ======================= DESACTIVAR SENSOR ===========================
+    //DESACTIVAR SENSOR
     @Override
     protected void onPause() {
         super.onPause();
@@ -232,7 +232,7 @@ public class ActividadfisicaActivity extends AppCompatActivity {
 
 
 
-    // ======================= API ACTIVIDAD ===========================
+    // API ACTIVIDAD
     private void obtenerActividadDelDia() {
 
         AsyncHttpClient client = new AsyncHttpClient();
