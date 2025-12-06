@@ -29,7 +29,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="55dp"
             android:background="@android:color/transparent"
-            android:contentDescription="Abrir Menú Lateral"
+            android:contentDescription="@string/openMenuLate"
             android:src="@drawable/circulosresumen"
 
             app:layout_constraintStart_toStartOf="parent"
@@ -38,20 +38,20 @@
 
     <LinearLayout
         android:id="@+id/menuLateral"
-        android:layout_width="165dp"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@android:color/white"
         android:gravity="top"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="1dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="15dp"
-            android:text="Menú UPNFIT"
+            android:text="@string/titutlolabel"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -68,14 +68,14 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:contentDescription="Icono inicio"
+                android:contentDescription="@string/iniciomenulateral"
                 android:src="@drawable/circulo_verde" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Inicio"
+                android:text="@string/iniciomenulateral"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -93,14 +93,14 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:contentDescription="Icono nutricion"
+                android:contentDescription="@string/nutriMenuLate"
                 android:src="@drawable/circulo_verde" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Nutrición"
+                android:text="@string/nutriMenuLate"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -117,14 +117,14 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:contentDescription="Icono actividad"
+                android:contentDescription="@string/actividadMenuLate"
                 android:src="@drawable/circulo_verde" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Actividad"
+                android:text="@string/actividadMenuLate"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -141,14 +141,14 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:contentDescription="Icono salud mental"
+                android:contentDescription="@string/SalMenMenuLate"
                 android:src="@drawable/circulo_verde" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Salud Mental"
+                android:text="@string/SalMenMenuLate"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -165,14 +165,14 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:contentDescription="Icono comunidad"
+                android:contentDescription="@string/ComuMenuLa"
                 android:src="@drawable/circulo_verde" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Comunidad"
+                android:text="@string/ComuMenuLa"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -195,14 +195,14 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:contentDescription="Icono configuración"
+                android:contentDescription="@string/conf"
                 android:src="@drawable/circulo_verde" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Configuración"
+                android:text="@string/conf"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -219,7 +219,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:contentDescription="Icono salir"
+                android:contentDescription="@string/saliMenuLate"
                 android:src="@android:drawable/ic_lock_power_off"
                 app:tint="#FF0000" />
 
@@ -227,7 +227,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Cerrar Sesión"
+                android:text="@string/saliMenuLate"
                 android:textColor="#FF0000"
                 android:textSize="16sp" />
         </LinearLayout>

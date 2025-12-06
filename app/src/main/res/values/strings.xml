@@ -17,6 +17,15 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="conf">Configuración</string>
+    <string name="titutlolabel">Menú UPNFIT\n</string>
+    <string name="iniciomenulateral">Inicio</string>
+    <string name="nutriMenuLate">Nutrición</string>
+    <string name="actividadMenuLate">Actividad</string>
+    <string name="SalMenMenuLate">Salud Mental</string>
+    <string name="ComuMenuLa">Comunidad</string>
+    <string name="saliMenuLate">Cerrar Sesión</string>
+    <string name="openMenuLate">Abrir Menú Lateral</string>
 
 
 </resources>
