@@ -70,7 +70,7 @@
                     android:text="Pasos de hoy: 0"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    android:textColor="#000" />
 
                 <TextView
                     android:id="@+id/txtCalorias"
@@ -78,17 +78,20 @@
                     android:layout_height="wrap_content"
                     android:text="Calorías quemadas: 0 kcal"
                     android:textSize="18sp"
-                    android:textColor="@color/black"
+                    android:textColor="#000"
                     android:layout_marginTop="8dp" />
 
                 <Button
                     android:id="@+id/btnGrafico"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ver progreso semanal"
-                    android:backgroundTint="@color/blue"
-                    android:textColor="@android:color/white"
-                    android:layout_marginTop="16dp" />
+                    android:text="Ver Progreso Semanal"
+                    android:backgroundTint="@color/blanco"
+                    android:textColor="#000"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -190,13 +193,15 @@
         </androidx.cardview.widget.CardView>
 
         <!-- 🔵 ENTRENAMIENTO DE HOY -->
+
+        <!-- 🔵 CATEGORÍAS -->
         <LinearLayout
             android:id="@+id/containerEntrenamiento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginBottom="10dp"
-            android:background="@color/hueso_upn"
+            android:background="#EAF6E5"
+            android:orientation="vertical"
             android:padding="6dp">
 
             <TextView
@@ -204,7 +209,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="Entrenamiento de hoy"
-                android:textColor="@color/black"
+                android:textColor="#000"
                 android:textSize="21sp"
                 android:textStyle="bold" />
 
@@ -214,7 +219,8 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/redondeado"
                 android:backgroundTint="#2781C6"
-                android:padding="15dp"
+                android:padding="10dp"
+                android:layout_margin="10dp"
                 android:text="Listado de Actividades realizadas"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
@@ -254,7 +260,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- 🔵 CATEGORÍAS -->
         <androidx.cardview.widget.CardView
             android:id="@+id/card_categorias"
             android:layout_width="match_parent"
@@ -262,7 +267,7 @@
             android:layout_marginBottom="8dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="2dp"
-            app:cardBackgroundColor="@color/white">
+            android:background="#EAF6E5">
 
             <LinearLayout
                 android:layout_width="match_parent"

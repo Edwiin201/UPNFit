@@ -62,7 +62,7 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
-                <!-- 📌 Contador de pasos -->
+                <!--  Contador de pasos -->
                 <TextView
                     android:id="@+id/txtPasos"
                     android:layout_width="wrap_content"
@@ -70,19 +70,19 @@
                     android:text="Pasos de hoy: 0"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    android:textColor="#000" />
 
-                <!-- 📌 Calorías quemadas -->
+                <!--  Calorías quemadas -->
                 <TextView
                     android:id="@+id/txtCalorias"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Calorías quemadas: 0 kcal"
                     android:textSize="18sp"
-                    android:textColor="@color/black"
+                    android:textColor="#000"
                     android:layout_marginTop="8dp" />
 
-                <!-- 📌 Botón del gráfico -->
+                <!--  Botón del gráfico -->
                 <Button
                     android:id="@+id/btnGrafico"
                     android:layout_width="wrap_content"

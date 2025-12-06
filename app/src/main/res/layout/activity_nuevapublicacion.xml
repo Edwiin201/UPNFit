@@ -60,7 +60,7 @@
         android:layout_marginTop="24dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp"
-        app:cardBackgroundColor="@color/white"
+        android:background="#EAF6E5"
         android:padding="20dp">
 
         <LinearLayout
@@ -136,6 +136,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/redondeado"
                 android:padding="10dp"
+
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:entries="@array/categorias_publicacion"

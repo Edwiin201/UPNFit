@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:text="Tus objetivos:"
-                    android:textColor="@color/black"
+                    android:textColor="#000"
                     android:textSize="17sp" />
             </LinearLayout>
 
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Resumen Diario"
-            android:textColor="@color/black"
+            android:textColor="#000"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -109,45 +109,45 @@
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:layout_marginTop="8dp"
-            android:background="@drawable/redondeado"
-            android:backgroundTint="@color/white"
+
+            android:background="#EAF6E5"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingHorizontal="4dp"
             android:paddingVertical="10dp">
 
-            <!-- Card 1: Calorías -->
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginHorizontal="6dp"
-                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
                 android:background="@drawable/circulo_verde"
                 android:gravity="center"
+                android:padding="16dp"
                 android:text="1200\nCal"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
-            <!-- Card 2: Pasos -->
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginHorizontal="6dp"
-                android:layout_weight="1"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="50dp"
                 android:background="@drawable/circulo_azul"
                 android:gravity="center"
+                android:padding="16dp"
                 android:text="6/8\nPasos"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
-            <!-- Card 3: Minutos -->
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginHorizontal="6dp"
-                android:layout_weight="1"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/circulo_morado"
                 android:gravity="center"
+                android:padding="16dp"
                 android:text="45/60\nmin"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
@@ -158,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Consejo Diario"
-            android:textColor="@color/black"
+            android:textColor="#000"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -176,50 +176,53 @@
             android:textColor="#4CAF50"
             android:textSize="19sp" />
 
-        <!-- Acciones rápidas (ConstraintLayout) -->
+        <!-- Acciones rápidas -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="16dp">
+            android:padding="16dp">
 
+            <!-- Título -->
+
+            <!-- Estado de Ánimo -->
             <TextView
                 android:id="@+id/tvTitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Acciones rápidas"
-                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:textColor="#000"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Estado de Ánimo -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardAnimo"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_width="165dp"
+                android:layout_height="90dp"
                 app:cardCornerRadius="12dp"
-                app:layout_constraintEnd_toStartOf="@id/cardComida"
-                app:layout_constraintStart_toStartOf="parent"
+                app:strokeWidth="2dp"
+                app:strokeColor="#e67e22"
+                android:layout_margin="1dp"
                 app:layout_constraintTop_toBottomOf="@id/tvTitulo"
-                app:layout_constraintWidth_percent="0.48"
-                app:strokeColor="@color/black"
-                app:strokeWidth="2dp">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cardComida"
+                app:layout_constraintWidth_percent="0.48">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:padding="12dp"
+                    android:background="#EAF6E5">
 
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Estado de Ánimo"
-                        android:textColor="@color/black"
+                        android:textColor="#000"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -232,18 +235,21 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="😐 "
-                            android:textSize="24sp" />
+                            android:textSize="23sp" />
 
                         <View
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_marginStart="8dp"
-                            android:background="@drawable/circulo_negro" />
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginStart="5dp"
+                            android:background="@drawable/circulo_negro"
+                            android:layout_marginTop="5dp"
+                            />
 
                         <View
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_marginStart="8dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
                             android:background="@drawable/circulo_negro" />
                     </LinearLayout>
                 </LinearLayout>
@@ -252,48 +258,49 @@
             <!-- Próxima Comida -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardComida"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_width="165dp"
+                android:layout_height="90dp"
                 app:cardCornerRadius="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cardAnimo"
-                app:layout_constraintTop_toTopOf="@id/cardAnimo"
-                app:layout_constraintWidth_percent="0.48"
+                app:strokeWidth="2dp"
                 app:strokeColor="#e67e22"
-                app:strokeWidth="2dp">
+                android:layout_margin="1dp"
+
+                app:layout_constraintTop_toTopOf="@id/cardAnimo"
+                app:layout_constraintStart_toEndOf="@id/cardAnimo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.48">
 
                 <LinearLayout
-                    android:layout_width="158dp"
-                    android:layout_height="125dp"
-                    android:background="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="8dp">
+                    android:padding="8dp"
+                    android:background="#EAF6E5">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Próxima Comida"
-                        android:textColor="@color/black"
+                        android:textColor="#000"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Almuerzo: 12:30"
-                        android:textColor="@color/black" />
+                        android:textColor="#000"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Ensalada de pollo"
-                        android:textColor="@color/black" />
+                        android:textColor="#000"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="450 calorías"
-                        android:textColor="@color/black" />
+                        android:textColor="#000"/>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -301,49 +308,49 @@
             <!-- Actividad Física -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardActividad"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_width="165dp"
+                android:layout_height="100dp"
                 app:cardCornerRadius="12dp"
-                app:layout_constraintEnd_toStartOf="@id/cardMind"
-                app:layout_constraintStart_toStartOf="parent"
+                app:strokeWidth="2dp"
+                app:strokeColor="#2ecc71"
+                android:layout_margin="5dp"
                 app:layout_constraintTop_toBottomOf="@id/cardAnimo"
-                app:layout_constraintWidth_percent="0.48"
-                app:strokeColor="#d291bc"
-                app:strokeWidth="2dp">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cardMind"
+                app:layout_constraintWidth_percent="0.48">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
                     android:orientation="vertical"
-                    android:padding="12dp">
+                    android:padding="12dp"
+                    android:background="#EAF6E5">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Actividad Física"
-                        android:textColor="@color/black"
+                        android:textColor="#000"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Yoga - 18:00"
-                        android:textColor="@color/black" />
+                        android:textColor="#000"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="15 minutos"
-                        android:textColor="@color/black" />
+                        android:textColor="#000"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Iniciar ahora"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:textColor="#000"/>
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -351,54 +358,54 @@
             <!-- Mindfulness -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardMind"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_width="165dp"
+                android:layout_height="100dp"
                 app:cardCornerRadius="12dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cardActividad"
-                app:layout_constraintTop_toTopOf="@id/cardActividad"
-                app:layout_constraintWidth_percent="0.48"
+                app:strokeWidth="2dp"
                 app:strokeColor="#2ecc71"
-                app:strokeWidth="2dp">
+
+
+                app:layout_constraintTop_toTopOf="@id/cardActividad"
+                app:layout_constraintStart_toEndOf="@id/cardActividad"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.48">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
                     android:orientation="vertical"
-                    android:padding="12dp">
+                    android:padding="10dp"
+                    android:background="#EAF6E5">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Mindfulness"
-                        android:textColor="@color/black"
+                        android:textColor="#000"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Respiración guiada"
-                        android:textColor="@color/black" />
+                        android:textColor="#000"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5 minutos"
-                        android:textColor="@color/black" />
+                        android:textColor="#000"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Comenzar"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
+                        android:textColor="#000"
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </LinearLayout>
 </ScrollView>
-

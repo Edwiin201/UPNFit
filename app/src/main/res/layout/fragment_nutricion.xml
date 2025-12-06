@@ -447,7 +447,7 @@
             android:text="Indicadores de salud"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="#000"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="10dp" />
 

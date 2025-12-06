@@ -39,6 +39,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Volver"
+            android:textAllCaps="false"
+
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/blue"
