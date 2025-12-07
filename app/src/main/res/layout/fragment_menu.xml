@@ -51,7 +51,7 @@
         <!-- Bloque de Bienvenida -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="105dp"
+            android:layout_height="158dp"
             android:layout_marginTop="12dp"
             android:background="#EAF6E5"
             android:gravity="center_vertical"
@@ -213,10 +213,10 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="90dp"
+                    android:background="#EAF6E5"
                     android:orientation="vertical"
-                    android:padding="12dp"
-                    android:background="#EAF6E5">
+                    android:padding="12dp">
 
 
                     <TextView
@@ -242,9 +242,8 @@
                             android:layout_width="23dp"
                             android:layout_height="23dp"
                             android:layout_marginStart="5dp"
-                            android:background="@drawable/circulo_negro"
                             android:layout_marginTop="5dp"
-                            />
+                            android:background="@drawable/circulo_negro" />
 
                         <View
                             android:layout_width="23dp"

@@ -156,9 +156,9 @@ public class MainActivity extends AppCompatActivity {
         // 5. Listener para Cerrar Sesión
         btnSalir.setOnClickListener(v -> {
             // Lógica para cerrar sesión
-            // Intent intent = new Intent(this, LoginActivity.class);
-            // startActivity(intent);
-            // finish();
+            Intent intent = new Intent(this, SesionActivity.class);
+            startActivity(intent);
+            finish();
             if (drawerLayout != null) {
                 drawerLayout.closeDrawer(GravityCompat.START);
             }

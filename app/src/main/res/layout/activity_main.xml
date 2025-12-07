@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:openDrawer="start">
 
+    <!-- CONTENIDO PRINCIPAL DE LA PANTALLA -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,210 +33,224 @@
             android:background="@null"
             android:contentDescription="@string/openMenuLate"
             android:src="@drawable/menu"
-
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/menuLateral"
+    <!-- MENÚ LATERAL (MODIFICADO PARA TENER SCROLL) -->
+    <ScrollView
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/cremapint"
-        android:gravity="top"
-        android:orientation="vertical"
-        android:padding="1dp">
+        android:fillViewport="true"
+        android:scrollbars="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/menuLateral"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="15dp"
-            android:paddingVertical="15dp"
-            android:text="@string/titutlolabel"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/inicioButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="8dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:contentDescription="@string/iniciomenulateral"
-                android:src="@drawable/circulo_verde" />
+            android:gravity="top"
+            android:orientation="vertical"
+            android:padding="1dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/iniciomenulateral"
-                android:textSize="16sp" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="15dp"
+                android:paddingVertical="15dp"
+                android:text="@string/titutlolabel"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <!-- Opción: Inicio -->
+            <LinearLayout
+                android:id="@+id/inicioButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/iniciomenulateral"
+                    android:src="@drawable/circulo_verde" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/iniciomenulateral"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Opción: Nutrición -->
+            <LinearLayout
+                android:id="@+id/nutricionButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/nutriMenuLate"
+                    android:src="@drawable/circulo_verde" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/nutriMenuLate"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Opción: Ejercicio -->
+            <LinearLayout
+                android:id="@+id/ejercicioButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/actividadMenuLate"
+                    android:src="@drawable/circulo_verde" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/actividadMenuLate"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Opción: Salud Mental -->
+            <LinearLayout
+                android:id="@+id/mentalButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/SalMenMenuLate"
+                    android:src="@drawable/circulo_verde" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/SalMenMenuLate"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Opción: Comunidad -->
+            <LinearLayout
+                android:id="@+id/comunidadButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/ComuMenuLa"
+                    android:src="@drawable/circulo_verde" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/ComuMenuLa"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Separador -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="10dp"
+                android:background="#CCCCCC" />
+
+            <!-- Opción: Configuración -->
+            <LinearLayout
+                android:id="@+id/configuracion"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/conf"
+                    android:src="@drawable/circulo_verde" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/conf"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <!-- Opción: Salir -->
+            <LinearLayout
+                android:id="@+id/opSalir"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:contentDescription="@string/saliMenuLate"
+                    android:src="@android:drawable/ic_lock_power_off"
+                    app:tint="#FF0000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/saliMenuLate"
+                    android:textColor="#FF0000"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
         </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/nutricionButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="8dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:contentDescription="@string/nutriMenuLate"
-                android:src="@drawable/circulo_verde" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/nutriMenuLate"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ejercicioButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="8dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:contentDescription="@string/actividadMenuLate"
-                android:src="@drawable/circulo_verde" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/actividadMenuLate"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/mentalButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="8dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:contentDescription="@string/SalMenMenuLate"
-                android:src="@drawable/circulo_verde" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/SalMenMenuLate"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/comunidadButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="8dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:contentDescription="@string/ComuMenuLa"
-                android:src="@drawable/circulo_verde" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/ComuMenuLa"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginVertical="10dp"
-            android:background="#CCCCCC" />
-
-        <LinearLayout
-            android:id="@+id/configuracion"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="8dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:contentDescription="@string/conf"
-                android:src="@drawable/circulo_verde" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/conf"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/opSalir"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:paddingHorizontal="8dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:contentDescription="@string/saliMenuLate"
-                android:src="@android:drawable/ic_lock_power_off"
-                app:tint="#FF0000" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/saliMenuLate"
-                android:textColor="#FF0000"
-                android:textSize="16sp" />
-        </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
