@@ -27,4 +27,5 @@
     <color name="gris_upn">#717571</color> <!-- gris upn -->
     <color name="hueso_upn">#000000</color> <!-- hueso upn -->
     <color name="cremapint">#000000</color> <!-- hueso upn -->
+    <color name="fondo_tarjeta_publicacion">#2D2D2D</color> <!-- Gris oscuro -->
 </resources>

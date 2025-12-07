@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/amarillo_upn"
-    android:padding="16dp"
-    android:id="@+id/main">
+    android:padding="16dp">
 
-    <!-- Barra superior -->
+    <!-- Barra superior (Fija) -->
     <androidx.cardview.widget.CardView
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp"
-        app:cardBackgroundColor="#2781C6"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="16dp"
-        android:layout_marginTop="30dp">
+        app:cardBackgroundColor="#2781C6"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -29,150 +29,165 @@
                 android:id="@+id/regresomenu"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
-                android:src="@android:drawable/ic_menu_close_clear_cancel"
-                android:contentDescription="Cerrar"
+                android:layout_centerVertical="true"
                 android:clickable="true"
+                android:contentDescription="Cerrar"
                 android:focusable="true"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
                 app:tint="#FFFFFF" />
 
             <TextView
                 android:id="@+id/tvTitulo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Nueva Publicación"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"
+                android:layout_centerInParent="true"
                 android:gravity="center"
-                android:layout_centerInParent="true" />
+                android:text="Nueva Publicación"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Contenedor principal -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/publicacionContainer"
+    <!-- ScrollView para hacer el formulario responsive -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/topBar"
-        android:layout_marginTop="24dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="4dp"
-        android:background="#EAF6E5"
-        android:padding="20dp">
+        android:fillViewport="true"
+        android:scrollbars="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="20dp">
 
-            <!-- Encabezado usuario -->
-            <LinearLayout
+            <!-- Contenedor principal del formulario -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/publicacionContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_margin="10dp">
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/fondo_tarjeta_publicacion"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
 
-                <!-- Avatar circular -->
-                <TextView
-                    android:id="@+id/avatarIniciales"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginEnd="12dp"
-                    android:background="@android:drawable/btn_default"
-                    android:backgroundTint="#BBDEFB"
-                    android:elevation="2dp"
-                    android:gravity="center"
-                    android:text="UP"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <!-- Nombre + estado -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:id="@+id/nuevapublia"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-                    <TextView
-                        android:id="@+id/textViewNombrePublicacion"
-                        android:layout_width="wrap_content"
+                    <!-- Encabezado usuario -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nombre Usuario"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="8dp" />
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <!-- Avatar circular -->
+                        <TextView
+                            android:id="@+id/avatarIniciales"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginEnd="12dp"
+                            android:background="@android:drawable/btn_default"
+                            android:backgroundTint="#BBDEFB"
+                            android:elevation="2dp"
+                            android:gravity="center"
+                            android:text="UP"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <!-- Nombre + estado -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textViewNombrePublicacion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="4dp"
+                                android:text="Nombre Usuario"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Compartiendo con la comunidad"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- TÍTULO -->
+                    <EditText
+                        android:id="@+id/editTextTitulo"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Compartiendo con la comunidad"
-                        android:textColor="@color/black"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/redondeado"
+                        android:hint="Título de la publicación"
+                        android:padding="12dp"
+                        android:textColorHint="@color/gris_upn"
+                        android:textSize="16sp" />
+
+                    <!-- SELECTOR DE CATEGORÍA -->
+                    <Spinner
+                        android:id="@+id/spinnerCategorias"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:background="@drawable/redondeado"
+                        android:entries="@array/categorias_publicacion"
+                        android:minHeight="48dp"
+                        android:padding="10dp" />
+
+                    <!-- Caja de texto contenido -->
+                    <EditText
+                        android:id="@+id/editTextPublicacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/redondeado"
+                        android:gravity="top|start"
+                        android:hint="¿Qué quieres compartir con la comunidad?"
+                        android:padding="12dp"
+                        android:textColorHint="@color/gris_upn"
                         android:textSize="14sp" />
+
+                    <!-- Botón Publicar -->
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnPublicar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@drawable/redondeado"
+                        android:backgroundTint="#2781C6"
+                        android:elevation="4dp"
+                        android:paddingLeft="32dp"
+                        android:paddingTop="12dp"
+                        android:paddingRight="32dp"
+                        android:paddingBottom="12dp"
+                        android:text="Publicar"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF" />
+
                 </LinearLayout>
-            </LinearLayout>
-
-            <!-- TÍTULO -->
-            <EditText
-                android:id="@+id/editTextTitulo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/redondeado"
-                android:hint="Título de la publicación"
-                android:padding="12dp"
-                android:textSize="16sp"
-                android:textColorHint="@color/gris_upn"
-                android:layout_margin="10dp" />
-
-            <!-- SELECTOR DE CATEGORÍA -->
-            <Spinner
-                android:id="@+id/spinnerCategorias"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/redondeado"
-                android:padding="10dp"
-
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:entries="@array/categorias_publicacion"
-                android:layout_marginBottom="10dp" />
-
-            <!-- Caja de texto contenido -->
-            <EditText
-                android:id="@+id/editTextPublicacion"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:background="@drawable/redondeado"
-                android:gravity="top|start"
-                android:hint="¿Qué quieres compartir con la comunidad?"
-                android:textColorHint="@color/gris_upn"
-                android:padding="12dp"
-                android:textSize="14sp"
-                android:layout_margin="10dp" />
-
-            <!-- Botón Publicar -->
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnPublicar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/redondeado"
-                android:backgroundTint="#2781C6"
-                android:elevation="4dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp"
-                android:text="Publicar"
-                android:textColor="#FFFFFF"
-                android:layout_margin="10dp"
-                android:textAllCaps="false" />
-
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </ScrollView>
 
 </RelativeLayout>

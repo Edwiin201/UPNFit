@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context="fragmentos.ComunidadFragment">
 
-    <!-- CONTENIDO SCROLLEABLE -->
+    <!-- CONTENIDO PRINCIPAL SCROLLEABLE -->
     <ScrollView
         android:id="@+id/scrollContenido"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/menuInferior">
+        android:fillViewport="true">
 
         <LinearLayout
             android:id="@+id/mainContainer"
@@ -19,28 +19,29 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:paddingBottom="80dp"> <!-- Padding extra abajo para que el botón flotante no tape contenido -->
+
+            <!-- HEADER / BARRA SUPERIOR -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_topBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="16dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="4dp"
                 app:cardBackgroundColor="#2781C6">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="56dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp">
-
-
 
                     <TextView
                         android:id="@+id/tvmeditacion"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:gravity="center"
                         android:text="Comunidad UPN"
@@ -50,22 +51,21 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-
-
-            <!-- SEARCH BAR -->
+            <!-- SEARCH BAR (Responsive) -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="30dp"
+                app:cardCornerRadius="25dp"
                 app:cardElevation="4dp">
 
                 <LinearLayout
                     android:id="@+id/barra"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
+                    android:paddingVertical="8dp"
                     android:paddingHorizontal="16dp">
 
                     <ImageView
@@ -76,33 +76,32 @@
 
                     <EditText
                         android:layout_width="0dp"
-                        android:layout_height="48dp"
+                        android:layout_height="wrap_content"
+                        android:minHeight="40dp"
                         android:layout_weight="1"
                         android:hint="Buscar Publicaciones..."
                         android:background="@android:color/transparent"
-                        android:paddingStart="8dp"
+                        android:paddingStart="12dp"
                         android:textColor="#000000"
                         android:textColorHint="#AAAAAA"
-                        android:inputType="text"/>
+                        android:inputType="text"
+                        android:importantForAutofill="no" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-
-            <!-- CONTENEDOR DINÁMICO -->
+            <!-- CONTENEDOR DINÁMICO DE PUBLICACIONES -->
             <LinearLayout
                 android:id="@+id/publicacionesContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                 >
-
+                android:minHeight="100dp">
+                <!-- minHeight ayuda a visualizarlo en el editor -->
             </LinearLayout>
 
-
-            <!-- TENDENCIAS -->
+            <!-- SECCIÓN TENDENCIAS -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,47 +109,59 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp" />
 
-            <LinearLayout
+            <!-- Scroll Horizontal para los tags (Responsive si hay muchos) -->
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="start"
-                android:layout_marginBottom="40dp">
+                android:scrollbars="none">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="#RecetasSaludables"
-                    android:background="#D0F0FF"
-                    android:padding="8dp"
-                    android:textColor="#000000"
-                    android:layout_marginEnd="8dp" />
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="#MeditaciónDiaria"
-                    android:background="#FFE9C6"
-                    android:padding="8dp"
-                    android:textColor="#000000"
-                    android:layout_marginEnd="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#RecetasSaludables"
+                        android:background="#D0F0FF"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="4dp"/>
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btnAgregarPublicacion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:src="@drawable/comentario"
-                    android:contentDescription="Agregar publicación"
-                    app:backgroundTint="@color/blue"
-                    app:tint="@android:color/white"/>
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#MeditaciónDiaria"
+                        android:background="#FFE9C6"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="4dp"/>
+
+                    <!-- Puedes agregar más tags aquí y no romperán el diseño -->
+                </LinearLayout>
+            </HorizontalScrollView>
 
         </LinearLayout>
     </ScrollView>
 
+    <!-- BOTÓN FLOTANTE (FAB) FUERA DEL SCROLL PARA QUE SIEMPRE SEA VISIBLE -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAgregarPublicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="24dp"
+        android:src="@drawable/comentario"
+        android:contentDescription="Agregar publicación"
+        app:backgroundTint="@color/blue"
+        app:tint="@android:color/white"
+        app:elevation="6dp"/>
 
 </FrameLayout>
