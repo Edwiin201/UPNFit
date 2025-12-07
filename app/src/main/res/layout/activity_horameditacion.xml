@@ -7,6 +7,7 @@
     android:background="@color/amarillo_upn"
     android:padding="16dp">
 
+    
     <!-- Barra superior -->
     <androidx.cardview.widget.CardView
         android:layout_marginTop="20dp"

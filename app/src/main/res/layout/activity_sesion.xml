@@ -30,7 +30,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:src="@drawable/logo"
-                android:contentDescription="Logo UPNFit" />
+                android:contentDescription="@string/logo" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

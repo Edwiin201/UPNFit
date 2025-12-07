@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="18dp"
-        android:text="Mantente Motivado"
+        android:text="@string/bienvenidalogin"
         android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold" />
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:gravity="center"
-        android:text="Regístrate para recibir nuestro boletín por correo electrónico y obtén regularmente consejos de ayuno gratuitos y actualizaciones de nuestra comunidad."
+        android:text="@string/textoManteMoti"
         android:textColor="@color/black"
         android:textSize="17sp" />
 
@@ -61,7 +61,7 @@
         android:layout_marginTop="3dp"
         android:backgroundTint="#BDBDBD"
         android:paddingHorizontal="32dp"
-        android:text="Continuar"
+        android:text="@string/actibienbutton"
         android:textAllCaps="false"
         android:textColor="#000" />
 

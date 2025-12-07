@@ -26,6 +26,10 @@
     <string name="ComuMenuLa">Comunidad</string>
     <string name="saliMenuLate">Cerrar Sesión</string>
     <string name="openMenuLate">Abrir Menú Lateral</string>
+    <string name="logo">Logo UPNFIT</string>
+    <string name="bienvenidalogin">Mantente Motivado</string>
+    <string name="textoManteMoti">Regístrate para recibir nuestro boletín por correo electrónico y obtén regularmente consejos de ayuno gratuitos y actualizaciones de nuestra comunidad.</string>
+    <string name="actibienbutton">Continuar</string>
 
 
 </resources>
