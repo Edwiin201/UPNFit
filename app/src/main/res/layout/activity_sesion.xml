@@ -5,99 +5,156 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".actividades.SesionActivity"
-    android:background="@color/amarillo_upn">
+    android:background="@color/azulino_claro"
+    tools:context=".actividades.SesionActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="30dp"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="297dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/logo" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/sexTxtCorreo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/sesHintCorreoElectronico"
-                android:inputType="textEmailAddress"
-                android:maxLength="100" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true">
-
-            <EditText
-                android:id="@+id/sextxtClave"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:hint="@string/sesHintContraseña"
-                android:inputType="textPassword"
-                android:maxLength="100" />
-        </com.google.android.material.textfield.TextInputLayout>
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="147dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/logo"
+                tools:srcCompat="@drawable/gemini_generated_image_f3dscmf3dscmf3ds_removebg_preview" />
+
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:text="SISTEMA DE SEGUIMIENTO\nACADÉMICO"
+                android:textAllCaps="true"
+                android:textColor="@color/azul_marino"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSubtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:text="PORTAL DE APODERADOS"
+                android:textColor="@color/azul_marino"
+                android:textSize="14sp" />
+
+            <!-- Campo Correo -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusBottomEnd="30dp"
+                app:boxCornerRadiusBottomStart="30dp"
+                app:boxCornerRadiusTopEnd="30dp"
+                app:boxCornerRadiusTopStart="30dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:hintEnabled="false"
+                app:startIconDrawable="@android:drawable/ic_dialog_email"
+                app:startIconTint="@color/azul_marino">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sexTxtCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Correo Electrónico (E-mail)"
+                    android:inputType="textEmailAddress"
+                    android:padding="16dp"
+                    android:textColorHint="@color/gris_upn" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Campo Contraseña -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxCornerRadiusBottomEnd="30dp"
+                app:boxCornerRadiusBottomStart="30dp"
+                app:boxCornerRadiusTopEnd="30dp"
+                app:boxCornerRadiusTopStart="30dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:hintEnabled="false"
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@android:drawable/ic_lock_idle_lock"
+                app:startIconTint="@color/azul_marino">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sextxtClave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Contraseña"
+                    android:inputType="textPassword"
+                    android:padding="16dp"
+                    android:textColorHint="@color/gris_upn" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Botón Ingresar -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/sesBtnIniciarSesion"
-                android:layout_width="317dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="90dp"
-                android:layout_weight="1"
-                android:text="@string/sesBtnIniciar"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginBottom="24dp"
+                android:text="Ingresar al Portal"
                 android:textAllCaps="false"
                 android:textColor="@color/blanco"
-                app:backgroundTint="@color/verde_botón"
-                app:cornerRadius="8dp" />
+                android:textSize="18sp"
+                app:backgroundTint="@color/azul_marino"
+                app:cornerRadius="30dp" />
+
+            <CheckBox
+                android:id="@+id/chkRecordarUsuario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:buttonTint="@color/azul_marino"
+                android:text="Recordar mi Usuario"
+                android:textColor="@color/azul_marino" />
+
+            <TextView
+                android:id="@+id/seslblHasolvidado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="¿Has olvidado la contraseña?"
+                android:textColor="@color/azul_marino" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="¿No tienes cuenta? "
+                    android:textColor="@color/azul_marino" />
+
+                <TextView
+                    android:id="@+id/seslblRegistro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Registrate Aquí"
+                    android:textColor="@color/azul_marino"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/seslblHasolvidado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/sesLblHasolvidado"
-            android:textColor="@color/purple_700" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
-            android:orientation="horizontal" />
-
-        <TextView
-            android:id="@+id/seslblNotienescuenta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/sesLblNotienescuenta"
-            android:textAllCaps="false"
-            android:textColor="@color/purple_700" />
-
-        <TextView
-            android:id="@+id/seslblRegistro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/sesLblRegistro"
-            android:textAllCaps="false"
-            android:textColor="@color/purple_700" />
-    </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

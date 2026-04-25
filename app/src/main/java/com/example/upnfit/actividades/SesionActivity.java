@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,8 +34,9 @@ public class SesionActivity extends AppCompatActivity {
     private EditText txtCorreo, txtClave;
     private Button btnIniciarSesion;
     private TextView lblRegistro;
+    private CheckBox chkRecordar;
 
-    // URL del backend PHP (ajústala si usas otro servidor)
+    // URL del backend PHP
     private static final String LOGIN_URL = "http://upnfit.atwebpages.com/upnfit/login.php";
 
     // Solo correos UPN
@@ -59,6 +61,14 @@ public class SesionActivity extends AppCompatActivity {
         txtClave = findViewById(R.id.sextxtClave);
         btnIniciarSesion = findViewById(R.id.sesBtnIniciarSesion);
         lblRegistro = findViewById(R.id.seslblRegistro);
+        chkRecordar = findViewById(R.id.chkRecordarUsuario);
+
+        // Cargar correo guardado si existe
+        SharedPreferences sp = getSharedPreferences("UserData", MODE_PRIVATE);
+        if (sp.getBoolean("recordar", false)) {
+            txtCorreo.setText(sp.getString("correo_guardado", ""));
+            chkRecordar.setChecked(true);
+        }
 
         // Ir al registro
         lblRegistro.setOnClickListener(v -> {
@@ -76,16 +86,35 @@ public class SesionActivity extends AppCompatActivity {
                 return;
             }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
-                txtCorreo.setError("Correo inválido");
-                return;
+            // Guardar o borrar correo según el CheckBox
+            SharedPreferences.Editor editor = sp.edit();
+            if (chkRecordar.isChecked()) {
+                editor.putString("correo_guardado", correo);
+                editor.putBoolean("recordar", true);
+            } else {
+                editor.remove("correo_guardado");
+                editor.putBoolean("recordar", false);
             }
+            editor.apply();
 
             if (!isUpnEmail(correo)) {
                 txtCorreo.setError("Use su correo institucional @upn.pe");
-                Toast.makeText(this, "Solo se aceptan correos @upn.pe", Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            // --- MODO LOCAL PARA PRUEBAS ---
+            if (correo.equals("admin@upn.pe") && clave.equals("123456")) {
+                SharedPreferences.Editor editorLocal = sp.edit();
+                editorLocal.putInt("usuarioID", 999); // ID de prueba
+                editorLocal.putString("correo", correo);
+                editorLocal.apply();
+
+                Toast.makeText(this, "Modo Local: Acceso concedido", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SesionActivity.this, MenuActivity.class));
+                finish();
+                return;
+            }
+            // -------------------------------
 
             loginUsuarioRemoto(correo, clave);
         });

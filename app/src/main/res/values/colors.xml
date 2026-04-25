@@ -18,5 +18,7 @@
     <color name="amarillo_upn">#ffb43b</color>  <!-- amarillo upn -->
     <color name="gris_upn">#717571</color> <!-- gris upn -->
     <color name="hueso_upn">#caccca</color> <!-- hueso upn -->
-
+    <color name="azulino_claro">#E3F2FD</color>
+    <color name="azul_marino">#0D2C54</color>
+    <color name="dorado_perfil">#D4AF37</color>
 </resources>
