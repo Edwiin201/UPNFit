@@ -32,7 +32,7 @@ public class PerfilActivity extends AppCompatActivity {
         // Obtener rol de SharedPreferences
         SharedPreferences prefs = getSharedPreferences("UserData", MODE_PRIVATE);
         rol = prefs.getString("rol", "Apoderado");
-        String nombre = prefs.getString("nombre", "Usuario UPN");
+        String nombre = prefs.getString("nombre", "Usuario del Portal");
 
         // Vincular vistas
         tvNombrePerfil = findViewById(R.id.tvNombrePerfil);
