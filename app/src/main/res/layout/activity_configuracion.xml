@@ -75,7 +75,7 @@
                             android:id="@+id/tvNombreUsuarioConf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Estudiante UPN"
+                            android:text="Usuario del Portal"
                             android:textColor="@color/azul_marino"
                             android:textSize="18sp"
                             android:textStyle="bold" />

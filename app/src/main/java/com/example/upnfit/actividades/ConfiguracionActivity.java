@@ -46,7 +46,7 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
         // Cargar nombre del SharedPreferences si existe
         SharedPreferences userPrefs = getSharedPreferences("UserData", MODE_PRIVATE);
-        String nombre = userPrefs.getString("nombreCompleto", "Estudiante UPN");
+        String nombre = userPrefs.getString("nombreCompleto", "Usuario del Portal");
         if (tvNombreUsuario != null) {
             tvNombreUsuario.setText(nombre);
         }

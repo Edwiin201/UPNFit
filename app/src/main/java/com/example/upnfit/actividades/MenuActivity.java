@@ -194,25 +194,25 @@ public class MenuActivity extends AppCompatActivity {
             try {
                 if (response == null || response.trim().startsWith("<")) {
                     Log.e("MenuActivity", "Respuesta no válida del servidor: " + response);
-                    textoBienvenida.setText("¡Buen día, Estudiante!");
+                    textoBienvenida.setText("¡Buen día, Alumno!");
                     return;
                 }
                 JSONObject json = new JSONObject(response);
                 if (json.optInt("Codigo", 0) == 1) {
-                    String nombreCompleto = json.optString("NombreCompleto", "Estudiante");
+                    String nombreCompleto = json.optString("NombreCompleto", "Alumno");
                     String primerNombre = nombreCompleto.split("\\s+")[0];
                     textoBienvenida.setText("¡Buen día, " + primerNombre + "!");
                     btnPerfil.setText(obtenerIniciales(nombreCompleto));
                 } else {
-                    textoBienvenida.setText("¡Buen día, Estudiante!");
+                    textoBienvenida.setText("¡Buen día, Alumno!");
                 }
             } catch (JSONException e) {
                 Log.e("MenuActivity", "Error al parsear JSON: " + e.getMessage());
-                textoBienvenida.setText("¡Buen día, Estudiante!");
+                textoBienvenida.setText("¡Buen día, Alumno!");
             }
         }, error -> {
             Log.e("MenuActivity", "Error de Volley: " + error.toString());
-            textoBienvenida.setText("¡Buen día, Estudiante!");
+            textoBienvenida.setText("¡Buen día, Alumno!");
         }) {
             @Override
             protected Map<String, String> getParams() {
