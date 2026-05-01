@@ -13,13 +13,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="15dp"
-        android:text="Menú UPNFIT"
+        android:text="@string/menu_institucional"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/azul_marino"/>
 
-    <!-- Opción 1: Nutrición (ID: opNutricion) -->
+    <!-- Opción 1: Notas -->
     <LinearLayout
-        android:id="@+id/opNutricion"
+        android:id="@+id/opNotas"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="?attr/selectableItemBackground"
@@ -30,18 +31,46 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:contentDescription="Icono nutricion"
-            android:src="@drawable/temporizador" />
+            android:contentDescription="@string/icono_notas"
+            android:src="@android:drawable/ic_menu_edit"
+            app:tint="@color/azul_marino" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Nutrición"
-            android:textSize="16sp" />
+            android:text="@string/mis_notas"
+            android:textSize="16sp"
+            android:textColor="@color/azul_marino"/>
     </LinearLayout>
 
-    <!-- Opción 2: Perfil (ID: opPerfil) -->
+    <!-- Opción 2: Asistencia -->
+    <LinearLayout
+        android:id="@+id/opAsistencia"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/icono_asistencia"
+            android:src="@android:drawable/ic_menu_my_calendar"
+            app:tint="@color/azul_marino" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/asistencia"
+            android:textSize="16sp"
+            android:textColor="@color/azul_marino"/>
+    </LinearLayout>
+
+    <!-- Opción 3: Perfil -->
     <LinearLayout
         android:id="@+id/opPerfil"
         android:layout_width="match_parent"
@@ -54,15 +83,17 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:contentDescription="Icono perfil"
-            android:src="@drawable/circulo_verde" />
+            android:contentDescription="@string/icono_perfil"
+            android:src="@android:drawable/ic_menu_edit"
+            app:tint="@color/azul_marino" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Mi Perfil"
-            android:textSize="16sp" />
+            android:text="@string/mi_perfil"
+            android:textSize="16sp"
+            android:textColor="@color/azul_marino"/>
     </LinearLayout>
 
     <View
@@ -71,7 +102,7 @@
         android:layout_marginVertical="10dp"
         android:background="#CCCCCC" />
 
-    <!-- Opción 3: Salir (ID: opSalir) -->
+    <!-- Opción 4: Salir -->
     <LinearLayout
         android:id="@+id/opSalir"
         android:layout_width="match_parent"
@@ -84,7 +115,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:contentDescription="Icono salir"
+            android:contentDescription="@string/icono_salir"
             android:src="@android:drawable/ic_lock_power_off"
             app:tint="#FF0000" />
 
@@ -92,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Cerrar Sesión"
+            android:text="@string/cerrar_sesion"
             android:textColor="#FF0000"
             android:textSize="16sp" />
     </LinearLayout>

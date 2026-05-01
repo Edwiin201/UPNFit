@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.upnfit.R;
-import com.example.upnfit.MenuLateralFragment; // 🟢 Asegúrate de que este import sea correcto
+import com.example.upnfit.MenuLateralFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,11 +33,11 @@ public class MenuActivity extends AppCompatActivity {
 
     private TextView textoBienvenida;
     private AppCompatButton btnPerfil;
+    private String userRole;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        // 🌓 APLICAR modo oscuro o claro guardado antes de mostrar la UI
+        // 🌓 APLICAR modo oscuro o claro guardado
         SharedPreferences prefs = getSharedPreferences("AppSettings", MODE_PRIVATE);
         boolean darkModeEnabled = prefs.getBoolean("dark_mode", false);
         AppCompatDelegate.setDefaultNightMode(
@@ -44,82 +46,173 @@ public class MenuActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        // Asegúrate de que tu layout activity_menu.xml ya NO tenga el DrawerLayout, sino el ScrollView directo
         setContentView(R.layout.activity_menu);
 
         // --- Referencias UI ---
         textoBienvenida = findViewById(R.id.textoBienvenida);
         btnPerfil = findViewById(R.id.btnmenuPerfil);
 
-        // Recuperar el ID del usuario logueado
+        // Recuperar el ID y Rol del usuario logueado
         SharedPreferences sharedPreferences = getSharedPreferences("UserData", MODE_PRIVATE);
         int usuarioID = sharedPreferences.getInt("usuarioID", 0);
+        userRole = sharedPreferences.getString("rol", "Apoderado");
 
         if (usuarioID == 0) {
             textoBienvenida.setText("¡Buen día, Usuario!");
+        } else if (usuarioID == 999) {
+            textoBienvenida.setText("¡Buen día, Familia Pérez!");
+            btnPerfil.setText("FP");
+        } else if (usuarioID == 888) {
+            textoBienvenida.setText("¡Buen día, Prof. García!");
+            btnPerfil.setText("PG");
         } else {
             obtenerPrimerNombreDesdeBD(usuarioID);
         }
 
-        // ✅ Mostrar objetivos guardados
-        TextView txtObjetivos = findViewById(R.id.txtObjetivosMenu);
-        String objetivo1 = sharedPreferences.getString("objetivo1", "");
-        String objetivo2 = sharedPreferences.getString("objetivo2", "");
+        configurarMenuSegunRol();
 
-        if (!objetivo1.isEmpty() && !objetivo2.isEmpty()) {
-            txtObjetivos.setText("Tus objetivos: " + objetivo1 + ", " + objetivo2);
-        } else if (!objetivo1.isEmpty()) {
-            txtObjetivos.setText("Tu objetivo: " + objetivo1);
-        } else {
-            txtObjetivos.setText("Tus objetivos: (no seleccionados)");
+        // 🔹 Perfil
+        if (btnPerfil != null) {
+            btnPerfil.setOnClickListener(v -> startActivity(new Intent(this, PerfilActivity.class)));
         }
-
-        // ✅ Consejo del día
-        TextView tvConsejoDia = findViewById(R.id.tvConsejoDia);
-        cargarConsejoDelDia(tvConsejoDia);
 
         // 🔹 Configuración (Engranaje)
         ImageButton btnConfiguracion = findViewById(R.id.configuracion);
-        btnConfiguracion.setOnClickListener(v -> startActivity(new Intent(this, ConfiguracionActivity.class)));
-
-        // 🟢 BOTÓN DE MENÚ (HAMBURGUESA) CON FRAGMENTO
-        ImageButton menuBtn = findViewById(R.id.btnAbrirMenu);
-        menuBtn.setOnClickListener(v -> {
-            // Aquí llamamos a tu nuevo Fragmento
-            MenuLateralFragment menuFragment = new MenuLateralFragment();
-            menuFragment.show(getSupportFragmentManager(), "MenuLateralTag");
-        });
+        if (btnConfiguracion != null) {
+            btnConfiguracion.setOnClickListener(v -> startActivity(new Intent(this, ConfiguracionActivity.class)));
+        }
     }
 
-    // ✅ Obtener nombre desde la BD
+    private void configurarMenuSegunRol() {
+        // Resumen Card
+        TextView tvTituloResumen = findViewById(R.id.tvTituloResumen);
+        TextView lblPromedio = findViewById(R.id.lblPromedio);
+        TextView tvValorPromedio = findViewById(R.id.tvValorPromedio);
+        TextView lblAsistencia = findViewById(R.id.lblAsistencia);
+        TextView tvValorAsistencia = findViewById(R.id.tvValorAsistencia);
+        TextView lblCursos = findViewById(R.id.lblCursos);
+        TextView tvValorCursos = findViewById(R.id.tvValorCursos);
+
+        // Grid Cards
+        TextView tvCardNotas = findViewById(R.id.tvCardNotas);
+        TextView tvSubCardNotas = findViewById(R.id.tvSubCardNotas);
+        ImageView imgCardNotas = findViewById(R.id.imgCardNotas);
+
+        TextView tvCardTareas = findViewById(R.id.tvCardTareas);
+        TextView tvSubCardTareas = findViewById(R.id.tvSubCardTareas);
+
+        TextView tvCardMensajes = findViewById(R.id.tvCardMensajes);
+        TextView tvSubCardMensajes = findViewById(R.id.tvSubCardMensajes);
+
+        TextView tvCardExamenes = findViewById(R.id.tvCardExamenes);
+        TextView tvSubCardExamenes = findViewById(R.id.tvSubCardExamenes);
+
+        TextView tvCardAsistencia = findViewById(R.id.tvCardAsistencia);
+        TextView tvSubCardAsistencia = findViewById(R.id.tvSubCardAsistencia);
+
+        View cardNotas = findViewById(R.id.cardNotas);
+        View cardTareas = findViewById(R.id.cardTareas);
+        View cardMensajes = findViewById(R.id.cardMensajes);
+        View cardExamenes = findViewById(R.id.cardExamenes);
+        View cardAsistenciaMenu = findViewById(R.id.cardAsistenciaMenu);
+        View cardHorarios = findViewById(R.id.cardHorarios);
+
+        if (userRole.equals("Profesor")) {
+            // UI para PROFESOR
+            tvTituloResumen.setText("Panel de Control Docente");
+            lblPromedio.setText("PROM. GRUPAL");
+            tvValorPromedio.setText("16.2");
+            lblAsistencia.setText("ALUMNOS");
+            tvValorAsistencia.setText("32");
+            lblCursos.setText("SECCIONES");
+            tvValorCursos.setText("04");
+
+            tvCardNotas.setText("Gestionar Notas");
+            tvSubCardNotas.setText("Subir y editar notas");
+            imgCardNotas.setImageResource(android.R.drawable.ic_menu_edit);
+
+            tvCardTareas.setText("Asignar Tareas");
+            tvSubCardTareas.setText("Publicar actividades");
+
+            tvCardMensajes.setText("Mensajes");
+            tvSubCardMensajes.setText("Atención a padres");
+
+            tvCardExamenes.setText("Programar Exámenes");
+            tvSubCardExamenes.setText("Gestionar fechas");
+
+            tvCardAsistencia.setText("Pasar Asistencia");
+            tvSubCardAsistencia.setText("Registro diario");
+
+            // Click Listeners Profesor
+            cardNotas.setOnClickListener(v -> startActivity(new Intent(this, GestionarNotasActivity.class)));
+            cardTareas.setOnClickListener(v -> startActivity(new Intent(this, TareasActivity.class)));
+            cardMensajes.setOnClickListener(v -> startActivity(new Intent(this, MensajeriaActivity.class)));
+            cardAsistenciaMenu.setOnClickListener(v -> startActivity(new Intent(this, PasarAsistenciaActivity.class)));
+            cardExamenes.setOnClickListener(v -> startActivity(new Intent(this, ExamenesActivity.class)));
+        } else {
+            // UI para APODERADO / PADRE
+            tvTituloResumen.setText("Resumen del Alumno");
+            lblPromedio.setText("PROMEDIO");
+            tvValorPromedio.setText("18.5");
+            lblAsistencia.setText("ASISTENCIA");
+            tvValorAsistencia.setText("95%");
+            lblCursos.setText("CURSOS");
+            tvValorCursos.setText("06");
+
+            tvCardNotas.setText("Boleta de Notas");
+            tvSubCardNotas.setText("Ver récord académico");
+            imgCardNotas.setImageResource(android.R.drawable.star_on);
+
+            tvCardTareas.setText("Tareas");
+            tvSubCardTareas.setText("Actividades pendientes");
+
+            tvCardMensajes.setText("Mensajes");
+            tvSubCardMensajes.setText("Comunicación con profesores");
+
+            tvCardExamenes.setText("Exámenes");
+            tvSubCardExamenes.setText("Fechas y resultados");
+
+            tvCardAsistencia.setText("Asistencia");
+            tvSubCardAsistencia.setText("Control de faltas");
+
+            // Click Listeners Apoderado
+            cardNotas.setOnClickListener(v -> startActivity(new Intent(this, NotasActivity.class)));
+            cardTareas.setOnClickListener(v -> startActivity(new Intent(this, TareasActivity.class)));
+            cardMensajes.setOnClickListener(v -> startActivity(new Intent(this, MensajeriaActivity.class)));
+            cardAsistenciaMenu.setOnClickListener(v -> startActivity(new Intent(this, AsistenciaActivity.class)));
+            cardExamenes.setOnClickListener(v -> startActivity(new Intent(this, ExamenesActivity.class)));
+        }
+
+        if (cardHorarios != null) {
+            cardHorarios.setOnClickListener(v -> startActivity(new Intent(this, CursosActivity.class)));
+        }
+    }
+
     private void obtenerPrimerNombreDesdeBD(int usuarioID) {
         String url = "http://upnfit.atwebpages.com/upnfit/obtener_datos_usuario.php";
-
         StringRequest request = new StringRequest(Request.Method.POST, url, response -> {
             try {
-                JSONObject json = new JSONObject(response);
-                int codigo = json.optInt("Codigo", 0);
-
-                if (codigo == 1) {
-                    String nombreCompleto = json.optString("NombreCompleto", "Usuario");
-                    String primerNombre = nombreCompleto.split("\\s+")[0];
-
-                    textoBienvenida.setText("¡Buen día, " + primerNombre + "!");
-                    String iniciales = obtenerIniciales(nombreCompleto);
-                    btnPerfil.setText(iniciales);
-                } else {
-                    textoBienvenida.setText("¡Buen día, Usuario!");
+                if (response == null || response.trim().startsWith("<")) {
+                    Log.e("MenuActivity", "Respuesta no válida del servidor: " + response);
+                    textoBienvenida.setText("¡Buen día, Estudiante!");
+                    return;
                 }
-
+                JSONObject json = new JSONObject(response);
+                if (json.optInt("Codigo", 0) == 1) {
+                    String nombreCompleto = json.optString("NombreCompleto", "Estudiante");
+                    String primerNombre = nombreCompleto.split("\\s+")[0];
+                    textoBienvenida.setText("¡Buen día, " + primerNombre + "!");
+                    btnPerfil.setText(obtenerIniciales(nombreCompleto));
+                } else {
+                    textoBienvenida.setText("¡Buen día, Estudiante!");
+                }
             } catch (JSONException e) {
-                textoBienvenida.setText("¡Buen día, Usuario!");
-                e.printStackTrace();
+                Log.e("MenuActivity", "Error al parsear JSON: " + e.getMessage());
+                textoBienvenida.setText("¡Buen día, Estudiante!");
             }
-
         }, error -> {
-            Log.e("MenuActivity", "Error de conexión: " + error.toString());
-            textoBienvenida.setText("¡Buen día, Usuario!");
-            Toast.makeText(this, "Error al conectar con el servidor", Toast.LENGTH_SHORT).show();
+            Log.e("MenuActivity", "Error de Volley: " + error.toString());
+            textoBienvenida.setText("¡Buen día, Estudiante!");
         }) {
             @Override
             protected Map<String, String> getParams() {
@@ -128,47 +221,14 @@ public class MenuActivity extends AppCompatActivity {
                 return params;
             }
         };
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(request);
+        Volley.newRequestQueue(this).add(request);
     }
 
-    // ✅ Obtener iniciales
     private String obtenerIniciales(String nombreCompleto) {
-        if (nombreCompleto == null || nombreCompleto.isEmpty()) return "US";
-
+        if (nombreCompleto == null || nombreCompleto.isEmpty()) return "ST";
         String[] partes = nombreCompleto.trim().split("\\s+");
         String inicialNombre = partes.length >= 1 ? partes[0].substring(0, 1).toUpperCase() : "";
         String inicialApellido = partes.length >= 2 ? partes[1].substring(0, 1).toUpperCase() : "";
-
         return inicialNombre + inicialApellido;
-    }
-
-    // ✅ Consejo del día
-    private void cargarConsejoDelDia(TextView tvConsejoDia) {
-        String url = "http://renovaapp.atwebpages.com/Services/Consejo_diario.php";
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                response -> {
-                    try {
-                        if (response.getBoolean("success")) {
-                            JSONObject consejo = response.getJSONObject("data");
-                            String titulo = consejo.getString("titulo");
-                            String contenido = consejo.getString("contenido");
-                            tvConsejoDia.setText("💡 " + titulo + ":\n" + contenido);
-                        } else {
-                            tvConsejoDia.setText("💡 Hoy es un buen día para empezar algo nuevo.");
-                        }
-                    } catch (JSONException e) {
-                        tvConsejoDia.setText("💡 Consejo no disponible por el momento.");
-                    }
-                },
-                error -> {
-                    Log.e("API_ERROR", "Error al obtener el consejo");
-                    tvConsejoDia.setText("💡 Error al obtener el consejo.");
-                });
-
-        queue.add(request);
     }
 }

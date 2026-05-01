@@ -1,4 +1,4 @@
-package com.example.upnfit; // 🟢 Asegúrate de que el package sea correcto (puede ser .fragments)
+package com.example.upnfit;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,37 +9,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment; // 🟢 Usamos DialogFragment estándar
+import androidx.fragment.app.DialogFragment;
 
-import com.example.upnfit.actividades.NutricionActivity;
-// import com.example.upnfit.actividades.PerfilActivity; // Descomenta cuando exista
+import com.example.upnfit.actividades.NotasActivity;
+import com.example.upnfit.actividades.AsistenciaActivity;
 
 public class MenuLateralFragment extends DialogFragment {
 
     @Override
     public void onStart() {
         super.onStart();
-        // 🟢 CONFIGURACIÓN PARA QUE SALGA A LA IZQUIERDA
         if (getDialog() != null && getDialog().getWindow() != null) {
             Window window = getDialog().getWindow();
-
-            // Alineamos el diálogo a la izquierda (START)
             window.setGravity(Gravity.START);
-
-            // Ancho y Alto: Usamos lo que diga el XML (wrap_content) para el ancho, y match_parent para el alto
             window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
-            // Fondo transparente para que se vean los bordes redondeados si los usas, o para quitar sombras raras
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-            // Animación (Opcional: para que entre suavemente, aunque por defecto hará un fade)
-            // window.setWindowAnimations(android.R.style.Animation_Dialog);
         }
     }
 
@@ -48,28 +37,36 @@ public class MenuLateralFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu_lateral, container, false);
 
-        // --- Configurar botones ---
+        // --- Configurar botones del Portal Institucional ---
 
-        // 1. Nutrición
-        LinearLayout opNutricion = view.findViewById(R.id.opNutricion);
-        if (opNutricion != null) {
-            opNutricion.setOnClickListener(v -> {
+        // 1. Mis Notas
+        LinearLayout opNotas = view.findViewById(R.id.opNotas);
+        if (opNotas != null) {
+            opNotas.setOnClickListener(v -> {
                 dismiss();
-                startActivity(new Intent(getContext(), NutricionActivity.class));
+                startActivity(new Intent(getContext(), NotasActivity.class));
             });
         }
 
-        // 2. Perfil
+        // 2. Asistencia
+        LinearLayout opAsistencia = view.findViewById(R.id.opAsistencia);
+        if (opAsistencia != null) {
+            opAsistencia.setOnClickListener(v -> {
+                dismiss();
+                startActivity(new Intent(getContext(), AsistenciaActivity.class));
+            });
+        }
+
+        // 3. Perfil
         LinearLayout opPerfil = view.findViewById(R.id.opPerfil);
         if (opPerfil != null) {
             opPerfil.setOnClickListener(v -> {
                 dismiss();
-                Toast.makeText(getContext(), "Ir a Perfil", Toast.LENGTH_SHORT).show();
-                // startActivity(new Intent(getContext(), PerfilActivity.class));
+                Toast.makeText(getContext(), "Módulo de Perfil en mantenimiento", Toast.LENGTH_SHORT).show();
             });
         }
 
-        // 3. Salir
+        // 4. Salir (Cerrar Sesión)
         LinearLayout opSalir = view.findViewById(R.id.opSalir);
         if (opSalir != null) {
             opSalir.setOnClickListener(v -> {

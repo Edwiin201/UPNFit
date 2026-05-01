@@ -1,24 +1,32 @@
 <resources>
-    <string name="app_name">UPNFit</string>
-    <string name="carLblMensaje">Cargando aplicación...</string>
+    <string name="app_name">Portal Institucional</string>
+    <string name="portal_institucional">Portal Institucional</string>
+    <string name="menu_institucional">Menú Institucional</string>
+    <string name="mis_notas">Mis Notas</string>
+    <string name="asistencia">Asistencia</string>
+    <string name="mi_perfil">Mi Perfil</string>
+    <string name="cerrar_sesion">Cerrar Sesión</string>
+    <string name="icono_notas">Icono notas</string>
+    <string name="icono_asistencia">Icono asistencia</string>
+    <string name="icono_perfil">Icono perfil</string>
+    <string name="icono_salir">Icono salir</string>
+    <string name="niveles_educativos">Inicial • Primaria • Secundaria</string>
+    <string name="carLblMensaje">Iniciando Portal Académico...</string>
     <string name="sesHintCorreoElectronico">Correo Electrónico</string>
     <string name="sesHintContraseña">Contraseña</string>
-    <string name="sesBtnIniciar">Iniciar Sesión</string>
+    <string name="sesBtnIniciar">Ingresar al Portal</string>
     <string name="sesLblHasolvidado">¿Has olvidado la contraseña?</string>
-    <string name="sesLblNotienescuenta">¿No tienes cuenta de Renova aún?</string>
-    <string name="sesLblRegistro">Registrate Ahora</string>
-    <string name="ConfigPreferecias">Preferencias</string>
+    <string name="sesLblNotienescuenta">¿No tienes cuenta aún?</string>
+    <string name="sesLblRegistro">Regístrate Aquí</string>
+    <string name="ConfigPreferecias">Configuración del Sistema</string>
 
     <string-array name="categorias_publicacion">
-        <item>#RECETASALUDABLE</item>
-        <item>#MEDITACIÓN</item>
-        <item>#UPNFIT</item>
-        <item>#BIENESTAR</item>
+        <item>#COMUNICADOS</item>
+        <item>#EVENTOS</item>
+        <item>#ACADÉMICO</item>
+        <item>#INSTITUCIONAL</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="Confi">Configuracion</string>
 
-
+    <string name="hello_blank_fragment">Portal de Información</string>
+    <string name="Confi">Configuración</string>
 </resources>
-

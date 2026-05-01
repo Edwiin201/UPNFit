@@ -32,11 +32,14 @@ public class CargaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_carga);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        
+        if (findViewById(R.id.main) != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
+        }
 
         barCarga = findViewById(R.id.carBarCarga);
         txtFrase = findViewById(R.id.txtFrase);
@@ -64,41 +67,20 @@ public class CargaActivity extends AppCompatActivity {
     }
 
     private void cargarFraseMotivacional() {
-        String url = "http://renovaapp.atwebpages.com/Services/Frasealeatoria.php";
+        // Frases académicas en lugar de fitness
+        String[] frasesAcademicas = {
+            "La educación es el arma más poderosa para cambiar el mundo.",
+            "El éxito es la suma de pequeños esfuerzos repetidos día tras día.",
+            "Iniciando sesión segura en el Portal Académico...",
+            "Cargando tus cursos y actividades del semestre...",
+            "La excelencia no es un acto, sino un hábito."
+        };
+        
+        int randomIndex = (int) (Math.random() * frasesAcademicas.length);
+        String fraseElegida = frasesAcademicas[randomIndex];
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                response -> {
-                    try {
-                        if (response.getBoolean("success")) {
-                            JSONObject data = response.getJSONObject("data");
-                            String frase = data.getString("frase");
-                            String autor = data.getString("autor");
-
-                            String textoFinal = "\"" + frase + "\"\n\n- " + autor;
-
-                            txtFrase.setText("\"" + frase + "\"\n\n- " + autor);
-                            txtFrase.setAlpha(0f); // Comienza invisible
-                            txtFrase.setText(textoFinal);
-                            txtFrase.animate().alpha(1f).setDuration(1000).start();
-                        } else {
-                            txtFrase.setAlpha(0f);
-                            txtFrase.setText("Prepárate para alcanzar tus metas 💪");
-                            txtFrase.animate().alpha(1f).setDuration(1000).start();
-                        }
-                    } catch (JSONException e) {
-                        txtFrase.setAlpha(0f);
-                        txtFrase.setText("Inicia tu día con energía ✨");
-                        txtFrase.animate().alpha(1f).setDuration(1000).start();
-                    }
-                },
-                error -> {
-                    txtFrase.setAlpha(0f);
-                    txtFrase.setText("Hoy es un buen día para mejorar.");
-                    txtFrase.animate().alpha(1f).setDuration(1000).start();
-                }
-        );
-        queue.add(request);
+        txtFrase.setAlpha(0f);
+        txtFrase.setText(fraseElegida);
+        txtFrase.animate().alpha(1f).setDuration(1000).start();
     }
 }

@@ -5,51 +5,58 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/amarillo_upn"
-    tools:context=".actividades.CargaActivity">
+    android:background="@color/azulino_claro">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center_vertical"
-        android:layout_margin="15dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="437dp"
-            android:src="@drawable/logo" />
+            android:id="@+id/imgLogoCarga"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_marginBottom="32dp"
+            android:src="@drawable/gemini_generated_image_f3dscmf3dscmf3ds_removebg_preview" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/portal_institucional"
+            android:textColor="@color/azul_marino"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/niveles_educativos"
+            android:textColor="@color/gris_upn"
+            android:textSize="14sp" />
 
         <ProgressBar
             android:id="@+id/carBarCarga"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="70dp"
-            android:padding="5dp"
-            android:scaleY="2"
-            android:max="100"
-            android:progress="60"
-            android:progressTint="@color/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_marginVertical="20dp" />
-
-        <TextView
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:gravity="center_horizontal"
-            android:text="@string/carLblMensaje"/>
+            android:layout_marginTop="48dp"
+            android:progressTint="@color/azul_marino"
+            android:progressBackgroundTint="#330D2C54" />
 
         <TextView
             android:id="@+id/txtFrase"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cargando motivación..."
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:padding="12dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginTop="16dp"
+            android:text="Iniciando sesión segura..."
+            android:textColor="@color/azul_marino"
+            android:textSize="12sp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
