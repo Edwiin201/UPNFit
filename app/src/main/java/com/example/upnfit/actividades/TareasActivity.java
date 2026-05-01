@@ -35,12 +35,13 @@ public class TareasActivity extends AppCompatActivity {
 
         SharedPreferences sp = getSharedPreferences("UserData", MODE_PRIVATE);
         userRole = sp.getString("rol", "Apoderado");
+        int usuarioID = sp.getInt("usuarioID", 0);
 
         rvTareas = findViewById(R.id.rvTareas);
         fabNuevaTarea = findViewById(R.id.fabNuevaTarea);
         ImageButton btnBack = findViewById(R.id.btnBackTareas);
 
-        if (userRole.equals("888")) { // Usando el ID 888 para Profesor
+        if (userRole.equals("Profesor") || usuarioID == 888) {
             fabNuevaTarea.setVisibility(View.VISIBLE);
             fabNuevaTarea.setOnClickListener(v -> mostrarDialogoNuevaTarea());
         }
